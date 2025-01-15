@@ -1,0 +1,1251 @@
+[
+    {
+        "id_char": "0001",
+        "char_name": "Lathel",
+        "illust_inven_char_id": "illust_inven_char000101",
+        "rarity": 5,
+        "element_property": {
+            "name": "fire",
+            "icon_misc_id": "icon_element_fire"
+        },
+        "attack_property": {
+            "name": "physical",
+            "icon_misc_id": "icon_stats_physical_l"
+        },
+        "target": "very_front",
+        "knock_back": "left_back",
+        "stats": {
+            "hp": 2877,
+            "atk": 275,
+            "magic_atk": 0,
+            "crit_rate": 0.10,
+            "crit_dmg": 0.50,
+            "def": 0.10,
+            "magic_resist": 0
+        },
+        "talent": {
+            "name": "Search",
+            "bufficon_id": "talent_buff_icon_6_l",
+            "description_template": "Detects the location of hidden objects for ${rank_value} seconds",
+            "ranks": [
+                {
+                    "level": 1,
+                    "name": "Beginner",
+                    "cost": 5,
+                    "rank_value": 15
+                },
+                {
+                    "level": 2,
+                    "name": "Intermediate",
+                    "cost": 5,
+                    "rank_value": 30
+                },
+                {
+                    "level": 3,
+                    "name": "Advanced",
+                    "cost": 5,
+                    "rank_value": 45
+                },
+                {
+                    "level": 4,
+                    "name": "Expert",
+                    "cost": 5,
+                    "rank_value": 90
+                },
+                {
+                    "level": 5,
+                    "name": "Legendary",
+                    "cost": 5,
+                    "rank_value": 180
+                }
+            ]
+        },
+        "exclusive_gear": {
+            "name": "Artha Lugo",
+            "icon_equipment_id": "icon_equipment103",
+            "exclusive_ability": {
+                "atk": 0.450
+            },
+            "basic_stat": {
+                "def": 0.09,
+                "options": [
+                    {
+                        "hp": 270
+                    },
+                    {
+                        "hp": 0.30
+                    },
+                    {
+                        "def": 0.09
+                    }
+                ]
+            }
+        },
+        "costume": [
+            {
+                "id_costume": "000101",
+                "costume_name": "Medicinal Herb Tracker",
+                "skill": {
+                    "name": "The Sword of Fresh Blood",
+                    "skillicon_id": "skillicon_1",
+                    "range": "upleft",
+                    "description_template": "Consume 5% of your current HP to increase ATK by 50% for 2 turns. Attack the enemy ${chain} Times, each attack deals Physical DMG based on ${upgrade_value}% of your ATK.",
+                    "upgrade": [
+                        {
+                            "level": 0,
+                            "sp_cost": 3,
+                            "cd": 5,
+                            "chain": 2,
+                            "upgrade_value": 150
+                        },
+                        {
+                            "level": 1,
+                            "sp_cost": 3,
+                            "cd": 5,
+                            "chain": 2,
+                            "upgrade_value": 200
+                        },
+                        {
+                            "level": 2,
+                            "sp_cost": 3,
+                            "cd": 5,
+                            "chain": 2,
+                            "upgrade_value": 245
+                        },
+                        {
+                            "level": 3,
+                            "sp_cost": 2,
+                            "cd": 5,
+                            "chain": 2,
+                            "upgrade_value": 245
+                        },
+                        {
+                            "level": 4,
+                            "sp_cost": 2,
+                            "cd": 5,
+                            "chain": 2,
+                            "upgrade_value": 285
+                        },
+                        {
+                            "level": 5,
+                            "sp_cost": 2,
+                            "cd": 5,
+                            "chain": 2,
+                            "upgrade_value": 320
+                        }
+                    ]
+                },
+                "potential": {
+                    "permanent": {
+                        "atk": 0.0520
+                    },
+                    "bonding": {
+                        "hp": 154,
+                        "atk": 80,
+                        "def": 0.0840
+                    },
+                    "skill": [
+                        "DMG +15%",
+                        "DMG +15%",
+                        "Range Upgrade"
+                    ]
+                }
+            },
+            {
+                "id_costume": "000102",
+                "costume_name": "Lonely Survivor",
+                "skill": {
+                    "name": "Ludbion Drive",
+                    "skillicon_id": "skillicon_2",
+                    "range": "up-L",
+                    "description_template": "Increase ATK by 50% with the cost of 5% of current HP for 2 turns. Attack ${chain} Times, each attack deals Physical DMG based off of ${upgrade_value}% of ATK.",
+                    "upgrade": [
+                        {
+                            "level": 0,
+                            "sp_cost": 4,
+                            "cd": 5,
+                            "chain": 3,
+                            "upgrade_value": 65
+                        },
+                        {
+                            "level": 1,
+                            "sp_cost": 4,
+                            "cd": 5,
+                            "chain": 3,
+                            "upgrade_value": 90
+                        },
+                        {
+                            "level": 2,
+                            "sp_cost": 4,
+                            "cd": 5,
+                            "chain": 3,
+                            "upgrade_value": 115
+                        },
+                        {
+                            "level": 3,
+                            "sp_cost": 3,
+                            "cd": 5,
+                            "chain": 3,
+                            "upgrade_value": 115
+                        },
+                        {
+                            "level": 4,
+                            "sp_cost": 3,
+                            "cd": 5,
+                            "chain": 3,
+                            "upgrade_value": 135
+                        },
+                        {
+                            "level": 5,
+                            "sp_cost": 3,
+                            "cd": 5,
+                            "chain": 3,
+                            "upgrade_value": 155
+                        }
+                    ]
+                },
+                "potential": {
+                    "permanent": {
+                        "atk": 0.0520
+                    },
+                    "bonding": {
+                        "hp": 0.17,
+                        "atk": 0.756
+                    },
+                    "skill": [
+                        "DMG +15%",
+                        "DMG +15%",
+                        "SP Cost -1"
+                    ]
+                }
+            },
+            {
+                "id_costume": "000103",
+                "costume_name": "Homunculus"
+            },
+            {
+                "id_costume": "000104",
+                "costume_name": "Dark Knight"
+            },
+            {
+                "id_costume": "000105",
+                "costume_name": "Promise of Vengance"
+            },
+            {
+                "id_costume": "000106",
+                "costume_name": "Pool Party"
+            }
+        ]
+    },
+    {
+        "id_char": "0002",
+        "char_name": "Justia",
+        "rarity": "5",
+        "stats": {
+            "hp": "2877",
+            "atk": "275",
+            "magic_atk": "0",
+            "crit_rate": "10",
+            "crit_dmg": "50",
+            "def": "10",
+            "magic_resist": "0",
+            "target": "very_front",
+            "knock_back": "left_back"
+        },
+        "costume": [
+            {
+                "id_costume": "000201",
+                "costume_name": "Knight of Blood"
+            },
+            {
+                "id_costume": "000202",
+                "costume_name": "White Reaper"
+            },
+            {
+                "id_costume": "000203",
+                "costume_name": "Blood Glutton"
+            },
+            {
+                "id_costume": "000204",
+                "costume_name": "Kendo Club"
+            },
+            {
+                "id_costume": "000206",
+                "costume_name": "Pool Party"
+            }
+        ]
+    },
+    {
+        "id_char": "0003",
+        "char_name": "Scheherazade",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "000301",
+                "costume_name": "The Lapis Witch"
+            },
+            {
+                "id_costume": "000303",
+                "costume_name": "The Magic School Professor"
+            },
+            {
+                "id_costume": "000304",
+                "costume_name": "Code Name S"
+            },
+            {
+                "id_costume": "000306",
+                "costume_name": "Pool Party"
+            }
+        ]
+    },
+    {
+        "id_char": "0004",
+        "char_name": "Gray",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "000401",
+                "costume_name": "The Sharpshooter of the Mist"
+            },
+            {
+                "id_costume": "000402",
+                "costume_name": "B-Rank Manager"
+            },
+            {
+                "id_costume": "000403",
+                "costume_name": "Vanguard"
+            },
+            {
+                "id_costume": "000406",
+                "costume_name": "Pool Party"
+            }
+        ]
+    },
+    {
+        "id_char": "0005",
+        "char_name": "Rou",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "000501",
+                "costume_name": "White Cat"
+            },
+            {
+                "id_costume": "000502",
+                "costume_name": "Red Hat"
+            },
+            {
+                "id_costume": "000504",
+                "costume_name": "Nature's Claw"
+            },
+            {
+                "id_costume": "000506",
+                "costume_name": "Stray Cat"
+            }
+        ]
+    },
+    {
+        "id_char": "0006",
+        "char_name": "Olstein",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "000601",
+                "costume_name": "The Fiend Scholar"
+            },
+            {
+                "id_costume": "000604",
+                "costume_name": "Sage of Blue Clouds"
+            }
+        ]
+    },
+    {
+        "id_char": "0007",
+        "char_name": "Eclipse",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "000701",
+                "costume_name": "The Dimesion Witch"
+            },
+            {
+                "id_costume": "000706",
+                "costume_name": "Nightmare Bunny"
+            },
+            {
+                "id_costume": "000707",
+                "costume_name": "Beach Vacane"
+            }
+        ]
+    },
+    {
+        "id_char": "0008",
+        "char_name": "Rubia",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "000801",
+                "costume_name": "Thorn of the Desert"
+            },
+            {
+                "id_costume": "000804",
+                "costume_name": "The Empress of the Ocean"
+            },
+            {
+                "id_costume": "000806",
+                "costume_name": "Maid Name C"
+            }
+        ]
+    },
+    {
+        "id_char": "0010",
+        "char_name": "Sylvia",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "001001",
+                "costume_name": "Desert Flower"
+            },
+            {
+                "id_costume": "001002",
+                "costume_name": "The Sword Queen"
+            },
+            {
+                "id_costume": "001004",
+                "costume_name": "Admiral"
+            }
+        ]
+    },
+    {
+        "id_char": "0011",
+        "char_name": "Teresse",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "001101",
+                "costume_name": "Angel of Destruction"
+            },
+            {
+                "id_costume": "001106",
+                "costume_name": "Medical Club"
+            },
+            {
+                "id_costume": "001107",
+                "costume_name": "Beachside Angel"
+            }
+        ]
+    },
+    {
+        "id_char": "0012",
+        "char_name": "Liatris",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "001201",
+                "costume_name": "Rodev's Star"
+            },
+            {
+                "id_costume": "001206",
+                "costume_name": "Neon Stalker"
+            },
+            {
+                "id_costume": "001207",
+                "costume_name": "Maid Name R"
+            }
+        ]
+    },
+    {
+        "id_char": "0024",
+        "char_name": "Diana",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "002401",
+                "costume_name": "Adventurer of the Unknown"
+            },
+            {
+                "id_costume": "002406",
+                "costume_name": "Anti-dystopia"
+            }
+        ]
+    },
+    {
+        "id_char": "0030",
+        "char_name": "Layla",
+        "rarity": "4",
+        "costume": [
+            {
+                "id_costume": "003001",
+                "costume_name": "Anvil of Creation"
+            }
+        ]
+    },
+    {
+        "id_char": "0031",
+        "char_name": "Elpis",
+        "rarity": "4",
+        "costume": [
+            {
+                "id_costume": "003101",
+                "costume_name": "Hand of Salvation"
+            }
+        ]
+    },
+    {
+        "id_char": "0032",
+        "char_name": "Loen",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "003201",
+                "costume_name": "Last Hope"
+            },
+            {
+                "id_costume": "003202",
+                "costume_name": "Track and Field Team"
+            },
+            {
+                "id_costume": "003203",
+                "costume_name": "Celebrity Bunny"
+            }
+        ]
+    },
+    {
+        "id_char": "0033",
+        "char_name": "Nebris",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "003301",
+                "costume_name": "Labyrinth Gatekeeper"
+            },
+            {
+                "id_costume": "003302",
+                "costume_name": "Laid-back Lifeguard"
+            },
+            {
+                "id_costume": "003303",
+                "costume_name": "New Hire"
+            }
+        ]
+    },
+    {
+        "id_char": "0034",
+        "char_name": "Morpeah",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "003401",
+                "costume_name": "Beach Vacane"
+            },
+            {
+                "id_costume": "003402",
+                "costume_name": "Daydream Bunny"
+            }
+        ]
+    },
+    {
+        "id_char": "0035",
+        "char_name": "Sacred Justia",
+        "rarity": "6",
+        "costume": [
+            {
+                "id_costume": "003501",
+                "costume_name": "Reclaimed Destiny"
+            }
+        ]
+    },
+    {
+        "id_char": "0200",
+        "char_name": "Eris",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "020001",
+                "costume_name": "Esteemed Adventurer"
+            },
+            {
+                "id_costume": "020002",
+                "costume_name": "Your Very Own Cat"
+            }
+        ]
+    },
+    {
+        "id_char": "0201",
+        "char_name": "Roxy",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "020101",
+                "costume_name": "Respected Master"
+            },
+            {
+                "id_costume": "020102",
+                "costume_name": "Emerging Desire"
+            }
+        ]
+    },
+    {
+        "id_char": "0202",
+        "char_name": "Yomi",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "020201",
+                "costume_name": "Gentle Destroyer"
+            }
+        ]
+    },
+    {
+        "id_char": "0203",
+        "char_name": "Yozakura",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "020301",
+                "costume_name": "Fist of Conviction"
+            }
+        ]
+    },
+    {
+        "id_char": "0204",
+        "char_name": "Yumi",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "020401",
+                "costume_name": "Dancing Snowflake"
+            }
+        ]
+    },
+    {
+        "id_char": "0205",
+        "char_name": "Hikage",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "020501",
+                "costume_name": "Kind Ruthlessness"
+            }
+        ]
+    },
+    {
+        "id_char": "0603",
+        "char_name": "Alec",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "060301",
+                "costume_name": "The Destruction"
+            },
+            {
+                "id_costume": "060302",
+                "costume_name": "Sword Breaker"
+            }
+        ]
+    },
+    {
+        "id_char": "0604",
+        "char_name": "Celia",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "060401",
+                "costume_name": "The Curse"
+            },
+            {
+                "id_costume": "060402",
+                "costume_name": "Descendant of the Great Witch"
+            },
+            {
+                "id_costume": "060403",
+                "costume_name": "Masquerade Bunny"
+            }
+        ]
+    },
+    {
+        "id_char": "0605",
+        "char_name": "Anatasia",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "060501",
+                "costume_name": "Gentle Maid"
+            },
+            {
+                "id_costume": "060502",
+                "costume_name": "Fire Graffiti"
+            }
+        ]
+    },
+    {
+        "id_char": "0606",
+        "char_name": "Lecliss",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "060601",
+                "costume_name": "Killer Doll"
+            },
+            {
+                "id_costume": "060602",
+                "costume_name": "Android Queen"
+            }
+        ]
+    },
+    {
+        "id_char": "0607",
+        "char_name": "Rafina ",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "060701",
+                "costume_name": "Steel Engine"
+            },
+            {
+                "id_costume": "060702",
+                "costume_name": "Code Name A"
+            },
+            {
+                "id_costume": "060706",
+                "costume_name": "Game Club"
+            }
+        ]
+    },
+    {
+        "id_char": "0608",
+        "char_name": "Elise",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "060801",
+                "costume_name": "Lovely Lady"
+            },
+            {
+                "id_costume": "060802",
+                "costume_name": "Code Name O"
+            }
+        ]
+    },
+    {
+        "id_char": "0610",
+        "char_name": "Helena",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "061001",
+                "costume_name": "Top Idol"
+            },
+            {
+                "id_costume": "061002",
+                "costume_name": "B-Rank Idol"
+            }
+        ]
+    },
+    {
+        "id_char": "0611",
+        "char_name": "Eleaneer",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "061101",
+                "costume_name": "Piercing Magic Bow"
+            },
+            {
+                "id_costume": "061102",
+                "costume_name": "B-Rank Idol"
+            }
+        ]
+    },
+    {
+        "id_char": "0613",
+        "char_name": "Dalvi",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "061302",
+                "costume_name": "Bright Moon"
+            },
+            {
+                "id_costume": "061305",
+                "costume_name": "Summer Vacation"
+            }
+        ]
+    },
+    {
+        "id_char": "0614",
+        "char_name": "Zenith",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "061402",
+                "costume_name": "Robin Hood"
+            }
+        ]
+    },
+    {
+        "id_char": "0620",
+        "char_name": "Andrew",
+        "rarity": "4",
+        "costume": [
+            {
+                "id_costume": "062001",
+                "costume_name": "Loyal Butler"
+            },
+            {
+                "id_costume": "062002",
+                "costume_name": "Specialist"
+            }
+        ]
+    },
+    {
+        "id_char": "0630",
+        "char_name": "Ingrid",
+        "rarity": "3",
+        "costume": [
+            {
+                "id_costume": "063001",
+                "costume_name": "Kardis' Bullet"
+            }
+        ]
+    },
+    {
+        "id_char": "0633",
+        "char_name": "Cynthia",
+        "rarity": "3",
+        "costume": [
+            {
+                "id_costume": "063301",
+                "costume_name": "Warmth within the Severe Cold"
+            }
+        ]
+    },
+    {
+        "id_char": "0634",
+        "char_name": "Julie",
+        "rarity": "3",
+        "costume": [
+            {
+                "id_costume": "063401",
+                "costume_name": "Healer"
+            }
+        ]
+    },
+    {
+        "id_char": "0651",
+        "char_name": "Yuri",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "065102",
+                "costume_name": "Whitebolt"
+            },
+            {
+                "id_costume": "065103",
+                "costume_name": "Comeback Idol"
+            }
+        ]
+    },
+    {
+        "id_char": "0658",
+        "char_name": "Nartas",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "065802",
+                "costume_name": "Anonymous Sage"
+            }
+        ]
+    },
+    {
+        "id_char": "0664",
+        "char_name": "Angelica",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "066401",
+                "costume_name": "The Fallen"
+            },
+            {
+                "id_costume": "066402",
+                "costume_name": "Pool Party"
+            },
+            {
+                "id_costume": "066403",
+                "costume_name": "Neon Savior"
+            }
+        ]
+    },
+    {
+        "id_char": "0668",
+        "char_name": "Refithea",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "066801",
+                "costume_name": "The Gluttonous"
+            },
+            {
+                "id_costume": "066802",
+                "costume_name": "Pure White Blessing"
+            }
+        ]
+    },
+    {
+        "id_char": "0669",
+        "char_name": "Glacia",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "066902",
+                "costume_name": "Alice"
+            },
+            {
+                "id_costume": "066906",
+                "costume_name": "Disciplinary Committee"
+            }
+        ]
+    },
+    {
+        "id_char": "0670",
+        "char_name": "Ventana",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "067002",
+                "costume_name": "Snow White"
+            },
+            {
+                "id_costume": "067003",
+                "costume_name": "Comeback Idol"
+            }
+        ]
+    },
+    {
+        "id_char": "0671",
+        "char_name": "Granhildr",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "067101",
+                "costume_name": "The Void"
+            },
+            {
+                "id_costume": "067102",
+                "costume_name": "Comeback Idol"
+            }
+        ]
+    },
+    {
+        "id_char": "0672",
+        "char_name": "Venaka",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "067201",
+                "costume_name": "DJ"
+            },
+            {
+                "id_costume": "067202",
+                "costume_name": "Wind Dancer"
+            }
+        ]
+    },
+    {
+        "id_char": "0673",
+        "char_name": "Levia",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "067301",
+                "costume_name": "Track and Field Captain"
+            },
+            {
+                "id_costume": "067302",
+                "costume_name": "Night of Jealousy"
+            },
+            {
+                "id_costume": "067303",
+                "costume_name": "Overheat"
+            }
+        ]
+    },
+    {
+        "id_char": "0674",
+        "char_name": "Michaela",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "067401",
+                "costume_name": "Beachside Justice"
+            },
+            {
+                "id_costume": "067402",
+                "costume_name": "Queen of Signatures"
+            }
+        ]
+    },
+    {
+        "id_char": "0675",
+        "char_name": "Luvencia",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "067502",
+                "costume_name": "Dead Snatcher"
+            },
+            {
+                "id_costume": "067503",
+                "costume_name": "Wild Dog"
+            }
+        ]
+    },
+    {
+        "id_char": "1001",
+        "char_name": "Gynt",
+        "rarity": "3",
+        "costume": [
+            {
+                "id_costume": "100101",
+                "costume_name": "Lupo Hunter"
+            }
+        ]
+    },
+    {
+        "id_char": "1002",
+        "char_name": "Fred",
+        "rarity": "3",
+        "costume": [
+            {
+                "id_costume": "100201",
+                "costume_name": "Lugo Defense Force"
+            }
+        ]
+    },
+    {
+        "id_char": "1003",
+        "char_name": "Lisianne",
+        "rarity": "4",
+        "costume": [
+            {
+                "id_costume": "100301",
+                "costume_name": "Wandering Priest"
+            }
+        ]
+    },
+    {
+        "id_char": "1004",
+        "char_name": "Remnunt",
+        "rarity": "3",
+        "costume": [
+            {
+                "id_costume": "100401",
+                "costume_name": "Combat Doctor"
+            }
+        ]
+    },
+    {
+        "id_char": "1005",
+        "char_name": "Wiggle",
+        "rarity": "3",
+        "costume": [
+            {
+                "id_costume": "100501",
+                "costume_name": "Bomb Fanatic"
+            },
+            {
+                "id_costume": "100502",
+                "costume_name": "Bomb in the Hoodie"
+            }
+        ]
+    },
+    {
+        "id_char": "1006",
+        "char_name": "Lucrezia",
+        "rarity": "4",
+        "costume": [
+            {
+                "id_costume": "100601",
+                "costume_name": "Seductive Wings"
+            }
+        ]
+    },
+    {
+        "id_char": "1008",
+        "char_name": "Bernie",
+        "rarity": "4",
+        "costume": [
+            {
+                "id_costume": "100801",
+                "costume_name": "Righteous Raider Girl"
+            }
+        ]
+    },
+    {
+        "id_char": "1011",
+        "char_name": "Seir",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "101101",
+                "costume_name": "Demon's Daughter"
+            },
+            {
+                "id_costume": "101102",
+                "costume_name": "B-Rank Idol"
+            },
+            {
+                "id_costume": "101103",
+                "costume_name": "New Hire"
+            }
+        ]
+    },
+    {
+        "id_char": "1012",
+        "char_name": "Jayden",
+        "rarity": "4",
+        "costume": [
+            {
+                "id_costume": "101201",
+                "costume_name": "Beautiful Gird Devotee"
+            },
+            {
+                "id_costume": "101202",
+                "costume_name": "Manga Research Club"
+            }
+        ]
+    },
+    {
+        "id_char": "1013",
+        "char_name": "Enma",
+        "rarity": "3",
+        "costume": [
+            {
+                "id_costume": "101301",
+                "costume_name": "Haggard Delinquent"
+            },
+            {
+                "id_costume": "101302",
+                "costume_name": "School Queen"
+            }
+        ]
+    },
+    {
+        "id_char": "1014",
+        "char_name": "Samay",
+        "rarity": "4",
+        "costume": [
+            {
+                "id_costume": "101401",
+                "costume_name": "Kind Liberator"
+            },
+            {
+                "id_costume": "101402",
+                "costume_name": "Kind Student"
+            }
+        ]
+    },
+    {
+        "id_char": "1015",
+        "char_name": "Kry",
+        "rarity": "4",
+        "costume": [
+            {
+                "id_costume": "101501",
+                "costume_name": "Liberated Marauder"
+            },
+            {
+                "id_costume": "101502",
+                "costume_name": "Violent Student"
+            }
+        ]
+    },
+    {
+        "id_char": "1016",
+        "char_name": "Celia",
+        "rarity": "5",
+        "costume": [
+            {
+                "id_costume": "101601",
+                "costume_name": "The Curse"
+            }
+        ]
+    },
+    {
+        "id_char": "1032",
+        "char_name": "Carlson",
+        "rarity": "3",
+        "costume": [
+            {
+                "id_costume": "103201",
+                "costume_name": "The Mercenary Knight"
+            }
+        ]
+    },
+    {
+        "id_char": "1033",
+        "char_name": "Lydia",
+        "rarity": "3",
+        "costume": [
+            {
+                "id_costume": "103301",
+                "costume_name": "Apprentice Spearman"
+            }
+        ]
+    },
+    {
+        "id_char": "1034",
+        "char_name": "Rigenette",
+        "rarity": "3",
+        "costume": [
+            {
+                "id_costume": "103401",
+                "costume_name": "Little Hunter"
+            }
+        ]
+    },
+    {
+        "id_char": "1035",
+        "char_name": "Beatrice",
+        "rarity": "3",
+        "costume": [
+            {
+                "id_costume": "103501",
+                "costume_name": "The Mighty Warrior of the Tribe"
+            }
+        ]
+    },
+    {
+        "id_char": "1036",
+        "char_name": "Maria",
+        "rarity": "3",
+        "costume": [
+            {
+                "id_costume": "103601",
+                "costume_name": "Archmage"
+            }
+        ]
+    },
+    {
+        "id_char": "1037",
+        "char_name": "Arines",
+        "rarity": "3",
+        "costume": [
+            {
+                "id_costume": "103701",
+                "costume_name": "Priest of Vitality"
+            }
+        ]
+    },
+    {
+        "id_char": "7040",
+        "char_name": "",
+        "rarity": "",
+        "costume": [
+            {
+                "id_costume": "704001",
+                "costume_name": ""
+            }
+        ]
+    }
+]
