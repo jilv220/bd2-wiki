@@ -39,20 +39,7 @@ export const Route = createRootRoute({
 function RootComponent() {
 	return (
 		<RootDocument>
-			<SidebarProvider>
-				<SiteSidebar />
-				<SidebarInset>
-					<div className="relative flex min-h-screen flex-col">
-						<SiteHeader>
-							<SidebarTrigger className="ml-1 h-10 w-10 text-primary" />
-						</SiteHeader>
-						<main className="container mx-auto px-6 py-6 sm:px-4 md:px-4">
-							<Outlet />
-						</main>
-						<SiteFooter />
-					</div>
-				</SidebarInset>
-			</SidebarProvider>
+			<Outlet />
 		</RootDocument>
 	);
 }

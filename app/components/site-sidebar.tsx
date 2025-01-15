@@ -1,4 +1,5 @@
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link, useLocation, useMatchRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 import {
 	Sidebar,
 	SidebarContent,
@@ -10,10 +11,15 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 	SidebarRail,
+	useSidebar,
 } from "~/components/ui/sidebar";
 import { RefinementConverter } from "./refinement-converter";
 
 const data = {
+	home: {
+		title: "About",
+		url: "/",
+	},
 	navMain: [
 		{
 			title: "Wiki",
@@ -29,7 +35,7 @@ const data = {
 			items: [
 				{
 					title: "Daily Tracker",
-					url: "#",
+					url: "/daily-tracker",
 				},
 			],
 		},
@@ -42,12 +48,33 @@ export function SiteSidebar({
 	const location = useLocation();
 	const pathname = location.pathname;
 
+	const { setOpenMobile } = useSidebar();
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		setOpenMobile(false);
+	}, [location]);
+
 	return (
 		<Sidebar {...props}>
 			<SidebarHeader>
 				<RefinementConverter />
 			</SidebarHeader>
 			<SidebarContent className="gap-0">
+				<SidebarGroup>
+					<SidebarGroupContent>
+						<SidebarMenu>
+							<SidebarMenuItem>
+								<SidebarMenuButton
+									asChild
+									isActive={data.home.url === pathname}
+								>
+									<Link to={data.home.url}>{data.home.title}</Link>
+								</SidebarMenuButton>
+							</SidebarMenuItem>
+						</SidebarMenu>
+					</SidebarGroupContent>
+				</SidebarGroup>
+
 				{/* We create a collapsible SidebarGroup for each parent. */}
 				{data.navMain.map((item) => (
 					<SidebarGroup key={item.title}>
