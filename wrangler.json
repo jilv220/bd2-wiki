@@ -1,0 +1,8 @@
+{
+    "name": "bd2-wiki",
+    "pages_build_output_dir": "./dist",
+    "compatibility_date": "2024-11-13",
+    "compatibility_flags": [
+        "nodejs_compat_v2"
+    ]
+}
