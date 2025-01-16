@@ -45,8 +45,10 @@ const UpgradeDialog = ({ talent }: { talent: Talent }) => {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button variant="ghost" className="h-8 px-2">
-					<span className="text-muted-foreground text-sm">View Upgrades</span>
+				<Button variant="ghost" className="h-6 px-2 sm:h-8">
+					<span className="hidden text-muted-foreground text-sm sm:block">
+						View Upgrades
+					</span>
 					<ChevronRight className="ml-1 h-4 w-4 text-muted-foreground" />
 				</Button>
 			</DialogTrigger>
@@ -81,7 +83,7 @@ export const TalentCard = () => {
 				<div className="flex flex-col space-y-4">
 					{/* Skill Header */}
 					<div className="flex items-start space-x-4">
-						<div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg sm:h-16 sm:w-16 min-[588px]:h-14 min-[588px]:w-14">
+						<div className="relative h-[60px] w-[60px] flex-shrink-0 overflow-hidden rounded-lg sm:h-16 sm:w-16 min-[588px]:h-14 min-[588px]:w-14">
 							<img
 								src={getBuffIconUrl(character.talent.bufficon_id)}
 								alt={character.talent.name}
@@ -90,12 +92,12 @@ export const TalentCard = () => {
 						</div>
 						<div className="flex flex-1 flex-col">
 							<div className="flex items-center justify-between">
-								<h3 className="font-semibold text-lg sm:text-xl">
+								<h3 className="font-semibold text-base sm:text-xl">
 									{character.talent.name}
 								</h3>
 								<UpgradeDialog talent={character.talent} />
 							</div>
-							<p className="mt-1 text-muted-foreground text-sm sm:text-base">
+							<p className="mt-1 text-muted-foreground text-xs sm:text-base">
 								Beginner: {getDescriptionByTalentRankLvl(character.talent, 1)}
 							</p>
 						</div>

@@ -6,15 +6,7 @@ import {
 } from "@tanstack/react-router";
 import { Meta, Scripts } from "@tanstack/start";
 import type { ReactNode } from "react";
-import { SiteFooter } from "~/components/site-footer";
-import { SiteHeader } from "~/components/site-header";
-import { SiteSidebar } from "~/components/site-sidebar";
 import { ThemeProvider } from "~/components/theme-provider";
-import {
-	SidebarInset,
-	SidebarProvider,
-	SidebarTrigger,
-} from "~/components/ui/sidebar";
 
 import appCss from "~/styles/app.css?url";
 
