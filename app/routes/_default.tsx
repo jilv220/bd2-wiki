@@ -1,4 +1,5 @@
 import { Outlet, createFileRoute } from "@tanstack/react-router";
+import { fetchCharacters } from "~/cases/characters/fetch";
 import { SiteFooter } from "~/components/site-footer";
 import { SiteHeader } from "~/components/site-header";
 import { SiteSidebar } from "~/components/site-sidebar";
@@ -10,6 +11,8 @@ import {
 
 export const Route = createFileRoute("/_default")({
 	component: DefaultLayout,
+	loader: () => fetchCharacters(),
+	errorComponent: () => <>Fail to fetch characters</>,
 });
 
 function DefaultLayout() {

@@ -1,4 +1,5 @@
 import {
+	ErrorComponent,
 	Outlet,
 	ScrollRestoration,
 	createRootRoute,
@@ -28,7 +29,7 @@ export const Route = createRootRoute({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "TanStack Start Starter",
+				title: "Brown Dust 2 Wiki",
 			},
 		],
 		links: [{ rel: "stylesheet", href: appCss }],

@@ -13,8 +13,9 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as DefaultImport } from './routes/_default'
 import { Route as DefaultIndexImport } from './routes/_default/index'
-import { Route as DefaultCharactersImport } from './routes/_default/characters'
 import { Route as AuthSigninImport } from './routes/_auth/signin'
+import { Route as DefaultCharactersIndexImport } from './routes/_default/characters.index'
+import { Route as DefaultCharactersNameImport } from './routes/_default/characters.$name'
 
 // Create/Update Routes
 
@@ -29,16 +30,22 @@ const DefaultIndexRoute = DefaultIndexImport.update({
   getParentRoute: () => DefaultRoute,
 } as any)
 
-const DefaultCharactersRoute = DefaultCharactersImport.update({
-  id: '/characters',
-  path: '/characters',
-  getParentRoute: () => DefaultRoute,
-} as any)
-
 const AuthSigninRoute = AuthSigninImport.update({
   id: '/_auth/signin',
   path: '/signin',
   getParentRoute: () => rootRoute,
+} as any)
+
+const DefaultCharactersIndexRoute = DefaultCharactersIndexImport.update({
+  id: '/characters/',
+  path: '/characters/',
+  getParentRoute: () => DefaultRoute,
+} as any)
+
+const DefaultCharactersNameRoute = DefaultCharactersNameImport.update({
+  id: '/characters/$name',
+  path: '/characters/$name',
+  getParentRoute: () => DefaultRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -59,18 +66,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSigninImport
       parentRoute: typeof rootRoute
     }
-    '/_default/characters': {
-      id: '/_default/characters'
-      path: '/characters'
-      fullPath: '/characters'
-      preLoaderRoute: typeof DefaultCharactersImport
-      parentRoute: typeof DefaultImport
-    }
     '/_default/': {
       id: '/_default/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof DefaultIndexImport
+      parentRoute: typeof DefaultImport
+    }
+    '/_default/characters/$name': {
+      id: '/_default/characters/$name'
+      path: '/characters/$name'
+      fullPath: '/characters/$name'
+      preLoaderRoute: typeof DefaultCharactersNameImport
+      parentRoute: typeof DefaultImport
+    }
+    '/_default/characters/': {
+      id: '/_default/characters/'
+      path: '/characters'
+      fullPath: '/characters'
+      preLoaderRoute: typeof DefaultCharactersIndexImport
       parentRoute: typeof DefaultImport
     }
   }
@@ -79,13 +93,15 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface DefaultRouteChildren {
-  DefaultCharactersRoute: typeof DefaultCharactersRoute
   DefaultIndexRoute: typeof DefaultIndexRoute
+  DefaultCharactersNameRoute: typeof DefaultCharactersNameRoute
+  DefaultCharactersIndexRoute: typeof DefaultCharactersIndexRoute
 }
 
 const DefaultRouteChildren: DefaultRouteChildren = {
-  DefaultCharactersRoute: DefaultCharactersRoute,
   DefaultIndexRoute: DefaultIndexRoute,
+  DefaultCharactersNameRoute: DefaultCharactersNameRoute,
+  DefaultCharactersIndexRoute: DefaultCharactersIndexRoute,
 }
 
 const DefaultRouteWithChildren =
@@ -94,35 +110,39 @@ const DefaultRouteWithChildren =
 export interface FileRoutesByFullPath {
   '': typeof DefaultRouteWithChildren
   '/signin': typeof AuthSigninRoute
-  '/characters': typeof DefaultCharactersRoute
   '/': typeof DefaultIndexRoute
+  '/characters/$name': typeof DefaultCharactersNameRoute
+  '/characters': typeof DefaultCharactersIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/signin': typeof AuthSigninRoute
-  '/characters': typeof DefaultCharactersRoute
   '/': typeof DefaultIndexRoute
+  '/characters/$name': typeof DefaultCharactersNameRoute
+  '/characters': typeof DefaultCharactersIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/_default': typeof DefaultRouteWithChildren
   '/_auth/signin': typeof AuthSigninRoute
-  '/_default/characters': typeof DefaultCharactersRoute
   '/_default/': typeof DefaultIndexRoute
+  '/_default/characters/$name': typeof DefaultCharactersNameRoute
+  '/_default/characters/': typeof DefaultCharactersIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/signin' | '/characters' | '/'
+  fullPaths: '' | '/signin' | '/' | '/characters/$name' | '/characters'
   fileRoutesByTo: FileRoutesByTo
-  to: '/signin' | '/characters' | '/'
+  to: '/signin' | '/' | '/characters/$name' | '/characters'
   id:
     | '__root__'
     | '/_default'
     | '/_auth/signin'
-    | '/_default/characters'
     | '/_default/'
+    | '/_default/characters/$name'
+    | '/_default/characters/'
   fileRoutesById: FileRoutesById
 }
 
@@ -153,19 +173,24 @@ export const routeTree = rootRoute
     "/_default": {
       "filePath": "_default.tsx",
       "children": [
-        "/_default/characters",
-        "/_default/"
+        "/_default/",
+        "/_default/characters/$name",
+        "/_default/characters/"
       ]
     },
     "/_auth/signin": {
       "filePath": "_auth/signin.tsx"
     },
-    "/_default/characters": {
-      "filePath": "_default/characters.tsx",
-      "parent": "/_default"
-    },
     "/_default/": {
       "filePath": "_default/index.tsx",
+      "parent": "/_default"
+    },
+    "/_default/characters/$name": {
+      "filePath": "_default/characters.$name.tsx",
+      "parent": "/_default"
+    },
+    "/_default/characters/": {
+      "filePath": "_default/characters.index.tsx",
       "parent": "/_default"
     }
   }
