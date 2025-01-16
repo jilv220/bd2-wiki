@@ -1,5 +1,5 @@
 import { type ClassValue, clsx } from "clsx";
-import { capitalize, join, map, pipe } from "remeda";
+import { capitalize, concat, join, map, multiply, pipe } from "remeda";
 import { twMerge } from "tailwind-merge";
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
@@ -14,6 +14,8 @@ export const snakeCaseToText = (str: string) =>
 		map((word) => capitalize(word)),
 		join(" "),
 	);
+
+export const floatToText = (n: number) => `${pipe(n, multiply(100))}%`;
 
 export function getStoragePublicUrl(bucketId: string, path: string): string {
 	return `${SUPABASE_URL}/storage/v1/object/public/${bucketId}/${path}`;

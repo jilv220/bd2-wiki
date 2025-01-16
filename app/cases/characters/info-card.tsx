@@ -12,7 +12,7 @@ type CharacterCardItemProp = {
 	children: React.ReactNode;
 };
 
-function CharacterCardItem({ label, children }: CharacterCardItemProp) {
+function InfoCardItem({ label, children }: CharacterCardItemProp) {
 	return (
 		<div className="mx-1 mt-1 flex items-center justify-between rounded-md bg-secondary/35 px-3 py-2">
 			<span className="text-muted-foreground text-sm sm:text-base">
@@ -23,7 +23,7 @@ function CharacterCardItem({ label, children }: CharacterCardItemProp) {
 	);
 }
 
-export function CharacterCard() {
+export function InfoCard() {
 	const routeApi = getRouteApi("/_default/characters/$name");
 	const { name } = routeApi.useParams();
 	const character = useCharacter(name);
@@ -57,28 +57,28 @@ export function CharacterCard() {
 							</span>
 						</div>
 						<div className="grid flex-grow grid-cols-1 gap-2 sm:grid-cols-2">
-							<CharacterCardItem label="Rarity">
+							<InfoCardItem label="Rarity">
 								<span className="text-sm capitalize sm:text-base">
 									{character.rarity}
 								</span>
-							</CharacterCardItem>
-							<CharacterCardItem label="Element Property">
+							</InfoCardItem>
+							<InfoCardItem label="Element Property">
 								<img
 									src={getIconMiscUrl(character.element_property.icon_misc_id)}
 									alt={character.element_property.name}
 									className="mr-[-5px] h-5 w-5 object-cover sm:h-6 sm:w-6"
 								/>
-							</CharacterCardItem>
-							<CharacterCardItem label="Attack Property">
+							</InfoCardItem>
+							<InfoCardItem label="Attack Property">
 								<span className="text-sm capitalize sm:text-base">
 									{character.attack_property.name}
 								</span>
-							</CharacterCardItem>
-							<CharacterCardItem label="Target">
+							</InfoCardItem>
+							<InfoCardItem label="Target">
 								<span className="text-sm capitalize sm:text-base">
 									{snakeCaseToText(character.target)}
 								</span>
-							</CharacterCardItem>
+							</InfoCardItem>
 						</div>
 					</div>
 				</div>
@@ -86,5 +86,3 @@ export function CharacterCard() {
 		</Card>
 	);
 }
-
-export default CharacterCard;
