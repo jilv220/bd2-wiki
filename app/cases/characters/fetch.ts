@@ -22,9 +22,17 @@ export type Stats = {
 	magic_resist: number;
 };
 
+export type TalentRankLevel = 1 | 2 | 3 | 4 | 5;
+export type TalentRankName =
+	| "Beginner"
+	| "Intermediate"
+	| "Advanced"
+	| "Expert"
+	| "Legendary";
+
 export type TalentRank = {
 	level: number;
-	name: string;
+	name: TalentRankName;
 	cost: number;
 	rank_value: number;
 };

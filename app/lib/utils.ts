@@ -29,6 +29,10 @@ export function getIconMiscUrl(id: string, ext: "png" = "png"): string {
 	return getStoragePublicUrl("icon_misc", `${id}.${ext}`);
 }
 
+export function getBuffIconUrl(id: string, ext: "png" = "png"): string {
+	return getStoragePublicUrl("bufficon", `${id}.${ext}`);
+}
+
 export function getCharactersDataUrl() {
 	return getStoragePublicUrl("characters", "data.json");
 }

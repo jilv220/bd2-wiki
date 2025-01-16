@@ -1,6 +1,7 @@
 import { createFileRoute, getRouteApi } from "@tanstack/react-router";
 import { InfoCard } from "~/cases/characters/info-card";
 import { StatsPanel } from "~/cases/characters/stats-panel";
+import { TalentCard } from "~/cases/characters/talent-card";
 
 export const Route = createFileRoute("/_default/characters/$name")({
 	component: CharacterPage,
@@ -8,13 +9,16 @@ export const Route = createFileRoute("/_default/characters/$name")({
 
 function CharacterPage() {
 	return (
-		<>
-			<section className="pb-4">
+		<div className="space-y-4">
+			<section>
 				<InfoCard />
 			</section>
 			<section>
 				<StatsPanel />
 			</section>
-		</>
+			<section>
+				<TalentCard />
+			</section>
+		</div>
 	);
 }

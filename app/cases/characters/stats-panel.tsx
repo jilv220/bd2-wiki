@@ -35,7 +35,7 @@ export function StatsPanel() {
 							<span className="text-muted-foreground text-sm uppercase sm:text-base">
 								{stat.label}
 							</span>
-							<span className="text-base">{stat.value}</span>
+							<span className="text-sm sm:text-base">{stat.value}</span>
 						</div>
 					))}
 				</div>
