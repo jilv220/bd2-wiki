@@ -12,5 +12,9 @@ export default defineConfig({
 	},
 	server: {
 		preset: "vercel",
+		prerender: {
+			routes: ["/"],
+			crawlLinks: true,
+		},
 	},
 });

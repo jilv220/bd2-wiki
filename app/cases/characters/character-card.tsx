@@ -1,10 +1,11 @@
-import { Await, getRouteApi } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/start";
+import { getRouteApi } from "@tanstack/react-router";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
-import { Skeleton } from "~/components/ui/skeleton";
 import { useCharacter } from "~/hooks/use-characters";
-import { snakeCaseToText } from "~/lib/utils";
-import { fetchIconMiscUrl, fetchInventoryIllustUrl } from "./fetch";
+import {
+	getIconMiscUrl,
+	getInventoryIllustUrl,
+	snakeCaseToText,
+} from "~/lib/utils";
 
 type CharacterCardItemProp = {
 	label: string;
@@ -27,16 +28,6 @@ export function CharacterCard() {
 	const { name } = routeApi.useParams();
 	const character = useCharacter(name);
 
-	const getInventoryIllustUrl = useServerFn(fetchInventoryIllustUrl);
-	const inventoryIllustUrlPromise = getInventoryIllustUrl(
-		character.illust_inven_char_id,
-	);
-
-	const getIconMisc = useServerFn(fetchIconMiscUrl);
-	const elementPropPromise = getIconMisc(
-		character.element_property.icon_misc_id,
-	);
-
 	return (
 		<Card className="w-full">
 			<CardHeader className="border-b">
@@ -47,18 +38,11 @@ export function CharacterCard() {
 					{/* Character Image Section */}
 					<div className="relative mx-auto h-40 w-40 flex-shrink-0 sm:mx-0 sm:h-48 sm:w-48">
 						<div className="absolute inset-0 overflow-hidden rounded-lg">
-							<Await
-								promise={inventoryIllustUrlPromise}
-								fallback={<Skeleton className="h-full w-full" />}
-							>
-								{(data) => (
-									<img
-										src={data}
-										alt={name}
-										className="h-full w-full object-cover"
-									/>
-								)}
-							</Await>
+							<img
+								src={getInventoryIllustUrl(character.illust_inven_char_id)}
+								alt={name}
+								className="h-full w-full object-cover"
+							/>
 							<div className="absolute top-1 right-1 text-yellow-400">
 								{"★".repeat(character.rarity)}
 							</div>
@@ -79,20 +63,11 @@ export function CharacterCard() {
 								</span>
 							</CharacterCardItem>
 							<CharacterCardItem label="Element Property">
-								<Await
-									promise={elementPropPromise}
-									fallback={
-										<Skeleton className="mr-[-5px] h-5 w-5 sm:h-6 sm:w-6" />
-									}
-								>
-									{(data) => (
-										<img
-											src={data}
-											alt={character.element_property.name}
-											className="mr-[-5px] h-5 w-5 object-cover sm:h-6 sm:w-6"
-										/>
-									)}
-								</Await>
+								<img
+									src={getIconMiscUrl(character.element_property.icon_misc_id)}
+									alt={character.element_property.name}
+									className="mr-[-5px] h-5 w-5 object-cover sm:h-6 sm:w-6"
+								/>
 							</CharacterCardItem>
 							<CharacterCardItem label="Attack Property">
 								<span className="text-sm capitalize sm:text-base">

@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/start";
 import { getSupabaseServerClient } from "~/lib/supabase";
+import { getCharactersDataUrl } from "~/lib/utils";
 
 export type ElementProperty = {
 	name: "fire" | "water" | "wind" | "light" | "dark" | "none";
@@ -114,47 +115,8 @@ export type CharacterData = Character[];
 
 export const fetchCharacters = createServerFn({ method: "GET" }).handler(
 	async () => {
-		const supabase = getSupabaseServerClient();
-		const { data: charData } = supabase.storage
-			.from("characters")
-			.getPublicUrl("data.json");
-
-		const resp = await fetch(charData.publicUrl);
+		const resp = await fetch(getCharactersDataUrl());
 		const data = await resp.json();
-
 		return data as CharacterData;
 	},
 );
-
-export const fetchUrlFromBucket = createServerFn({ method: "GET" })
-	.validator(
-		(d: {
-			id: string;
-			bucketId: string;
-			ext: "png";
-		}) => d,
-	)
-	.handler(async ({ data }) => {
-		const { data: res } = getSupabaseServerClient()
-			.storage.from(data.bucketId)
-			.getPublicUrl(`${data.id}.${data.ext}`);
-		return res.publicUrl;
-	});
-
-export const fetchInventoryIllustUrl = (id: string, ext: "png" = "png") =>
-	fetchUrlFromBucket({
-		data: {
-			id,
-			bucketId: "illust_inven_char",
-			ext,
-		},
-	});
-
-export const fetchIconMiscUrl = (id: string, ext: "png" = "png") =>
-	fetchUrlFromBucket({
-		data: {
-			id,
-			bucketId: "icon_misc",
-			ext,
-		},
-	});
