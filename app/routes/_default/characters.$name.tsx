@@ -1,4 +1,5 @@
 import { createFileRoute, getRouteApi } from "@tanstack/react-router";
+import { CostumesCard } from "~/cases/characters/costumes-card";
 import { InfoCard } from "~/cases/characters/info-card";
 import { StatsPanel } from "~/cases/characters/stats-panel";
 import { TalentCard } from "~/cases/characters/talent-card";
@@ -18,6 +19,9 @@ function CharacterPage() {
 			</section>
 			<section>
 				<TalentCard />
+			</section>
+			<section>
+				<CostumesCard />
 			</section>
 		</div>
 	);

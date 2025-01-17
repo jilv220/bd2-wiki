@@ -12,12 +12,12 @@ export function StatsPanel() {
 	const stats = [
 		{ label: "hp", value: character.stats.hp },
 		{ label: "atk", value: character.stats.atk },
-		{ label: "matk", value: character.stats.magic_atk },
-		{ label: "cr", value: floatToText(character.stats.crit_rate) },
-		{ label: "cdmg", value: floatToText(character.stats.crit_dmg) },
+		{ label: "m.atk", value: character.stats.magic_atk },
+		{ label: "c.r", value: floatToText(character.stats.crit_rate) },
+		{ label: "c.dmg", value: floatToText(character.stats.crit_dmg) },
 		{ label: "def", value: floatToText(character.stats.def) },
 		{ label: "m.res", value: floatToText(character.stats.magic_resist) },
-		{ label: "knockback", value: snakeCaseToText(character.knock_back) },
+		{ label: "kb", value: snakeCaseToText(character.knock_back) },
 	];
 
 	return (

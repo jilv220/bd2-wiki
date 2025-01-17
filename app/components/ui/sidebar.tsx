@@ -205,7 +205,7 @@ const Sidebar = React.forwardRef<
 					<SheetContent
 						data-sidebar="sidebar"
 						data-mobile="true"
-						// Overwrite animiation speed on mobile here
+						// Overwrite animation speed on mobile here
 						className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground data-[state=closed]:duration-200 data-[state=open]:duration-300 [&>button]:hidden"
 						style={
 							{

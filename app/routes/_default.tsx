@@ -24,9 +24,9 @@ function DefaultLayout() {
 					<SiteHeader>
 						<SidebarTrigger className="ml-1 h-10 w-10 text-primary" />
 					</SiteHeader>
-					<main className="container mx-auto px-6 py-6 sm:px-4 md:px-4">
+					<div className="container mx-auto px-4 py-4">
 						<Outlet />
-					</main>
+					</div>
 					<SiteFooter />
 				</div>
 			</SidebarInset>

@@ -3,6 +3,7 @@ import {
 	Outlet,
 	ScrollRestoration,
 	createRootRoute,
+	createRootRouteWithContext,
 } from "@tanstack/react-router";
 import { Meta, Scripts } from "@tanstack/start";
 import type { ReactNode } from "react";
@@ -10,7 +11,10 @@ import { ThemeProvider } from "~/components/theme-provider";
 
 import appCss from "~/styles/app.css?url";
 
-export const Route = createRootRoute({
+// Type RouterContext here, and pass initial data in router.tsx
+// interface AppRouterContext {}
+
+export const Route = createRootRouteWithContext()({
 	head: () => ({
 		meta: [
 			{

@@ -11,7 +11,7 @@ import {
 } from "~/components/ui/dialog";
 import { useCharacter } from "~/hooks/use-characters";
 import { getBuffIconUrl } from "~/lib/utils";
-import type { Talent, TalentRank, TalentRankLevel } from "./fetch";
+import type { Talent, TalentRank, TalentRankLevel } from "./types";
 
 const getDescriptionByTalentRankLvl = (
 	talent: Talent,

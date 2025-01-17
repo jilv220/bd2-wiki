@@ -1,4 +1,4 @@
-import { getRouteApi } from "@tanstack/react-router";
+import { getRouteApi, useRouter } from "@tanstack/react-router";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { useCharacter } from "~/hooks/use-characters";
 import {
