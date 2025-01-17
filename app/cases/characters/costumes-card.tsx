@@ -17,7 +17,7 @@ export const CostumesCard = () => {
 			</CardHeader>
 			<CardContent className="p-4 sm:p-6">
 				<Tabs defaultValue={costumes[0].id_costume}>
-					<TabsList className="flex h-auto justify-start space-x-3 bg-background">
+					<TabsList className="flex h-auto w-[80svw] justify-start space-x-2 overflow-scroll bg-background sm:w-auto sm:space-x-3">
 						{costumes.map((co) => (
 							<TabsTrigger
 								// biome-ignore lint/nursery/useSortedClasses: <explanation>
