@@ -5,7 +5,7 @@ import { useCharacter } from "~/hooks/use-characters";
 import { getIconCostume } from "~/lib/utils";
 
 export const CostumesCard = () => {
-	const routeApi = getRouteApi("/_default/characters/$name");
+	const routeApi = getRouteApi("/characters/$name");
 	const { name } = routeApi.useParams();
 	const character = useCharacter(name);
 	const costumes = character.costumes;
@@ -47,6 +47,11 @@ export const CostumesCard = () => {
 							<h3 className="font-semibold text-base sm:text-xl">
 								{co.costume_name}
 							</h3>
+							{/* <div className="grid grid-cols-2 gap-2 sm:grid-cols-2">
+								{co.potential.skill.map((s) => (
+									<span key={s}>{s}</span>
+								))}
+							</div> */}
 						</TabsContent>
 					))}
 				</Tabs>

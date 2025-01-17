@@ -4,7 +4,7 @@ import { InfoCard } from "~/cases/characters/info-card";
 import { StatsPanel } from "~/cases/characters/stats-panel";
 import { TalentCard } from "~/cases/characters/talent-card";
 
-export const Route = createFileRoute("/_default/characters/$name")({
+export const Route = createFileRoute("/characters/$name")({
 	component: CharacterPage,
 });
 

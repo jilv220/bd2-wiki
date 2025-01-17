@@ -1,4 +1,4 @@
-import { getRouteApi, useRouter } from "@tanstack/react-router";
+import { getRouteApi, useParams } from "@tanstack/react-router";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { useCharacter } from "~/hooks/use-characters";
 import {
@@ -24,7 +24,7 @@ function InfoCardItem({ label, children }: CharacterCardItemProp) {
 }
 
 export function InfoCard() {
-	const routeApi = getRouteApi("/_default/characters/$name");
+	const routeApi = getRouteApi("/characters/$name");
 	const { name } = routeApi.useParams();
 	const character = useCharacter(name);
 

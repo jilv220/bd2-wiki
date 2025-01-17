@@ -70,7 +70,7 @@ const UpgradeDialog = ({ talent }: { talent: Talent }) => {
 };
 
 export const TalentCard = () => {
-	const routeApi = getRouteApi("/_default/characters/$name");
+	const routeApi = getRouteApi("/characters/$name");
 	const { name } = routeApi.useParams();
 	const character = useCharacter(name);
 

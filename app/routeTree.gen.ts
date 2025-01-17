@@ -11,23 +11,36 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as DefaultImport } from './routes/_default'
-import { Route as DefaultIndexImport } from './routes/_default/index'
+import { Route as CharactersImport } from './routes/characters'
+import { Route as IndexImport } from './routes/index'
+import { Route as CharactersIndexImport } from './routes/characters.index'
+import { Route as CharactersNameImport } from './routes/characters.$name'
 import { Route as AuthSigninImport } from './routes/_auth/signin'
-import { Route as DefaultCharactersIndexImport } from './routes/_default/characters.index'
-import { Route as DefaultCharactersNameImport } from './routes/_default/characters.$name'
 
 // Create/Update Routes
 
-const DefaultRoute = DefaultImport.update({
-  id: '/_default',
+const CharactersRoute = CharactersImport.update({
+  id: '/characters',
+  path: '/characters',
   getParentRoute: () => rootRoute,
 } as any)
 
-const DefaultIndexRoute = DefaultIndexImport.update({
+const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => DefaultRoute,
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CharactersIndexRoute = CharactersIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CharactersRoute,
+} as any)
+
+const CharactersNameRoute = CharactersNameImport.update({
+  id: '/$name',
+  path: '/$name',
+  getParentRoute: () => CharactersRoute,
 } as any)
 
 const AuthSigninRoute = AuthSigninImport.update({
@@ -36,27 +49,22 @@ const AuthSigninRoute = AuthSigninImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const DefaultCharactersIndexRoute = DefaultCharactersIndexImport.update({
-  id: '/characters/',
-  path: '/characters/',
-  getParentRoute: () => DefaultRoute,
-} as any)
-
-const DefaultCharactersNameRoute = DefaultCharactersNameImport.update({
-  id: '/characters/$name',
-  path: '/characters/$name',
-  getParentRoute: () => DefaultRoute,
-} as any)
-
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_default': {
-      id: '/_default'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof DefaultImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/characters': {
+      id: '/characters'
+      path: '/characters'
+      fullPath: '/characters'
+      preLoaderRoute: typeof CharactersImport
       parentRoute: typeof rootRoute
     }
     '/_auth/signin': {
@@ -66,93 +74,92 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSigninImport
       parentRoute: typeof rootRoute
     }
-    '/_default/': {
-      id: '/_default/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof DefaultIndexImport
-      parentRoute: typeof DefaultImport
-    }
-    '/_default/characters/$name': {
-      id: '/_default/characters/$name'
-      path: '/characters/$name'
+    '/characters/$name': {
+      id: '/characters/$name'
+      path: '/$name'
       fullPath: '/characters/$name'
-      preLoaderRoute: typeof DefaultCharactersNameImport
-      parentRoute: typeof DefaultImport
+      preLoaderRoute: typeof CharactersNameImport
+      parentRoute: typeof CharactersImport
     }
-    '/_default/characters/': {
-      id: '/_default/characters/'
-      path: '/characters'
-      fullPath: '/characters'
-      preLoaderRoute: typeof DefaultCharactersIndexImport
-      parentRoute: typeof DefaultImport
+    '/characters/': {
+      id: '/characters/'
+      path: '/'
+      fullPath: '/characters/'
+      preLoaderRoute: typeof CharactersIndexImport
+      parentRoute: typeof CharactersImport
     }
   }
 }
 
 // Create and export the route tree
 
-interface DefaultRouteChildren {
-  DefaultIndexRoute: typeof DefaultIndexRoute
-  DefaultCharactersNameRoute: typeof DefaultCharactersNameRoute
-  DefaultCharactersIndexRoute: typeof DefaultCharactersIndexRoute
+interface CharactersRouteChildren {
+  CharactersNameRoute: typeof CharactersNameRoute
+  CharactersIndexRoute: typeof CharactersIndexRoute
 }
 
-const DefaultRouteChildren: DefaultRouteChildren = {
-  DefaultIndexRoute: DefaultIndexRoute,
-  DefaultCharactersNameRoute: DefaultCharactersNameRoute,
-  DefaultCharactersIndexRoute: DefaultCharactersIndexRoute,
+const CharactersRouteChildren: CharactersRouteChildren = {
+  CharactersNameRoute: CharactersNameRoute,
+  CharactersIndexRoute: CharactersIndexRoute,
 }
 
-const DefaultRouteWithChildren =
-  DefaultRoute._addFileChildren(DefaultRouteChildren)
+const CharactersRouteWithChildren = CharactersRoute._addFileChildren(
+  CharactersRouteChildren,
+)
 
 export interface FileRoutesByFullPath {
-  '': typeof DefaultRouteWithChildren
+  '/': typeof IndexRoute
+  '/characters': typeof CharactersRouteWithChildren
   '/signin': typeof AuthSigninRoute
-  '/': typeof DefaultIndexRoute
-  '/characters/$name': typeof DefaultCharactersNameRoute
-  '/characters': typeof DefaultCharactersIndexRoute
+  '/characters/$name': typeof CharactersNameRoute
+  '/characters/': typeof CharactersIndexRoute
 }
 
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/signin': typeof AuthSigninRoute
-  '/': typeof DefaultIndexRoute
-  '/characters/$name': typeof DefaultCharactersNameRoute
-  '/characters': typeof DefaultCharactersIndexRoute
+  '/characters/$name': typeof CharactersNameRoute
+  '/characters': typeof CharactersIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/_default': typeof DefaultRouteWithChildren
+  '/': typeof IndexRoute
+  '/characters': typeof CharactersRouteWithChildren
   '/_auth/signin': typeof AuthSigninRoute
-  '/_default/': typeof DefaultIndexRoute
-  '/_default/characters/$name': typeof DefaultCharactersNameRoute
-  '/_default/characters/': typeof DefaultCharactersIndexRoute
+  '/characters/$name': typeof CharactersNameRoute
+  '/characters/': typeof CharactersIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/signin' | '/' | '/characters/$name' | '/characters'
+  fullPaths:
+    | '/'
+    | '/characters'
+    | '/signin'
+    | '/characters/$name'
+    | '/characters/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/signin' | '/' | '/characters/$name' | '/characters'
+  to: '/' | '/signin' | '/characters/$name' | '/characters'
   id:
     | '__root__'
-    | '/_default'
+    | '/'
+    | '/characters'
     | '/_auth/signin'
-    | '/_default/'
-    | '/_default/characters/$name'
-    | '/_default/characters/'
+    | '/characters/$name'
+    | '/characters/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  DefaultRoute: typeof DefaultRouteWithChildren
+  IndexRoute: typeof IndexRoute
+  CharactersRoute: typeof CharactersRouteWithChildren
   AuthSigninRoute: typeof AuthSigninRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  DefaultRoute: DefaultRouteWithChildren,
+  IndexRoute: IndexRoute,
+  CharactersRoute: CharactersRouteWithChildren,
   AuthSigninRoute: AuthSigninRoute,
 }
 
@@ -166,32 +173,31 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/_default",
+        "/",
+        "/characters",
         "/_auth/signin"
       ]
     },
-    "/_default": {
-      "filePath": "_default.tsx",
+    "/": {
+      "filePath": "index.tsx"
+    },
+    "/characters": {
+      "filePath": "characters.tsx",
       "children": [
-        "/_default/",
-        "/_default/characters/$name",
-        "/_default/characters/"
+        "/characters/$name",
+        "/characters/"
       ]
     },
     "/_auth/signin": {
       "filePath": "_auth/signin.tsx"
     },
-    "/_default/": {
-      "filePath": "_default/index.tsx",
-      "parent": "/_default"
+    "/characters/$name": {
+      "filePath": "characters.$name.tsx",
+      "parent": "/characters"
     },
-    "/_default/characters/$name": {
-      "filePath": "_default/characters.$name.tsx",
-      "parent": "/_default"
-    },
-    "/_default/characters/": {
-      "filePath": "_default/characters.index.tsx",
-      "parent": "/_default"
+    "/characters/": {
+      "filePath": "characters.index.tsx",
+      "parent": "/characters"
     }
   }
 }

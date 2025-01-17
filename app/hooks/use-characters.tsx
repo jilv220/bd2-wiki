@@ -2,7 +2,7 @@ import { getRouteApi } from "@tanstack/react-router";
 import { useMemo } from "react";
 
 export function useCharacters() {
-	const routeApi = getRouteApi("/_default");
+	const routeApi = getRouteApi("/characters");
 	const characters = routeApi.useLoaderData();
 	return characters;
 }

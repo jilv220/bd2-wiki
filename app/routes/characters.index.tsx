@@ -1,7 +1,8 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
+import { fetchCharacters } from "~/cases/characters/fetch";
 import { useCharacters } from "~/hooks/use-characters";
 
-export const Route = createFileRoute("/_default/characters/")({
+export const Route = createFileRoute("/characters/")({
 	component: CharactersPage,
 });
 

@@ -5,7 +5,7 @@ import { useCharacter } from "~/hooks/use-characters";
 import { floatToText, snakeCaseToText } from "~/lib/utils";
 
 export function StatsPanel() {
-	const routeApi = getRouteApi("/_default/characters/$name");
+	const routeApi = getRouteApi("/characters/$name");
 	const { name } = routeApi.useParams();
 	const character = useCharacter(name);
 
