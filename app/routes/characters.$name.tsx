@@ -1,11 +1,29 @@
 import { createFileRoute, getRouteApi } from "@tanstack/react-router";
-import { CostumesCard } from "~/cases/characters/costumes-card";
+import {
+	fetchCharacterCore,
+	fetchCharacterTalent,
+} from "~/cases/characters/fetch";
 import { InfoCard } from "~/cases/characters/info-card";
 import { StatsPanel } from "~/cases/characters/stats-panel";
 import { TalentCard } from "~/cases/characters/talent-card";
 
 export const Route = createFileRoute("/characters/$name")({
 	component: CharacterPage,
+	loader: async ({ params }) => {
+		const core = await fetchCharacterCore({
+			data: {
+				name: params.name,
+			},
+		});
+
+		const talents = await fetchCharacterTalent({
+			data: {
+				id: core.id,
+			},
+		});
+
+		return { core, talents };
+	},
 });
 
 function CharacterPage() {
@@ -20,9 +38,7 @@ function CharacterPage() {
 			<section>
 				<TalentCard />
 			</section>
-			<section>
-				<CostumesCard />
-			</section>
+			<section>{/* <CostumesCard /> */}</section>
 		</div>
 	);
 }

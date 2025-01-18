@@ -1,5 +1,4 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { fetchCharacters } from "~/cases/characters/fetch";
 import { useCharacters } from "~/hooks/use-characters";
 
 export const Route = createFileRoute("/characters/")({
@@ -12,14 +11,14 @@ function CharactersPage() {
 	return (
 		<>
 			{characters.map((chr) => (
-				<ul key={chr.id_char}>
+				<ul key={chr.id}>
 					<Link
 						className="capitalize"
 						from={Route.fullPath}
 						to="./$name"
-						params={{ name: chr.char_name }}
+						params={{ name: chr.name }}
 					>
-						{chr.char_name}
+						{chr.name}
 					</Link>
 				</ul>
 			))}

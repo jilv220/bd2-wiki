@@ -1,4 +1,3 @@
-import { getRouteApi, useParams } from "@tanstack/react-router";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { useCharacter } from "~/hooks/use-characters";
 import {
@@ -24,9 +23,7 @@ function InfoCardItem({ label, children }: CharacterCardItemProp) {
 }
 
 export function InfoCard() {
-	const routeApi = getRouteApi("/characters/$name");
-	const { name } = routeApi.useParams();
-	const character = useCharacter(name);
+	const { core: character } = useCharacter();
 
 	return (
 		<Card className="w-full">
@@ -40,7 +37,7 @@ export function InfoCard() {
 						<div className="absolute inset-0 overflow-hidden rounded-lg">
 							<img
 								src={getInventoryIllustUrl(character.illust_inven_char_id)}
-								alt={name}
+								alt={character.name}
 								className="h-full w-full object-cover"
 							/>
 							<div className="absolute top-1 right-1 text-yellow-400">
@@ -53,7 +50,7 @@ export function InfoCard() {
 					<div className="flex flex-grow flex-col text-base sm:text-lg">
 						<div className="pb-2 text-center sm:pb-3 sm:text-left">
 							<span className="font-bold text-lg capitalize sm:text-xl">
-								{character.char_name}
+								{character.name}
 							</span>
 						</div>
 						<div className="grid flex-grow grid-cols-1 gap-2 sm:grid-cols-2">
@@ -64,14 +61,14 @@ export function InfoCard() {
 							</InfoCardItem>
 							<InfoCardItem label="Element Property">
 								<img
-									src={getIconMiscUrl(character.element_property.icon_misc_id)}
-									alt={character.element_property.name}
+									src={getIconMiscUrl(character.element_icon_misc_id)}
+									alt={character.element_property}
 									className="mr-[-5px] h-5 w-5 object-cover sm:h-6 sm:w-6"
 								/>
 							</InfoCardItem>
 							<InfoCardItem label="Attack Property">
 								<span className="text-sm capitalize sm:text-base">
-									{character.attack_property.name}
+									{character.attack_property}
 								</span>
 							</InfoCardItem>
 							<InfoCardItem label="Target">

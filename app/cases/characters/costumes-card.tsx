@@ -1,13 +1,10 @@
-import { getRouteApi } from "@tanstack/react-router";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { useCharacter } from "~/hooks/use-characters";
 import { getIconCostume } from "~/lib/utils";
 
 export const CostumesCard = () => {
-	const routeApi = getRouteApi("/characters/$name");
-	const { name } = routeApi.useParams();
-	const character = useCharacter(name);
+	const character = useCharacter();
 	const costumes = character.costumes;
 
 	return (
@@ -47,11 +44,11 @@ export const CostumesCard = () => {
 							<h3 className="font-semibold text-base sm:text-xl">
 								{co.costume_name}
 							</h3>
-							{/* <div className="grid grid-cols-2 gap-2 sm:grid-cols-2">
+							<div className="grid grid-cols-2 gap-2 sm:grid-cols-2">
 								{co.potential.skill.map((s) => (
 									<span key={s}>{s}</span>
 								))}
-							</div> */}
+							</div>
 						</TabsContent>
 					))}
 				</Tabs>

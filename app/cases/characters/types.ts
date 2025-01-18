@@ -1,3 +1,5 @@
+export type Target = "very_front" | "vault" | "ally";
+
 export type ElementProperty = {
 	name: "fire" | "water" | "wind" | "light" | "dark" | "none";
 	icon_misc_id: string;
@@ -27,16 +29,15 @@ export type TalentRankName =
 	| "Legendary";
 
 export type TalentRank = {
-	level: number;
+	level: TalentRankLevel;
 	name: TalentRankName;
 	cost: number;
-	rank_value: number;
+	description: string;
 };
 
 export type Talent = {
 	name: string;
 	bufficon_id: string;
-	description_template: string;
 	ranks: TalentRank[];
 };
 
@@ -52,6 +53,7 @@ export type Skill = {
 	name: string;
 	skillicon_id: string;
 	range: string;
+	target: Target;
 	description_template: string;
 	upgrade: SkillUpgrade[];
 };
@@ -108,7 +110,7 @@ export type Character = {
 	rarity: number;
 	element_property: ElementProperty;
 	attack_property: AttackProperty;
-	target: string;
+	target: Target;
 	knock_back: string;
 	stats: Stats;
 	talent: Talent;
