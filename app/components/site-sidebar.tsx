@@ -48,7 +48,7 @@ export function SiteSidebar({
 	const location = useLocation();
 	const pathname = location.pathname;
 
-	const { setOpenMobile } = useSidebar();
+	const { setOpenMobile, isMobile } = useSidebar();
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		setOpenMobile(false);
@@ -84,7 +84,12 @@ export function SiteSidebar({
 								{item.items.map((item) => (
 									<SidebarMenuItem key={item.title}>
 										<SidebarMenuButton asChild isActive={item.url === pathname}>
-											<Link to={item.url}>{item.title}</Link>
+											<Link
+												to={item.url}
+												preload={isMobile ? "viewport" : "intent"}
+											>
+												{item.title}
+											</Link>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 								))}

@@ -1,3 +1,4 @@
+import { createBrowserClient } from "@supabase/ssr";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { useCharacter } from "~/hooks/use-characters";
 import {
