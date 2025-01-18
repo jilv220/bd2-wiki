@@ -3,6 +3,7 @@ import { createServerFn } from "@tanstack/start";
 import { setHeaders } from "vinxi/http";
 import type {
 	NonNullCharacterCoreRow,
+	NonNullCharacterCostumeRow,
 	NonNullCharacterTalentsRow,
 } from "~/database.types";
 import { getSupabaseServerClient } from "~/lib/supabase";
@@ -11,7 +12,7 @@ const setCharacterCacheHeader = () =>
 	setHeaders({
 		// Don't cache in the browser
 		"cache-control": "public, max-age=0, must-revalidate",
-		"cdn-cache-control": "max-age=3600, stale-while-revalidate=3600, durable",
+		"cdn-cache-control": "max-age=300, stale-while-revalidate=300, durable",
 	});
 
 export const fetchCharacters = createServerFn({ method: "GET" }).handler(
@@ -62,4 +63,24 @@ export const fetchCharacterTalent = createServerFn({ method: "GET" })
 		setCharacterCacheHeader();
 
 		return talents;
+	});
+
+export const fetchCharacterCostumes = createServerFn({ method: "GET" })
+	.validator(
+		(d: {
+			id: string;
+		}) => d,
+	)
+	.handler(async ({ data }) => {
+		const supabase = getSupabaseServerClient();
+		const { data: costumes } = await supabase
+			.from("character_costumes_view")
+			.select()
+			.eq("char_id", data.id)
+			.returns<NonNullCharacterCostumeRow[]>();
+
+		if (!costumes) throw notFound();
+		setCharacterCacheHeader();
+
+		return costumes;
 	});

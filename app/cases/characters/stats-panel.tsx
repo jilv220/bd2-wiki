@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { useCharacter } from "~/hooks/use-characters";
-import { floatToText, snakeCaseToText } from "~/lib/utils";
+import { decimalToPercentage, snakeCaseToText } from "~/lib/utils";
 
 export function StatsPanel() {
 	const { core: character } = useCharacter();
@@ -9,12 +9,12 @@ export function StatsPanel() {
 		{ label: "hp", value: character.hp },
 		{ label: "atk", value: character.atk },
 		{ label: "m.atk", value: character.magic_atk },
-		{ label: "c.r", value: floatToText(character.crit_rate) },
-		{ label: "c.dmg", value: floatToText(character.crit_dmg) },
-		{ label: "def", value: floatToText(character.def) },
+		{ label: "c.r", value: decimalToPercentage(character.crit_rate) },
+		{ label: "c.dmg", value: decimalToPercentage(character.crit_dmg) },
+		{ label: "def", value: decimalToPercentage(character.def) },
 		{
 			label: "m.res",
-			value: floatToText(character.magic_resist),
+			value: decimalToPercentage(character.magic_resist),
 		},
 		{ label: "kb", value: snakeCaseToText(character.knock_back) },
 	];

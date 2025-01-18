@@ -15,7 +15,19 @@ export const snakeCaseToText = (str: string) =>
 		join(" "),
 	);
 
-export const floatToText = (n: number) => `${pipe(n, multiply(100))}%`;
+/**
+ * Converts float numbers to percentage text
+ * Only transforms numbers between 0 and 1
+ * Returns the original number as string for other cases
+ */
+export const decimalToPercentage = (n: number): string => {
+	const hasDecimals = (num: number): boolean => num % 1 !== 0;
+	if (!hasDecimals(n) || n < 0 || n > 1) {
+		return n.toString();
+	}
+
+	return `${n * 100}%`;
+};
 
 export function getStoragePublicUrl(bucketId: string, path: string): string {
 	return `${SUPABASE_URL}/storage/v1/object/public/${bucketId}/${path}`;

@@ -1,6 +1,8 @@
 import { createFileRoute, getRouteApi } from "@tanstack/react-router";
+import { CostumesCard } from "~/cases/characters/costumes-card";
 import {
 	fetchCharacterCore,
+	fetchCharacterCostumes,
 	fetchCharacterTalent,
 } from "~/cases/characters/fetch";
 import { InfoCard } from "~/cases/characters/info-card";
@@ -16,13 +18,21 @@ export const Route = createFileRoute("/characters/$name")({
 			},
 		});
 
-		const talents = await fetchCharacterTalent({
+		const talentsP = fetchCharacterTalent({
 			data: {
 				id: core.id,
 			},
 		});
 
-		return { core, talents };
+		const costumesP = fetchCharacterCostumes({
+			data: {
+				id: core.id,
+			},
+		});
+
+		const [talents, costumes] = await Promise.all([talentsP, costumesP]);
+
+		return { core, talents, costumes };
 	},
 });
 
@@ -38,7 +48,9 @@ function CharacterPage() {
 			<section>
 				<TalentCard />
 			</section>
-			<section>{/* <CostumesCard /> */}</section>
+			<section>
+				<CostumesCard />
+			</section>
 		</div>
 	);
 }

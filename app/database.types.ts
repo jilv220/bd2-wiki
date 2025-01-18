@@ -25,6 +25,12 @@ type BasicStat = RequireExactlyOne<StatOption> & {
 	options: StatOption[];
 };
 
+export type Potential = {
+	permanent: RequireExactlyOne<StatOption>;
+	bonding: StatOption;
+	skill: string[];
+};
+
 type CharacterCoreRow =
 	DatabaseGenerated["public"]["Views"]["characters_core_view"]["Row"];
 export type NonNullCharacterCoreRow = Merge<
@@ -39,6 +45,16 @@ type CharacterTalentsRow =
 	DatabaseGenerated["public"]["Views"]["character_talents_view"]["Row"];
 export type NonNullCharacterTalentsRow = SetNonNullable<CharacterTalentsRow>;
 export type Talent = NonNullCharacterTalentsRow;
+
+type CharacterCostumesRow =
+	DatabaseGenerated["public"]["Views"]["character_costumes_view"]["Row"];
+export type NonNullCharacterCostumeRow = Merge<
+	SetNonNullable<CharacterCostumesRow>,
+	{
+		potential: Potential;
+	}
+>;
+export type Cosutme = NonNullCharacterCostumeRow;
 
 // Override the type for a specific column in a view:
 export type Database = DatabaseGenerated;
