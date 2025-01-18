@@ -1,5 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { useCharacters } from "~/hooks/use-characters";
+import { useIsMobile } from "~/hooks/use-mobile";
 
 export const Route = createFileRoute("/characters/")({
 	component: CharactersPage,
@@ -7,6 +8,7 @@ export const Route = createFileRoute("/characters/")({
 
 function CharactersPage() {
 	const characters = useCharacters();
+	const isMobile = useIsMobile();
 
 	return (
 		<>
@@ -17,6 +19,7 @@ function CharactersPage() {
 						from={Route.fullPath}
 						to="./$name"
 						params={{ name: chr.name }}
+						preload={isMobile ? "viewport" : "intent"}
 					>
 						{chr.name}
 					</Link>

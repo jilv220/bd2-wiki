@@ -6,6 +6,10 @@ import type {
 } from "~/database.types";
 import { getSupabaseServerClient } from "~/lib/supabase";
 
+/**
+ * TODO: Use static
+ * Wait for "static" serverFn support to land
+ */
 export const fetchCharacters = createServerFn({ method: "GET" }).handler(
 	async () => {
 		const supabase = getSupabaseServerClient();
