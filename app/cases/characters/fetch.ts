@@ -12,7 +12,7 @@ const setCharacterCacheHeader = () =>
 	setHeaders({
 		// Don't cache in the browser
 		"cache-control": "public, max-age=0, must-revalidate",
-		"cdn-cache-control": "max-age=300, stale-while-revalidate=300, durable",
+		"cdn-cache-control": "max-age=3600, stale-while-revalidate=3600, durable",
 	});
 
 export const fetchCharacters = createServerFn({ method: "GET" }).handler(
