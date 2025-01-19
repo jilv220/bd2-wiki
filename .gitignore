@@ -178,3 +178,4 @@ dist
 .vercel
 .netlify
 .output
+.convex_data
