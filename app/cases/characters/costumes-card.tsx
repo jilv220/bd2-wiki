@@ -11,16 +11,17 @@ import {
 } from "~/components/ui/dialog";
 import { Separator } from "~/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
-import type { Costume, Element } from "~/database.types";
-import { useCharacter } from "~/hooks/use-characters";
+import {
+	type Character,
+	type Costume,
+	useCharacter,
+} from "~/hooks/use-characters";
 import { textVariants } from "~/lib/typography";
 import {
 	cn,
 	decimalToPercentage,
 	elementToClassname,
-	getIconCostumeUrl,
-	getIconRangeUrl,
-	getSkillIconUrl,
+	getImageFromStorageId,
 } from "~/lib/utils";
 
 const PotentialItem = ({
@@ -43,8 +44,8 @@ const CostumeTabTrigger = ({ costume }: { costume: Costume }) => (
 	>
 		<div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-lg sm:h-16 sm:w-16 lg:h-20 lg:w-20">
 			<img
-				src={getIconCostumeUrl(costume.icon_costume_id)}
-				alt={costume.costume_name}
+				src={getImageFromStorageId(costume.icon_costume_id)}
+				alt={costume.name}
 				className="h-full w-full object-cover"
 			/>
 		</div>
@@ -111,15 +112,17 @@ const CostumeContent = ({
 	costume,
 	allCostumes,
 	element,
-}: { costume: Costume; allCostumes: Costume[]; element: Element }) => {
-	const upgrades = allCostumes.filter(
-		(ac) => ac.costume_name === costume.costume_name,
-	);
+}: {
+	costume: Costume;
+	allCostumes: Costume[];
+	element: Character["element_property"]["name"];
+}) => {
+	const [base, ...rest] = costume.skill.upgrade;
 
 	return (
 		<TabsContent className="mt-0 pl-1" value={costume.id}>
 			<h3 className="py-4 font-semibold text-base sm:text-xl">
-				{costume.costume_name}
+				{costume.name}
 			</h3>
 			<div className="flex flex-col gap-4 md:grid md:grid-cols-2 lg:gap-8">
 				<SkillPotentials skills={costume.potential.skill} />
@@ -131,13 +134,13 @@ const CostumeContent = ({
 					<div className="flex items-center space-x-2 max-[380px]:space-x-0">
 						<div className="ml-[-5px] h-[30px] w-[30px] max-[380px]:hidden sm:h-12 sm:w-12">
 							<img
-								src={getSkillIconUrl(costume.skillicon_id)}
-								alt={costume.skill_name}
+								src={getImageFromStorageId(costume.skill.skillicon_id)}
+								alt={costume.skill.name}
 								className="h-full w-full"
 							/>
 						</div>
 						<span className={cn(textVariants({ variant: "h3" }))}>
-							{costume.skill_name}
+							{costume.skill.name}
 						</span>
 					</div>
 				</div>
@@ -147,8 +150,9 @@ const CostumeContent = ({
 						<img
 							loading="lazy"
 							className="h-full w-full"
-							src={getIconRangeUrl(costume.icon_range_id)}
-							alt={costume.icon_range_id}
+							src={getImageFromStorageId(costume.skill.icon_range_id)}
+							// TODO: need to modify db schema
+							alt={"range"}
 						/>
 					</div>
 					<div className="flex h-[30px] w-[30px] items-center justify-center border bg-secondary text-center sm:h-[40px] sm:w-[40px]">
@@ -167,13 +171,13 @@ const CostumeContent = ({
 				<div
 					className={cn(textVariants(), "mb-1 space-x-2 text-muted-foreground")}
 				>
-					<span>SP{costume.sp_cost}</span>
-					<span>CD{costume.cooldown}</span>
+					<span>SP{base.sp_cost}</span>
+					<span>CD{base.cd}</span>
 				</div>
 				<span
 					className={cn(textVariants({ variant: "small" }), "pb-1 sm:pb-2")}
 				>
-					{costume.description}
+					{base.description}
 				</span>
 				<SkillUpgradeDialog />
 			</div>
@@ -182,10 +186,7 @@ const CostumeContent = ({
 };
 
 export const CostumesCard = () => {
-	const { core, costumes } = useCharacter();
-	const baseCostumes = costumes.filter((co) => co.level === 0);
-
-	if (!baseCostumes.length) return null;
+	const { costumes, element_property } = useCharacter();
 
 	return (
 		<Card className="w-full">
@@ -193,18 +194,18 @@ export const CostumesCard = () => {
 				<h2 className="font-bold text-xl sm:text-2xl">Costumes</h2>
 			</CardHeader>
 			<CardContent className="p-4 sm:p-6">
-				<Tabs defaultValue={baseCostumes[0].id}>
+				<Tabs defaultValue={costumes[0].id}>
 					<TabsList className="flex h-auto w-full justify-start gap-2 overflow-x-auto bg-background pb-2 sm:gap-3">
-						{baseCostumes.map((costume) => (
+						{costumes.map((costume) => (
 							<CostumeTabTrigger key={costume.id} costume={costume} />
 						))}
 					</TabsList>
-					{baseCostumes.map((costume) => (
+					{costumes.map((costume) => (
 						<CostumeContent
 							key={costume.id}
 							costume={costume}
 							allCostumes={costumes}
-							element={core.element_property}
+							element={element_property.name}
 						/>
 					))}
 				</Tabs>

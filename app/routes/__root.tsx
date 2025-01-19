@@ -1,3 +1,4 @@
+import type { QueryClient } from "@tanstack/react-query";
 import {
 	ErrorComponent,
 	Outlet,
@@ -20,9 +21,11 @@ import {
 import appCss from "~/styles/app.css?url";
 
 // Type RouterContext here, and pass initial data in router.tsx
-// interface AppRouterContext {}
+interface AppRouterContext {
+	queryClient: QueryClient;
+}
 
-export const Route = createRootRouteWithContext()({
+export const Route = createRootRouteWithContext<AppRouterContext>()({
 	head: () => ({
 		meta: [
 			{

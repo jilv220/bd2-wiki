@@ -1,4 +1,3 @@
-import { getRouteApi } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
@@ -6,23 +5,21 @@ import {
 	Dialog,
 	DialogContent,
 	DialogHeader,
-	DialogTitle,
 	DialogTrigger,
 } from "~/components/ui/dialog";
-import type { Talent } from "~/database.types";
-import { useCharacter } from "~/hooks/use-characters";
+import { type TalentRank, useCharacter } from "~/hooks/use-characters";
 import { textVariants } from "~/lib/typography";
-import { cn, getBuffIconUrl } from "~/lib/utils";
+import { cn, getImageFromStorageId } from "~/lib/utils";
 
-const RankInfo = ({ talent }: { talent: Talent }) => {
+const RankInfo = ({ rank }: { rank: TalentRank }) => {
 	return (
 		<div className="rounded-md bg-secondary/20 p-3">
 			<div className="flex flex-col items-start justify-between space-y-1">
 				<div className="flex flex-col">
-					<span className="font-medium text-base">{talent.rank_name}</span>
+					<span className="font-medium text-base">{rank.name}</span>
 				</div>
 				<div className="flex items-center text-sm">
-					<span>{talent.description}</span>
+					<span>{rank.description}</span>
 				</div>
 			</div>
 		</div>
@@ -30,8 +27,8 @@ const RankInfo = ({ talent }: { talent: Talent }) => {
 };
 
 const UpgradeDialog = () => {
-	const { talents } = useCharacter();
-	const [_, ...rest] = talents;
+	const { talent } = useCharacter();
+	const [_, ...rest] = talent.ranks;
 
 	return (
 		<Dialog>
@@ -54,8 +51,8 @@ const UpgradeDialog = () => {
 					Upgrade Effects
 				</DialogHeader>
 				<div className="space-y-2 pt-4">
-					{rest.map((tal) => (
-						<RankInfo key={tal.rank_level} talent={tal} />
+					{rest.map((r) => (
+						<RankInfo key={r.level} rank={r} />
 					))}
 				</div>
 			</DialogContent>
@@ -64,7 +61,7 @@ const UpgradeDialog = () => {
 };
 
 export const TalentCard = () => {
-	const { talents } = useCharacter();
+	const { talent } = useCharacter();
 
 	return (
 		<Card className="w-full">
@@ -77,15 +74,15 @@ export const TalentCard = () => {
 					<div className="flex items-start space-x-4">
 						<div className="relative h-[60px] w-[60px] flex-shrink-0 overflow-hidden rounded-lg bg-foreground/35 sm:h-16 sm:w-16 min-[588px]:h-14 min-[588px]:w-14">
 							<img
-								src={getBuffIconUrl(talents[0].bufficon_id)}
-								alt={talents[0].name}
+								src={getImageFromStorageId(talent.bufficon_id)}
+								alt={talent.ranks[0].name}
 								className="h-full w-full object-cover"
 							/>
 						</div>
 						<div className="flex flex-1 flex-col">
 							<div className="flex items-center justify-between">
 								<h3 className="font-semibold text-base sm:text-xl">
-									{talents[0].name}
+									{talent.ranks[0].name}
 								</h3>
 								<UpgradeDialog />
 							</div>
@@ -95,7 +92,7 @@ export const TalentCard = () => {
 									"mt-1 text-muted-foreground",
 								)}
 							>
-								Beginner: {talents[0].description}
+								Beginner: {talent.ranks[0].description}
 							</p>
 						</div>
 					</div>

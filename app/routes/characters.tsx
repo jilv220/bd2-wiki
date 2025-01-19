@@ -1,5 +1,4 @@
 import { Outlet, createFileRoute } from "@tanstack/react-router";
-import { fetchCharacters } from "~/cases/characters/fetch";
 
 /**
  * Turns out this is the "parent route"
@@ -7,8 +6,6 @@ import { fetchCharacters } from "~/cases/characters/fetch";
  */
 export const Route = createFileRoute("/characters")({
 	component: CharactersPageLayout,
-	loader: () => fetchCharacters(),
-	errorComponent: () => <>Fail to fetch characters</>,
 });
 
 function CharactersPageLayout() {
