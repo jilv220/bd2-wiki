@@ -11,7 +11,8 @@ import {
 } from "~/components/ui/dialog";
 import type { Talent } from "~/database.types";
 import { useCharacter } from "~/hooks/use-characters";
-import { getBuffIconUrl } from "~/lib/utils";
+import { textVariants } from "~/lib/typography";
+import { cn, getBuffIconUrl } from "~/lib/utils";
 
 const RankInfo = ({ talent }: { talent: Talent }) => {
 	return (
@@ -88,7 +89,12 @@ export const TalentCard = () => {
 								</h3>
 								<UpgradeDialog />
 							</div>
-							<p className="mt-1 text-muted-foreground text-xs sm:text-base">
+							<p
+								className={cn(
+									textVariants({ variant: "small" }),
+									"mt-1 text-muted-foreground",
+								)}
+							>
 								Beginner: {talents[0].description}
 							</p>
 						</div>

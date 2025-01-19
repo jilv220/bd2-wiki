@@ -128,8 +128,8 @@ const CostumeContent = ({
 			<Separator className="mt-5 mb-6" />
 			<div className="flex items-start justify-between pb-2">
 				<div className="flex flex-col">
-					<div className="flex items-center space-x-2">
-						<div className="ml-[-5px] h-[30px] w-[30px] sm:h-12 sm:w-12">
+					<div className="flex items-center space-x-2 max-[380px]:space-x-0">
+						<div className="ml-[-5px] h-[30px] w-[30px] max-[380px]:hidden sm:h-12 sm:w-12">
 							<img
 								src={getSkillIconUrl(costume.skillicon_id)}
 								alt={costume.skill_name}
@@ -170,7 +170,9 @@ const CostumeContent = ({
 					<span>SP{costume.sp_cost}</span>
 					<span>CD{costume.cooldown}</span>
 				</div>
-				<span className="pb-1 text-xs sm:pb-2 sm:text-base">
+				<span
+					className={cn(textVariants({ variant: "small" }), "pb-1 sm:pb-2")}
+				>
 					{costume.description}
 				</span>
 				<SkillUpgradeDialog />
