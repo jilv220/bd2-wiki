@@ -35,7 +35,10 @@ const UpgradeDialog = () => {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button variant="ghost" className="h-6 px-2 sm:h-8">
+				<Button
+					variant="ghost"
+					className="h-6 px-2 hover:bg-transparent sm:h-8"
+				>
 					<span className="hidden text-muted-foreground text-sm sm:block">
 						View Upgrades
 					</span>
@@ -71,7 +74,7 @@ export const TalentCard = () => {
 				<div className="flex flex-col space-y-4">
 					{/* Skill Header */}
 					<div className="flex items-start space-x-4">
-						<div className="relative h-[60px] w-[60px] flex-shrink-0 overflow-hidden rounded-lg sm:h-16 sm:w-16 min-[588px]:h-14 min-[588px]:w-14">
+						<div className="relative h-[60px] w-[60px] flex-shrink-0 overflow-hidden rounded-lg bg-foreground/35 sm:h-16 sm:w-16 min-[588px]:h-14 min-[588px]:w-14">
 							<img
 								src={getBuffIconUrl(talents[0].bufficon_id)}
 								alt={talents[0].name}

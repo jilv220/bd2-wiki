@@ -31,6 +31,8 @@ export type Potential = {
 	skill: string[];
 };
 
+export type Element = DatabaseGenerated["public"]["Enums"]["element_type"];
+
 type CharacterCoreRow =
 	DatabaseGenerated["public"]["Views"]["characters_core_view"]["Row"];
 export type NonNullCharacterCoreRow = Merge<
@@ -54,7 +56,7 @@ export type NonNullCharacterCostumeRow = Merge<
 		potential: Potential;
 	}
 >;
-export type Cosutme = NonNullCharacterCostumeRow;
+export type Costume = NonNullCharacterCostumeRow;
 
 // Override the type for a specific column in a view:
 export type Database = DatabaseGenerated;
