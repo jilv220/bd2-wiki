@@ -99,13 +99,13 @@ const SkillUpgradeDialog = ({
 				</Button>
 			</DialogTrigger>
 			<DialogContent
-				className="w-[85%] rounded-lg sm:max-w-[768px]"
+				className="max-h-[70%] w-[85%] rounded-lg sm:max-h-none sm:max-w-[768px]"
 				onOpenAutoFocus={(ev) => ev.preventDefault()}
 			>
 				<DialogHeader className="font-semibold text-lg">
 					Upgrade Effects
 				</DialogHeader>
-				<div className="space-y-2 pt-4">
+				<div className="max-h-[392px] space-y-2 overflow-y-scroll pt-4 sm:max-h-[312px] md:max-h-none">
 					{upgrades.map((u) => (
 						<div
 							key={u.level}
@@ -209,7 +209,7 @@ const CostumeContent = ({
 				<span
 					className={cn(textVariants({ variant: "small" }), "pb-1 sm:pb-2")}
 				>
-					{base.description}
+					<HighlightNumbers text={base.description} />
 				</span>
 				<SkillUpgradeDialog upgrades={rest} />
 			</div>
