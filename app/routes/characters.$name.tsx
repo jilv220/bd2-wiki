@@ -20,12 +20,12 @@ export const Route = createFileRoute("/characters/$name")({
 		};
 	},
 	component: CharacterPage,
-	headers: () => {
-		return {
-			"cache-control": "public, max-age=0, must-revalidate",
-			"cdn-cache-control": "max-age=3600, stale-while-revalidate=3600, durable",
-		};
-	},
+	// headers: () => {
+	// 	return {
+	// 		"cache-control": "public, max-age=0, must-revalidate",
+	// 		"cdn-cache-control": "max-age=3600, stale-while-revalidate=3600, durable",
+	// 	};
+	// },
 });
 
 function CharacterPage() {
