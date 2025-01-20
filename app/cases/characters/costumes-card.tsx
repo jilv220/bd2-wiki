@@ -1,6 +1,7 @@
 import { RiArrowUpDoubleFill } from "@remixicon/react";
 import { nanoid } from "nanoid";
 import { entries } from "remeda";
+import { HighlightNumbers } from "~/components/highlighter";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import {
@@ -83,7 +84,9 @@ const BondingAndPermanentPotentials = ({ costume }: { costume: Costume }) => (
 	</div>
 );
 
-const SkillUpgradeDialog = () => {
+const SkillUpgradeDialog = ({
+	upgrades,
+}: { upgrades: Costume["skill"]["upgrade"] }) => {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
@@ -96,13 +99,42 @@ const SkillUpgradeDialog = () => {
 				</Button>
 			</DialogTrigger>
 			<DialogContent
-				className="w-[85%] rounded-lg sm:max-w-[430px]"
+				className="w-[85%] rounded-lg sm:max-w-[768px]"
 				onOpenAutoFocus={(ev) => ev.preventDefault()}
 			>
 				<DialogHeader className="font-semibold text-lg">
 					Upgrade Effects
 				</DialogHeader>
-				{/* <div className="space-y-2 pt-4"></div> */}
+				<div className="space-y-2 pt-4">
+					{upgrades.map((u) => (
+						<div
+							key={u.level}
+							className="rounded-md bg-secondary/40 p-3 dark:bg-secondary/30"
+						>
+							<div className="flex flex-col items-start justify-between space-y-1">
+								<div className={cn("flex items-center")}>
+									<span className="mr-4 font-semibold">+{u.level}</span>
+									<HighlightNumbers
+										classname="mr-2 text-[14px] leading-normal"
+										text={`SP${u.sp_cost}`}
+									/>
+									<HighlightNumbers
+										classname="text-[14px] leading-normal"
+										text={`CD${u.cd}`}
+									/>
+								</div>
+								<div
+									className={cn(
+										"flex items-center leading-4",
+										textVariants({ variant: "xs" }),
+									)}
+								>
+									<HighlightNumbers text={u.description} />
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
 			</DialogContent>
 		</Dialog>
 	);
@@ -179,7 +211,7 @@ const CostumeContent = ({
 				>
 					{base.description}
 				</span>
-				<SkillUpgradeDialog />
+				<SkillUpgradeDialog upgrades={rest} />
 			</div>
 		</TabsContent>
 	);

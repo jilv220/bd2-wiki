@@ -1,4 +1,5 @@
 import { ChevronRight } from "lucide-react";
+import { HighlightNumbers } from "~/components/highlighter";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import {
@@ -13,13 +14,13 @@ import { cn, getImageFromStorageId } from "~/lib/utils";
 
 const RankInfo = ({ rank }: { rank: TalentRank }) => {
 	return (
-		<div className="rounded-md bg-secondary/20 p-3">
+		<div className="rounded-md bg-secondary/40 p-3 dark:bg-secondary/30">
 			<div className="flex flex-col items-start justify-between space-y-1">
 				<div className="flex flex-col">
 					<span className="font-medium text-base">{rank.name}</span>
 				</div>
 				<div className="flex items-center text-sm">
-					<span>{rank.description}</span>
+					<HighlightNumbers text={rank.description} />
 				</div>
 			</div>
 		</div>

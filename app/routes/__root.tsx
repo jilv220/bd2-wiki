@@ -17,8 +17,18 @@ import {
 	SidebarProvider,
 	SidebarTrigger,
 } from "~/components/ui/sidebar";
+import { seo } from "~/lib/seo";
 
 import appCss from "~/styles/app.css?url";
+
+export const SITE_TITLE = "Brown Dust 2 Wiki";
+export const rootSeo = seo({
+	title: SITE_TITLE,
+	description:
+		"A wiki/database website for game Brown Dust 2, providing detailed information about characters, equipment, maps and other in-game content to help players easily access game information.",
+	keywords:
+		"Brown Dust 2, BrownDust 2, browndust2, browndust 2, wiki, database, game wiki, character info, equiments, game guides, mobile games",
+});
 
 // Type RouterContext here, and pass initial data in router.tsx
 interface AppRouterContext {
@@ -35,9 +45,7 @@ export const Route = createRootRouteWithContext<AppRouterContext>()({
 				name: "viewport",
 				content: "width=device-width, initial-scale=1",
 			},
-			{
-				title: "Brown Dust 2 Wiki",
-			},
+			...rootSeo,
 		],
 		links: [{ rel: "stylesheet", href: appCss }],
 	}),
