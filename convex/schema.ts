@@ -76,8 +76,9 @@ export default defineSchema({
 			name: ElementPropertySchma,
 		}),
 		exclusive_gear: v.object({
-			basic_stat: v.any(),
+			basic_stat: StatOptionSchema,
 			exclusive_ability: StatOptionSchema,
+			stat_options: v.array(StatOptionSchema),
 			icon_equipment_id: v.string(),
 			name: v.string(),
 		}),

@@ -1,6 +1,7 @@
 import { createFileRoute, getRouteApi } from "@tanstack/react-router";
 import { capitalize, merge, mergeAll } from "remeda";
 import { CostumesCard } from "~/cases/characters/costumes-card";
+import { ExclusiveGear } from "~/cases/characters/exclusive-gear";
 import { InfoCard } from "~/cases/characters/info-card";
 import { StatsPanel } from "~/cases/characters/stats-panel";
 import { TalentCard } from "~/cases/characters/talent-card";
@@ -41,6 +42,9 @@ function CharacterPage() {
 			</section>
 			<section>
 				<CostumesCard />
+			</section>
+			<section>
+				<ExclusiveGear />
 			</section>
 		</div>
 	);

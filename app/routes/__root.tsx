@@ -64,7 +64,7 @@ function RootComponent() {
 						<SiteHeader>
 							<SidebarTrigger className="ml-1 h-10 w-10 text-primary" />
 						</SiteHeader>
-						<div className="container mx-auto px-4 py-4">
+						<div className="container mx-auto px-4 py-4 md:max-w-[90%]">
 							<Outlet />
 						</div>
 						<SiteFooter />
