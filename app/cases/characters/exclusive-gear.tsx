@@ -68,7 +68,7 @@ export const ExclusiveGear = () => {
 								label="Basic Stat"
 								value={`${basicStat[0]} ${decimalToPercentage(basicStat[1])}`}
 							/>
-							<div className="flex items-center justify-between py-2 ">
+							<div className="flex items-start justify-between py-2 ">
 								<span className="text-muted-foreground text-sm sm:text-base">
 									Stat Options
 								</span>

@@ -27,12 +27,19 @@ import {
 
 const PotentialItem = ({
 	label,
+	className,
 	children,
 }: {
 	label: string;
 	children: React.ReactNode;
+	className?: string;
 }) => (
-	<div className="flex items-center justify-between rounded-md bg-secondary/35 px-3 py-2">
+	<div
+		className={cn(
+			"flex items-center justify-between rounded-md bg-secondary/35 px-3 py-2",
+			className,
+		)}
+	>
 		<span className="text-muted-foreground text-sm sm:text-base">{label}</span>
 		{children}
 	</div>
@@ -65,7 +72,7 @@ const SkillPotentials = ({ skills }: { skills: string[] }) => (
 
 const BondingAndPermanentPotentials = ({ costume }: { costume: Costume }) => (
 	<div className="space-y-2">
-		<PotentialItem label="Bonding Potential">
+		<PotentialItem className="items-start" label="Bonding Potential">
 			<div className="flex flex-col items-end">
 				{entries(costume.potential.bonding).map(([stat, value]) => (
 					<span className="text-sm uppercase sm:text-base" key={stat}>
