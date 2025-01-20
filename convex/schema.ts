@@ -37,83 +37,88 @@ const StatOptionSchema = v.object({
 const KnockBackSchema = v.string();
 const TalentSchema = v.string();
 
-export default defineSchema({
-	// Other tables here...
-	characters: defineTable({
-		attack_property: v.object({
-			icon_misc_id: v.string(),
-			name: AttackPropertySchema,
-		}),
-		costumes: v.array(
-			v.object({
-				icon_costume_id: v.string(),
-				id: v.string(),
-				name: v.string(),
-				potential: v.object({
-					bonding: StatOptionSchema,
-					permanent: StatOptionSchema,
-					skill: v.array(v.string()),
-				}),
-				skill: v.object({
-					icon_range_id: v.string(),
-					name: v.string(),
-					skillicon_id: v.string(),
-					target: TargetSchema,
-					upgrade: v.array(
-						v.object({
-							cd: v.float64(),
-							chain: v.float64(),
-							description: v.string(),
-							level: v.float64(),
-							sp_cost: v.float64(),
-						}),
-					),
-				}),
+export default defineSchema(
+	{
+		// Other tables here...
+		characters: defineTable({
+			attack_property: v.object({
+				icon_misc_id: v.string(),
+				name: AttackPropertySchema,
 			}),
-		),
-		element_property: v.object({
-			icon_misc_id: v.string(),
-			name: ElementPropertySchma,
-		}),
-		exclusive_gear: v.object({
-			basic_stat: StatOptionSchema,
-			exclusive_ability: StatOptionSchema,
-			stat_options: v.array(StatOptionSchema),
-			icon_equipment_id: v.string(),
-			name: v.string(),
-		}),
-		id: v.string(),
-		illust_inven_char_id: v.string(),
-		knock_back: KnockBackSchema,
-		name: v.string(),
-		rarity: v.union(
-			v.literal(1),
-			v.literal(2),
-			v.literal(3),
-			v.literal(4),
-			v.literal(5),
-		),
-		stats: v.object({
-			atk: v.float64(),
-			crit_dmg: v.float64(),
-			crit_rate: v.float64(),
-			def: v.float64(),
-			hp: v.float64(),
-			magic_atk: v.float64(),
-			magic_resist: v.float64(),
-		}),
-		talent: v.object({
-			bufficon_id: v.string(),
-			name: TalentSchema,
-			ranks: v.array(
+			costumes: v.array(
 				v.object({
-					cost: v.float64(),
-					description: v.string(),
-					level: v.float64(),
-					name: TalentRankNameSchema,
+					icon_costume_id: v.string(),
+					id: v.string(),
+					name: v.string(),
+					potential: v.object({
+						bonding: StatOptionSchema,
+						permanent: StatOptionSchema,
+						skill: v.array(v.string()),
+					}),
+					skill: v.object({
+						icon_range_id: v.string(),
+						name: v.string(),
+						skillicon_id: v.string(),
+						target: TargetSchema,
+						upgrade: v.array(
+							v.object({
+								cd: v.float64(),
+								chain: v.float64(),
+								description: v.string(),
+								level: v.float64(),
+								sp_cost: v.float64(),
+							}),
+						),
+					}),
 				}),
 			),
-		}),
-		target: TargetSchema,
-	}).index("by_name", ["name"]),
-});
+			element_property: v.object({
+				icon_misc_id: v.string(),
+				name: ElementPropertySchma,
+			}),
+			exclusive_gear: v.object({
+				basic_stat: StatOptionSchema,
+				exclusive_ability: StatOptionSchema,
+				stat_options: v.array(StatOptionSchema),
+				icon_equipment_id: v.string(),
+				name: v.string(),
+			}),
+			id: v.string(),
+			illust_inven_char_id: v.string(),
+			knock_back: KnockBackSchema,
+			name: v.string(),
+			rarity: v.union(
+				v.literal(1),
+				v.literal(2),
+				v.literal(3),
+				v.literal(4),
+				v.literal(5),
+			),
+			stats: v.object({
+				atk: v.float64(),
+				crit_dmg: v.float64(),
+				crit_rate: v.float64(),
+				def: v.float64(),
+				hp: v.float64(),
+				magic_atk: v.float64(),
+				magic_resist: v.float64(),
+			}),
+			talent: v.object({
+				bufficon_id: v.string(),
+				name: TalentSchema,
+				ranks: v.array(
+					v.object({
+						cost: v.float64(),
+						description: v.string(),
+						level: v.float64(),
+						name: TalentRankNameSchema,
+					}),
+				),
+			}),
+			target: TargetSchema,
+		}).index("by_name", ["name"]),
+	},
+	{
+		schemaValidation: false,
+	},
+);
