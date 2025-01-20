@@ -105,7 +105,7 @@ const SkillUpgradeDialog = ({
 				<DialogHeader className="font-semibold text-lg">
 					Upgrade Effects
 				</DialogHeader>
-				<div className="max-h-[392px] space-y-2 overflow-y-scroll pt-4 sm:max-h-[312px] md:max-h-none">
+				<div className="max-h-[372px] space-y-2 overflow-y-scroll pt-4 sm:max-h-[312px] md:max-h-none">
 					{upgrades.map((u) => (
 						<div
 							key={u.level}
