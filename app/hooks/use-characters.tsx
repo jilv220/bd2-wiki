@@ -7,19 +7,28 @@ export function useCharacters() {
 	const { data: characters } = useSuspenseQuery(
 		convexQuery(api.characters.get, {}),
 	);
+
 	return characters;
 }
 
 export function useCharacter() {
 	const routeApi = getRouteApi("/characters/$name");
 	const { name } = routeApi.useParams();
+
 	const { data: characters } = useSuspenseQuery(
 		convexQuery(api.character.get, { name }),
 	);
-
 	if (characters.length === 0) throw notFound();
+	const character = characters[0];
 
-	return characters[0];
+	const { data: costumes } = useSuspenseQuery(
+		convexQuery(api.costumes.get, { char_id: character._id }),
+	);
+
+	return {
+		...character,
+		costumes,
+	};
 }
 export type Character = ReturnType<typeof useCharacter>;
 

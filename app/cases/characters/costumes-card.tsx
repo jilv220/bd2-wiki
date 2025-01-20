@@ -48,7 +48,7 @@ const PotentialItem = ({
 const CostumeTabTrigger = ({ costume }: { costume: Costume }) => (
 	<TabsTrigger
 		className="border-2 border-background p-0 data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:bg-secondary"
-		value={costume.id}
+		value={costume._id}
 	>
 		<div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-lg sm:h-16 sm:w-16 lg:h-20 lg:w-20">
 			<img
@@ -106,13 +106,13 @@ const SkillUpgradeDialog = ({
 				</Button>
 			</DialogTrigger>
 			<DialogContent
-				className="max-h-[70%] w-[85%] rounded-lg sm:max-h-none sm:max-w-[768px]"
+				className="max-h-[70svh] w-[85%] rounded-lg sm:max-h-none sm:max-w-[768px]"
 				onOpenAutoFocus={(ev) => ev.preventDefault()}
 			>
 				<DialogHeader className="font-semibold text-lg">
 					Upgrade Effects
 				</DialogHeader>
-				<div className="max-h-[372px] space-y-2 overflow-y-scroll pt-4 sm:max-h-[312px] md:max-h-none">
+				<div className="max-h-[56svh] space-y-2 overflow-y-scroll pt-4 sm:max-h-[312px] md:max-h-none">
 					{upgrades.map((u) => (
 						<div
 							key={u.level}
@@ -149,17 +149,15 @@ const SkillUpgradeDialog = ({
 
 const CostumeContent = ({
 	costume,
-	allCostumes,
 	element,
 }: {
 	costume: Costume;
-	allCostumes: Costume[];
 	element: Character["element_property"]["name"];
 }) => {
 	const [base, ...rest] = costume.skill.upgrade;
 
 	return (
-		<TabsContent className="mt-0 pl-1" value={costume.id}>
+		<TabsContent className="mt-0 pl-1" value={costume._id}>
 			<h3 className="py-4 font-semibold text-base sm:text-xl">
 				{costume.name}
 			</h3>
@@ -233,17 +231,16 @@ export const CostumesCard = () => {
 				<h2 className="font-bold text-xl sm:text-2xl">Costumes</h2>
 			</CardHeader>
 			<CardContent className="p-4 sm:p-6">
-				<Tabs defaultValue={costumes[0].id}>
+				<Tabs defaultValue={costumes[0]._id}>
 					<TabsList className="flex h-auto w-full justify-start gap-2 overflow-x-auto bg-background pb-2 sm:gap-3">
 						{costumes.map((costume) => (
-							<CostumeTabTrigger key={costume.id} costume={costume} />
+							<CostumeTabTrigger key={costume._id} costume={costume} />
 						))}
 					</TabsList>
 					{costumes.map((costume) => (
 						<CostumeContent
-							key={costume.id}
+							key={costume._id}
 							costume={costume}
-							allCostumes={costumes}
 							element={element_property.name}
 						/>
 					))}

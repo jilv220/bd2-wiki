@@ -15,6 +15,7 @@ import type {
 } from "convex/server";
 import type * as character from "../character.js";
 import type * as characters from "../characters.js";
+import type * as costumes from "../costumes.js";
 import type * as http from "../http.js";
 
 /**
@@ -28,6 +29,7 @@ import type * as http from "../http.js";
 declare const fullApi: ApiFromModules<{
   character: typeof character;
   characters: typeof characters;
+  costumes: typeof costumes;
   http: typeof http;
 }>;
 export declare const api: FilterApi<
