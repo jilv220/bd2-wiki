@@ -17,6 +17,7 @@ import {
 	type Costume,
 	useCharacter,
 } from "~/hooks/use-characters";
+import { type SkillUpgrades, useSkill } from "~/hooks/use-skill";
 import { textVariants } from "~/lib/typography";
 import {
 	cn,
@@ -53,7 +54,7 @@ const CostumeTabTrigger = ({ costume }: { costume: Costume }) => (
 	>
 		<div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-lg sm:h-16 sm:w-16 lg:h-20 lg:w-20">
 			<img
-				src={getImageFromStorageId(costume.icon_costume_id)}
+				src={costume.url ?? ""}
 				alt={costume.name}
 				className="h-full w-full object-cover"
 			/>
@@ -92,9 +93,7 @@ const BondingAndPermanentPotentials = ({ costume }: { costume: Costume }) => (
 	</div>
 );
 
-const SkillUpgradeDialog = ({
-	upgrades,
-}: { upgrades: Costume["skill"]["upgrade"] }) => {
+const SkillUpgradeDialog = ({ upgrades }: { upgrades: SkillUpgrades }) => {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
@@ -155,7 +154,8 @@ const CostumeContent = ({
 	costume: Costume;
 	element: Character["element_property"]["name"];
 }) => {
-	const [base, ...rest] = costume.skill.upgrade;
+	const skill = useSkill(costume._id);
+	const [base, ...rest] = skill.upgrade;
 
 	return (
 		<TabsContent className="mt-0 pl-1" value={costume._id}>
@@ -172,13 +172,13 @@ const CostumeContent = ({
 					<div className="flex items-center space-x-2 max-[380px]:space-x-0">
 						<div className="ml-[-5px] h-[30px] w-[30px] max-[380px]:hidden sm:h-12 sm:w-12">
 							<img
-								src={getImageFromStorageId(costume.skill.skillicon_id)}
-								alt={costume.skill.name}
+								src={skill.skillicon_url ?? ""}
+								alt={skill.name}
 								className="h-full w-full"
 							/>
 						</div>
 						<span className={cn(textVariants({ variant: "h3" }))}>
-							{costume.skill.name}
+							{skill.name}
 						</span>
 					</div>
 				</div>
@@ -188,7 +188,7 @@ const CostumeContent = ({
 						<img
 							loading="lazy"
 							className="h-full w-full"
-							src={getImageFromStorageId(costume.skill.icon_range_id)}
+							src={skill.icon_range_url ?? ""}
 							// TODO: need to modify db schema
 							alt={"range"}
 						/>

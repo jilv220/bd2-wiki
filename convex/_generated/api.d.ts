@@ -17,6 +17,7 @@ import type * as character from "../character.js";
 import type * as characters from "../characters.js";
 import type * as costumes from "../costumes.js";
 import type * as http from "../http.js";
+import type * as skills from "../skills.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -31,6 +32,7 @@ declare const fullApi: ApiFromModules<{
   characters: typeof characters;
   costumes: typeof costumes;
   http: typeof http;
+  skills: typeof skills;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

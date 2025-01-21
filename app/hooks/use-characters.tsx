@@ -2,6 +2,7 @@ import { convexQuery } from "@convex-dev/react-query";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { getRouteApi, notFound } from "@tanstack/react-router";
 import { api } from "convex/_generated/api";
+import type { Id } from "convex/_generated/dataModel";
 
 export function useCharacters() {
 	const { data: characters } = useSuspenseQuery(

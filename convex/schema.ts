@@ -1,5 +1,6 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
+import { indexBy } from "remeda";
 
 // Common schemas
 const AttackPropertySchema = v.union(v.literal("physical"), v.literal("magic"));
@@ -52,34 +53,37 @@ const TalentSchema = v.string();
 
 export default defineSchema(
 	{
+		// Skills table
+		skills: defineTable({
+			costume_id: v.id("costumes"),
+			icon_range_id: v.id("_storage"),
+			name: v.string(),
+			skillicon_id: v.id("_storage"),
+			target: TargetSchema,
+			upgrade: v.array(
+				v.object({
+					cd: v.float64(),
+					chain: v.optional(v.float64()),
+					description: v.string(),
+					level: v.optional(v.float64()),
+					sp_cost: v.float64(),
+				}),
+			),
+		}).index("by_costume", ["costume_id"]),
+
 		// Costumes table
 		costumes: defineTable({
 			character_id: v.id("characters"), // Reference to parent character
-			icon_costume_id: v.string(),
+			icon_costume_id: v.id("_storage"),
 			name: v.string(),
 			potential: v.object({
 				bonding: PotentialBondingSchema,
 				permanent: StatOptionSchema,
 				skill: v.array(v.string()),
 			}),
-			skill: v.object({
-				icon_range_id: v.string(),
-				name: v.string(),
-				skillicon_id: v.string(),
-				target: TargetSchema,
-				upgrade: v.array(
-					v.object({
-						cd: v.float64(),
-						chain: v.optional(v.float64()),
-						description: v.string(),
-						level: v.optional(v.float64()),
-						sp_cost: v.float64(),
-					}),
-				),
-			}),
 		}).index("by_character", ["character_id"]), // Index for efficient character-costume lookups
 
-		// Modified characters table
+		// Characters table
 		characters: defineTable({
 			attack_property: v.object({
 				icon_misc_id: v.string(),
