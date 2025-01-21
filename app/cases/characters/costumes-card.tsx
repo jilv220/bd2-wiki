@@ -233,7 +233,7 @@ export const CostumesCard = () => {
 			</CardHeader>
 			<CardContent className="p-4 sm:p-6">
 				<Tabs defaultValue={costumes[0]._id}>
-					<TabsList className="flex h-auto w-full justify-start gap-2 overflow-x-auto bg-background pb-2 sm:gap-3">
+					<TabsList className="flex h-auto w-[80svw] justify-start space-x-2 overflow-scroll bg-background sm:w-auto sm:space-x-3">
 						{costumes.map((costume) => (
 							<CostumeTabTrigger key={costume._id} costume={costume} />
 						))}
