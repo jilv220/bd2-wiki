@@ -8,7 +8,8 @@
     "build": "vinxi build",
     "build:node": "dotenv -- vinxi build --preset node-server",
     "preview": "dotenv -- vinxi start",
-    "export": "rm -rf .convex_data/* && convex export --path .convex_data/dev --include-file-storage"
+    "export": "rm -rf .convex_data/* && convex export --path .convex_data/dev --include-file-storage",
+    "import:all": "convex import --prod .convex_data/dev --format zip --replace-all"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
