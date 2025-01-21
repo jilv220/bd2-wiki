@@ -7,7 +7,7 @@
     "dev:convex": "convex dev",
     "build": "vinxi build",
     "build:node": "dotenv -- vinxi build --preset node-server",
-    "preview": "dotenv -- vinxi start",
+    "preview": "wrangler pages dev",
     "export": "rm -rf .convex_data/* && convex export --path .convex_data/dev --include-file-storage",
     "import:all": "convex import --prod .convex_data/dev --format zip --replace-all"
   },
@@ -20,7 +20,8 @@
     "autoprefixer": "^10.4.20",
     "dotenv-cli": "^8.0.0",
     "postcss": "^8.5.1",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "wrangler": "^3.103.2"
   },
   "peerDependencies": {
     "typescript": "^5.7.3"
@@ -55,6 +56,7 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "type-fest": "^4.32.0",
+    "unenv": "^1.10.0",
     "vinxi": "^0.5.1",
     "vite-tsconfig-paths": "^5.1.4",
     "zod": "^3.24.1"

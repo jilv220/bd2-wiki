@@ -1,5 +1,6 @@
 // app.config.ts
 import { defineConfig } from "@tanstack/start/config";
+import { cloudflare } from "unenv";
 import tsConfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
@@ -11,7 +12,8 @@ export default defineConfig({
 		],
 	},
 	server: {
-		preset: "vercel",
+		preset: "cloudflare-pages",
+		unenv: cloudflare,
 		prerender: {
 			routes: ["/"],
 			crawlLinks: true,

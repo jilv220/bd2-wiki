@@ -179,3 +179,4 @@ dist
 .netlify
 .output
 .convex_data
+.wrangler

@@ -1,0 +1,5 @@
+# wrangler.toml
+name = "bd2-wiki"
+pages_build_output_dir = "dist"
+compatibility_flags = ["nodejs_compat_v2"]
+compatibility_date = "2025-1-14"
