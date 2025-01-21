@@ -15,7 +15,6 @@ import { Route as CharactersImport } from './routes/characters'
 import { Route as IndexImport } from './routes/index'
 import { Route as CharactersIndexImport } from './routes/characters.index'
 import { Route as CharactersNameImport } from './routes/characters.$name'
-import { Route as AuthSigninImport } from './routes/_auth/signin'
 
 // Create/Update Routes
 
@@ -43,12 +42,6 @@ const CharactersNameRoute = CharactersNameImport.update({
   getParentRoute: () => CharactersRoute,
 } as any)
 
-const AuthSigninRoute = AuthSigninImport.update({
-  id: '/_auth/signin',
-  path: '/signin',
-  getParentRoute: () => rootRoute,
-} as any)
-
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -65,13 +58,6 @@ declare module '@tanstack/react-router' {
       path: '/characters'
       fullPath: '/characters'
       preLoaderRoute: typeof CharactersImport
-      parentRoute: typeof rootRoute
-    }
-    '/_auth/signin': {
-      id: '/_auth/signin'
-      path: '/signin'
-      fullPath: '/signin'
-      preLoaderRoute: typeof AuthSigninImport
       parentRoute: typeof rootRoute
     }
     '/characters/$name': {
@@ -110,14 +96,12 @@ const CharactersRouteWithChildren = CharactersRoute._addFileChildren(
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/characters': typeof CharactersRouteWithChildren
-  '/signin': typeof AuthSigninRoute
   '/characters/$name': typeof CharactersNameRoute
   '/characters/': typeof CharactersIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/signin': typeof AuthSigninRoute
   '/characters/$name': typeof CharactersNameRoute
   '/characters': typeof CharactersIndexRoute
 }
@@ -126,41 +110,27 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/characters': typeof CharactersRouteWithChildren
-  '/_auth/signin': typeof AuthSigninRoute
   '/characters/$name': typeof CharactersNameRoute
   '/characters/': typeof CharactersIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/characters'
-    | '/signin'
-    | '/characters/$name'
-    | '/characters/'
+  fullPaths: '/' | '/characters' | '/characters/$name' | '/characters/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/signin' | '/characters/$name' | '/characters'
-  id:
-    | '__root__'
-    | '/'
-    | '/characters'
-    | '/_auth/signin'
-    | '/characters/$name'
-    | '/characters/'
+  to: '/' | '/characters/$name' | '/characters'
+  id: '__root__' | '/' | '/characters' | '/characters/$name' | '/characters/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CharactersRoute: typeof CharactersRouteWithChildren
-  AuthSigninRoute: typeof AuthSigninRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CharactersRoute: CharactersRouteWithChildren,
-  AuthSigninRoute: AuthSigninRoute,
 }
 
 export const routeTree = rootRoute
@@ -174,8 +144,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/characters",
-        "/_auth/signin"
+        "/characters"
       ]
     },
     "/": {
@@ -187,9 +156,6 @@ export const routeTree = rootRoute
         "/characters/$name",
         "/characters/"
       ]
-    },
-    "/_auth/signin": {
-      "filePath": "_auth/signin.tsx"
     },
     "/characters/$name": {
       "filePath": "characters.$name.tsx",

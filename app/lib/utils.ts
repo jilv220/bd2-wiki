@@ -1,7 +1,11 @@
 import { type ClassValue, clsx } from "clsx";
-import { capitalize, concat, join, map, multiply, pipe } from "remeda";
+import { capitalize, join, map, pipe, round } from "remeda";
 import { twMerge } from "tailwind-merge";
-import type { Element } from "~/database.types";
+import type {
+	ElementProperty,
+	PotentialBondingStatOption,
+	StatOption,
+} from "~/hooks/use-characters";
 
 const CONVEX_SITE_URL = import.meta.env.VITE_CONVEX_SITE_URL;
 
@@ -27,15 +31,38 @@ export const decimalToPercentage = (n: number): string => {
 		return n.toString();
 	}
 
-	return `${n * 100}%`;
+	return `${round(n * 100, 2)}%`;
 };
 
-export const elementToClassname = (element: Element) => {
+export const elementToClassname = (element: ElementProperty) => {
 	switch (element) {
 		case "fire":
 			return "text-[#fb3e39]";
 		default:
 			return "";
+	}
+};
+
+export const statOptionToAcronym = (
+	stat: StatOption | PotentialBondingStatOption,
+) => {
+	switch (stat) {
+		case "crit_dmg":
+			return "c.dmg";
+		case "crit_rate":
+			return "c.r";
+		case "magic_atk":
+			return "m.atk";
+		case "magic_resist":
+			return "m.res";
+		case "fire_dmg":
+		case "water_dmg":
+		case "wind_dmg":
+		case "light_dmg":
+		case "dark_dmg":
+			return snakeCaseToText(stat);
+		default:
+			return stat;
 	}
 };
 

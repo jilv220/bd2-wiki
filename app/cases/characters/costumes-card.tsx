@@ -23,6 +23,7 @@ import {
 	decimalToPercentage,
 	elementToClassname,
 	getImageFromStorageId,
+	statOptionToAcronym,
 } from "~/lib/utils";
 
 const PotentialItem = ({
@@ -76,7 +77,7 @@ const BondingAndPermanentPotentials = ({ costume }: { costume: Costume }) => (
 			<div className="flex flex-col items-end">
 				{entries(costume.potential.bonding).map(([stat, value]) => (
 					<span className="text-sm uppercase sm:text-base" key={stat}>
-						{stat} +{decimalToPercentage(value)}
+						{statOptionToAcronym(stat)} +{decimalToPercentage(value)}
 					</span>
 				))}
 			</div>
@@ -84,7 +85,7 @@ const BondingAndPermanentPotentials = ({ costume }: { costume: Costume }) => (
 		<PotentialItem label="Permanent Potential">
 			{entries(costume.potential.permanent).map(([stat, value]) => (
 				<span key={stat} className="text-sm uppercase sm:text-base">
-					{stat} +{decimalToPercentage(value)}
+					{statOptionToAcronym(stat)} +{decimalToPercentage(value)}
 				</span>
 			))}
 		</PotentialItem>
@@ -113,14 +114,14 @@ const SkillUpgradeDialog = ({
 					Upgrade Effects
 				</DialogHeader>
 				<div className="max-h-[56svh] space-y-2 overflow-y-scroll pt-4 sm:max-h-[312px] md:max-h-none">
-					{upgrades.map((u) => (
+					{upgrades.map((u, idx) => (
 						<div
-							key={u.level}
+							key={nanoid(idx)}
 							className="rounded-md bg-secondary/40 p-3 dark:bg-secondary/30"
 						>
 							<div className="flex flex-col items-start justify-between space-y-1">
 								<div className={cn("flex items-center")}>
-									<span className="mr-4 font-semibold">+{u.level}</span>
+									<span className="mr-4 font-semibold">+{idx + 1}</span>
 									<HighlightNumbers
 										classname="mr-2 text-[14px] leading-normal"
 										text={`SP${u.sp_cost}`}

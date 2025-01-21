@@ -15,6 +15,7 @@ const TargetSchema = v.union(
 	v.literal("very_front"),
 	v.literal("vault"),
 	v.literal("ally"),
+	v.literal("me"),
 );
 const TalentRankNameSchema = v.union(
 	v.literal("Beginner"),
@@ -32,6 +33,20 @@ const StatOptionSchema = v.object({
 	def: v.optional(v.float64()),
 	magic_resist: v.optional(v.float64()),
 });
+const PotentialBondingSchema = v.object({
+	hp: v.optional(v.float64()),
+	atk: v.optional(v.float64()),
+	magic_atk: v.optional(v.float64()),
+	crit_rate: v.optional(v.float64()),
+	crit_dmg: v.optional(v.float64()),
+	def: v.optional(v.float64()),
+	magic_resist: v.optional(v.float64()),
+	fire_dmg: v.optional(v.float64()),
+	water_dmg: v.optional(v.float64()),
+	wind_dmg: v.optional(v.float64()),
+	light_dmg: v.optional(v.float64()),
+	dark_dmg: v.optional(v.float64()),
+});
 const KnockBackSchema = v.string();
 const TalentSchema = v.string();
 
@@ -43,7 +58,7 @@ export default defineSchema(
 			icon_costume_id: v.string(),
 			name: v.string(),
 			potential: v.object({
-				bonding: StatOptionSchema,
+				bonding: PotentialBondingSchema,
 				permanent: StatOptionSchema,
 				skill: v.array(v.string()),
 			}),
@@ -55,9 +70,9 @@ export default defineSchema(
 				upgrade: v.array(
 					v.object({
 						cd: v.float64(),
-						chain: v.float64(),
+						chain: v.optional(v.float64()),
 						description: v.string(),
-						level: v.float64(),
+						level: v.optional(v.float64()),
 						sp_cost: v.float64(),
 					}),
 				),

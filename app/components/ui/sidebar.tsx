@@ -1,7 +1,6 @@
 import { Slot } from "@radix-ui/react-slot";
 import { RiMenu2Fill } from "@remixicon/react";
 import { type VariantProps, cva } from "class-variance-authority";
-import { PanelLeft } from "lucide-react";
 import * as React from "react";
 
 import { Button } from "~/components/ui/button";

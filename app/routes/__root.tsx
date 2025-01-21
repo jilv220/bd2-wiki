@@ -1,9 +1,7 @@
 import type { QueryClient } from "@tanstack/react-query";
 import {
-	ErrorComponent,
 	Outlet,
 	ScrollRestoration,
-	createRootRoute,
 	createRootRouteWithContext,
 } from "@tanstack/react-router";
 import { Meta, Scripts } from "@tanstack/start";
@@ -11,7 +9,6 @@ import type { ReactNode } from "react";
 import { SiteFooter } from "~/components/site-footer";
 import { SiteHeader } from "~/components/site-header";
 import { SiteSidebar } from "~/components/site-sidebar";
-import { ThemeProvider } from "~/components/theme-provider";
 import {
 	SidebarInset,
 	SidebarProvider,
@@ -51,6 +48,7 @@ export const Route = createRootRouteWithContext<AppRouterContext>()({
 	}),
 	component: RootComponent,
 	errorComponent: ({ error }) => <>Unknwon error: {error.message}</>,
+	notFoundComponent: () => <>Not Found</>,
 });
 
 // Just define the default outlet here
@@ -77,22 +75,14 @@ function RootComponent() {
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html lang="en" suppressHydrationWarning className="dark">
 			<head>
 				<Meta />
 			</head>
 			<body>
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="system"
-					enableSystem
-					disableTransitionOnChange
-					scriptProps={{ "data-cfasync": "false" }}
-				>
-					{children}
-					<ScrollRestoration />
-					<Scripts />
-				</ThemeProvider>
+				{children}
+				<ScrollRestoration />
+				<Scripts />
 			</body>
 		</html>
 	);
