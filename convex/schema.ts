@@ -56,9 +56,9 @@ export default defineSchema(
 		// Skills table
 		skills: defineTable({
 			costume_id: v.id("costumes"),
-			icon_range_id: v.id("_storage"),
+			icon_range_id: v.string(),
 			name: v.string(),
-			skillicon_id: v.id("_storage"),
+			skillicon_id: v.string(),
 			target: TargetSchema,
 			upgrade: v.array(
 				v.object({
@@ -104,7 +104,7 @@ export default defineSchema(
 			basic_stat: StatOptionSchema,
 			exclusive_ability: StatOptionSchema,
 			stat_options: v.array(StatOptionSchema),
-			icon_equipment_id: v.id("_storage"),
+			icon_equipment_id: v.string(),
 			name: v.string(),
 		}).index("by_character", ["character_id"]),
 

@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { query } from "./_generated/server";
+import { getPublicUrl } from "./utils";
 
 export const get = query({
 	args: { costume_id: v.id("costumes") },
@@ -10,15 +11,11 @@ export const get = query({
 			.first();
 
 		if (!skill) return;
-		const [icon_range_url, skillicon_url] = await Promise.all([
-			ctx.storage.getUrl(skill.icon_range_id),
-			ctx.storage.getUrl(skill.skillicon_id),
-		]);
 
 		return {
 			...skill,
-			icon_range_url,
-			skillicon_url,
+			icon_range_url: getPublicUrl(skill.icon_range_id),
+			skillicon_url: getPublicUrl(skill.skillicon_id),
 		};
 	},
 });
