@@ -75,7 +75,7 @@ export const TalentCard = () => {
 					<div className="flex items-start space-x-4">
 						<div className="relative h-[60px] w-[60px] flex-shrink-0 overflow-hidden rounded-lg bg-foreground/35 sm:h-16 sm:w-16 min-[588px]:h-14 min-[588px]:w-14">
 							<img
-								src={getImageFromStorageId(talent.bufficon_id)}
+								src={talent.bufficon_url ?? ""}
 								alt={talent.ranks[0].name}
 								className="h-full w-full object-cover"
 							/>

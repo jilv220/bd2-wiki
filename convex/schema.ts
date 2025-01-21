@@ -83,6 +83,31 @@ export default defineSchema(
 			}),
 		}).index("by_character", ["character_id"]), // Index for efficient character-costume lookups
 
+		// Talents table
+		talents: defineTable({
+			character_id: v.id("characters"),
+			bufficon_id: v.id("_storage"),
+			name: TalentSchema,
+			ranks: v.array(
+				v.object({
+					cost: v.float64(),
+					description: v.string(),
+					level: v.float64(),
+					name: TalentRankNameSchema,
+				}),
+			),
+		}).index("by_charcter", ["character_id"]),
+
+		// Exclusive gears table
+		exclusive_gears: defineTable({
+			character_id: v.id("characters"),
+			basic_stat: StatOptionSchema,
+			exclusive_ability: StatOptionSchema,
+			stat_options: v.array(StatOptionSchema),
+			icon_equipment_id: v.id("_storage"),
+			name: v.string(),
+		}).index("by_character", ["character_id"]),
+
 		// Characters table
 		characters: defineTable({
 			attack_property: v.object({
@@ -90,17 +115,10 @@ export default defineSchema(
 				name: AttackPropertySchema,
 			}),
 			element_property: v.object({
-				icon_misc_id: v.string(),
+				icon_misc_id: v.id("_storage"),
 				name: ElementPropertySchema,
 			}),
-			exclusive_gear: v.object({
-				basic_stat: StatOptionSchema,
-				exclusive_ability: StatOptionSchema,
-				stat_options: v.array(StatOptionSchema),
-				icon_equipment_id: v.string(),
-				name: v.string(),
-			}),
-			illust_inven_char_id: v.string(),
+			illust_inven_char_id: v.id("_storage"),
 			knock_back: KnockBackSchema,
 			name: v.string(),
 			rarity: v.union(
@@ -118,18 +136,6 @@ export default defineSchema(
 				hp: v.float64(),
 				magic_atk: v.float64(),
 				magic_resist: v.float64(),
-			}),
-			talent: v.object({
-				bufficon_id: v.string(),
-				name: TalentSchema,
-				ranks: v.array(
-					v.object({
-						cost: v.float64(),
-						description: v.string(),
-						level: v.float64(),
-						name: TalentRankNameSchema,
-					}),
-				),
 			}),
 			target: TargetSchema,
 		}).index("by_name", ["name"]),

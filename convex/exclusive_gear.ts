@@ -4,20 +4,16 @@ import { query } from "./_generated/server";
 export const get = query({
 	args: { character_id: v.id("characters") },
 	handler: async (ctx, { character_id }) => {
-		const costumes = await ctx.db
-			.query("costumes")
+		const eg = await ctx.db
+			.query("exclusive_gears")
 			.withIndex("by_character", (q) => q.eq("character_id", character_id))
-			.collect();
+			.first();
 
-		return Promise.all(
-			costumes.map(async (co) => ({
-				...co,
-				...(co.icon_costume_id
-					? {
-							url: await ctx.storage.getUrl(co.icon_costume_id),
-						}
-					: {}),
-			})),
-		);
+		if (!eg) return;
+
+		return {
+			...eg,
+			icon_equipment_url: await ctx.storage.getUrl(eg.icon_equipment_id),
+		};
 	},
 });

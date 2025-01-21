@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { useCharacter } from "~/hooks/use-characters";
-import { getImageFromStorageId, snakeCaseToText } from "~/lib/utils";
+import { snakeCaseToText } from "~/lib/utils";
 
 type CharacterCardItemProp = {
 	label: string;
@@ -32,7 +32,7 @@ export function InfoCard() {
 					<div className="relative mx-auto h-40 w-40 flex-shrink-0 sm:mx-0 sm:h-48 sm:w-48">
 						<div className="absolute inset-0 overflow-hidden rounded-lg">
 							<img
-								src={getImageFromStorageId(character.illust_inven_char_id)}
+								src={character.illust_inven_char_url ?? ""}
 								alt={character.name}
 								className="h-full w-full object-cover"
 							/>
@@ -57,9 +57,7 @@ export function InfoCard() {
 							</InfoCardItem>
 							<InfoCardItem label="Element Property">
 								<img
-									src={getImageFromStorageId(
-										character.element_property.icon_misc_id,
-									)}
+									src={character.element_property.icon_misc_url ?? ""}
 									alt={character.element_property.name}
 									className="mr-[-5px] h-5 w-5 object-cover sm:h-6 sm:w-6"
 								/>

@@ -23,7 +23,6 @@ import {
 	cn,
 	decimalToPercentage,
 	elementToClassname,
-	getImageFromStorageId,
 	statOptionToAcronym,
 } from "~/lib/utils";
 

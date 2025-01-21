@@ -45,7 +45,7 @@ export const ExclusiveGear = () => {
 					{/* Character Image */}
 					<div className="relative mx-auto h-32 w-32 flex-shrink-0 overflow-hidden rounded-lg sm:mx-0">
 						<img
-							src={getImageFromStorageId(exclusive_gear.icon_equipment_id)}
+							src={exclusive_gear.icon_equipment_url ?? ""}
 							alt={exclusive_gear.name}
 							className="h-full w-full object-cover"
 						/>
