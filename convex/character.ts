@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { query } from "./_generated/server";
+import { getPublicUrl } from "./utils";
 
 export const get = query({
 	args: { name: v.string() },
@@ -10,17 +11,12 @@ export const get = query({
 			.first();
 		if (!character) return;
 
-		const [illust_inven_char_url, icon_misc_url] = await Promise.all([
-			ctx.storage.getUrl(character.illust_inven_char_id),
-			ctx.storage.getUrl(character.element_property.icon_misc_id),
-		]);
-
 		return {
 			...character,
-			illust_inven_char_url,
+			illust_inven_char_url: getPublicUrl(character.illust_inven_char_id),
 			element_property: {
 				...character.element_property,
-				icon_misc_url,
+				icon_misc_url: getPublicUrl(character.element_property.icon_misc_id),
 			},
 		};
 	},

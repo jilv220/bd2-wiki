@@ -74,7 +74,7 @@ export default defineSchema(
 		// Costumes table
 		costumes: defineTable({
 			character_id: v.id("characters"), // Reference to parent character
-			icon_costume_id: v.id("_storage"),
+			icon_costume_id: v.string(),
 			name: v.string(),
 			potential: v.object({
 				bonding: PotentialBondingSchema,
@@ -86,7 +86,7 @@ export default defineSchema(
 		// Talents table
 		talents: defineTable({
 			character_id: v.id("characters"),
-			bufficon_id: v.id("_storage"),
+			bufficon_id: v.string(),
 			name: TalentSchema,
 			ranks: v.array(
 				v.object({
@@ -115,10 +115,10 @@ export default defineSchema(
 				name: AttackPropertySchema,
 			}),
 			element_property: v.object({
-				icon_misc_id: v.id("_storage"),
+				icon_misc_id: v.string(),
 				name: ElementPropertySchema,
 			}),
-			illust_inven_char_id: v.id("_storage"),
+			illust_inven_char_id: v.string(),
 			knock_back: KnockBackSchema,
 			name: v.string(),
 			rarity: v.union(

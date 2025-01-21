@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { query } from "./_generated/server";
+import { getPublicUrl } from "./utils";
 
 export const get = query({
 	args: { character_id: v.id("characters") },
@@ -14,7 +15,7 @@ export const get = query({
 				...co,
 				...(co.icon_costume_id
 					? {
-							url: await ctx.storage.getUrl(co.icon_costume_id),
+							url: getPublicUrl(co.icon_costume_id),
 						}
 					: {}),
 			})),

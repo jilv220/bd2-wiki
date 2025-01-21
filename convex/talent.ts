@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { query } from "./_generated/server";
+import { getPublicUrl } from "./utils";
 
 export const get = query({
 	args: { character_id: v.id("characters") },
@@ -13,7 +14,7 @@ export const get = query({
 
 		return {
 			...talent,
-			bufficon_url: await ctx.storage.getUrl(talent.bufficon_id),
+			bufficon_url: getPublicUrl(talent.bufficon_id),
 		};
 	},
 });

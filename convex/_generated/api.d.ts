@@ -20,6 +20,7 @@ import type * as exclusive_gear from "../exclusive_gear.js";
 import type * as http from "../http.js";
 import type * as skill from "../skill.js";
 import type * as talent from "../talent.js";
+import type * as utils from "../utils.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -37,6 +38,7 @@ declare const fullApi: ApiFromModules<{
   http: typeof http;
   skill: typeof skill;
   talent: typeof talent;
+  utils: typeof utils;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,
