@@ -4,7 +4,12 @@ import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { Separator } from "~/components/ui/separator";
 import { useCharacter } from "~/hooks/use-characters";
 import { textVariants } from "~/lib/typography";
-import { cn, decimalToPercentage, getImageFromStorageId } from "~/lib/utils";
+import {
+	cn,
+	decimalToPercentage,
+	getImageFromStorageId,
+	statOptionToAcronym,
+} from "~/lib/utils";
 
 const StatItem = ({
 	label,
@@ -76,7 +81,7 @@ export const ExclusiveGear = () => {
 									{statOptions.map((so, idx) => (
 										<StatOptionItems
 											key={nanoid(idx)}
-											value={`${so[0]} ${decimalToPercentage(so[1])}`}
+											value={`${statOptionToAcronym(so[0])} ${decimalToPercentage(so[1])}`}
 										/>
 									))}
 								</div>

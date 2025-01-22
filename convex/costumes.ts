@@ -1,6 +1,9 @@
 import { v } from "convex/values";
+import * as R from "remeda";
 import { query } from "./_generated/server";
 import { getPublicUrl } from "./utils";
+
+const isSkillRangeUpgrade = (skill: string) => skill.startsWith("ru#");
 
 export const get = query({
 	args: { character_id: v.id("characters") },
@@ -10,15 +13,24 @@ export const get = query({
 			.withIndex("by_character", (q) => q.eq("character_id", character_id))
 			.collect();
 
-		return Promise.all(
-			costumes.map(async (co) => ({
-				...co,
-				...(co.icon_costume_id
-					? {
-							url: getPublicUrl(co.icon_costume_id),
-						}
-					: {}),
-			})),
-		);
+		return costumes.map((co) => {
+			const costumeWithPublicUrl = R.pipe(
+				co,
+				R.addProp("icon_costume_url", getPublicUrl(co.icon_costume_id)),
+			);
+
+			const skillPotentials = co.potential.skill;
+			const skillWithMappedRangeUpgrade = skillPotentials.map((sp) => {
+				if (!isSkillRangeUpgrade(sp)) return sp;
+				const [_, icon_range_id] = sp.split("#");
+				return getPublicUrl(icon_range_id);
+			});
+
+			return R.setPath(
+				costumeWithPublicUrl,
+				["potential", "skill"],
+				skillWithMappedRangeUpgrade,
+			);
+		});
 	},
 });

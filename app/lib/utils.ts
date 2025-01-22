@@ -38,6 +38,8 @@ export const elementToClassname = (element: ElementProperty) => {
 	switch (element) {
 		case "fire":
 			return "text-[#fb3e39]";
+		case "light":
+			return "text-[#ffff00]";
 		default:
 			return "";
 	}

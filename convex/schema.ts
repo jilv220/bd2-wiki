@@ -92,7 +92,7 @@ export default defineSchema(
 				v.object({
 					cost: v.float64(),
 					description: v.string(),
-					level: v.float64(),
+					level: v.optional(v.float64()),
 					name: TalentRankNameSchema,
 				}),
 			),
@@ -111,7 +111,7 @@ export default defineSchema(
 		// Characters table
 		characters: defineTable({
 			attack_property: v.object({
-				icon_misc_id: v.string(),
+				icon_misc_id: v.optional(v.string()),
 				name: AttackPropertySchema,
 			}),
 			element_property: v.object({

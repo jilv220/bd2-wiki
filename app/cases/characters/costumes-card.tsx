@@ -53,7 +53,7 @@ const CostumeTabTrigger = ({ costume }: { costume: Costume }) => (
 	>
 		<div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-lg sm:h-16 sm:w-16 lg:h-20 lg:w-20">
 			<img
-				src={costume.url ?? ""}
+				src={costume.icon_costume_url ?? ""}
 				alt={costume.name}
 				className="h-full w-full object-cover"
 			/>
@@ -63,17 +63,31 @@ const CostumeTabTrigger = ({ costume }: { costume: Costume }) => (
 
 const SkillPotentials = ({ skills }: { skills: string[] }) => (
 	<div className="flex flex-col space-y-2">
-		{skills.map((skill, idx) => (
-			<PotentialItem key={nanoid(idx)} label={`Skill Potential ${idx + 1}`}>
+		{skills.map((skill, idx) => {
+			// Is Range Upgrade
+			const children = URL.canParse(skill) ? (
+				<div className="h-[30px] w-[30px] border bg-secondary">
+					<img className="h-full w-full" src={skill} alt="range upgrade" />
+				</div>
+			) : (
 				<span className="text-sm sm:text-base">{skill}</span>
-			</PotentialItem>
-		))}
+			);
+
+			return (
+				<PotentialItem key={nanoid(idx)} label={`Skill Potential ${idx + 1}`}>
+					{children}
+				</PotentialItem>
+			);
+		})}
 	</div>
 );
 
 const BondingAndPermanentPotentials = ({ costume }: { costume: Costume }) => (
-	<div className="space-y-2">
-		<PotentialItem className="items-start" label="Bonding Potential">
+	<div className="flex flex-col justify-between space-y-2 lg:space-y-0">
+		<PotentialItem
+			className="items-start lg:min-h-[88px]"
+			label="Bonding Potential"
+		>
 			<div className="flex flex-col items-end">
 				{entries(costume.potential.bonding).map(([stat, value]) => (
 					<span className="text-sm uppercase sm:text-base" key={stat}>
@@ -161,7 +175,7 @@ const CostumeContent = ({
 			<h3 className="py-4 font-semibold text-base sm:text-xl">
 				{costume.name}
 			</h3>
-			<div className="flex flex-col gap-4 md:grid md:grid-cols-2 lg:gap-8">
+			<div className="flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-8">
 				<SkillPotentials skills={costume.potential.skill} />
 				<BondingAndPermanentPotentials costume={costume} />
 			</div>
@@ -188,8 +202,7 @@ const CostumeContent = ({
 							loading="lazy"
 							className="h-full w-full"
 							src={skill.icon_range_url ?? ""}
-							// TODO: need to modify db schema
-							alt={"range"}
+							alt={skill.icon_range_id}
 						/>
 					</div>
 					<div className="flex h-[30px] w-[30px] items-center justify-center border bg-secondary text-center sm:h-[40px] sm:w-[40px]">
