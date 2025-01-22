@@ -22,7 +22,9 @@ export function StatsPanel() {
 	return (
 		<Card className="w-full">
 			<CardHeader className="border-b">
-				<h2 className="font-bold text-xl sm:text-2xl">Base Stats</h2>
+				<h2 className="font-bold text-xl sm:text-2xl" id="stats">
+					Base Stats
+				</h2>
 			</CardHeader>
 			<CardContent className="p-4 sm:p-6">
 				<div className="grid grid-cols-2 gap-2 sm:grid-cols-4">

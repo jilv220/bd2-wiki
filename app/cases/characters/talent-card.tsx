@@ -67,7 +67,9 @@ export const TalentCard = () => {
 	return (
 		<Card className="w-full">
 			<CardHeader className="border-b">
-				<h2 className="font-bold text-xl sm:text-2xl">Talent</h2>
+				<h2 className="font-bold text-xl sm:text-2xl" id="talent">
+					Talent
+				</h2>
 			</CardHeader>
 			<CardContent className="p-4 sm:p-6">
 				<div className="flex flex-col space-y-4">

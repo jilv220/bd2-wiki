@@ -43,7 +43,9 @@ export const ExclusiveGear = () => {
 	return (
 		<Card className="w-full">
 			<CardHeader className="border-b pb-4">
-				<h2 className="font-bold text-xl sm:text-2xl">Exclusive Gear</h2>
+				<h2 className="font-bold text-xl sm:text-2xl" id="equipment">
+					Exclusive Gear
+				</h2>
 			</CardHeader>
 			<CardContent className="p-4 sm:p-6">
 				<div className="flex flex-col gap-6 sm:flex-row">

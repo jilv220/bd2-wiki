@@ -241,7 +241,9 @@ export const CostumesCard = () => {
 	return (
 		<Card className="w-full">
 			<CardHeader className="border-b">
-				<h2 className="font-bold text-xl sm:text-2xl">Costumes</h2>
+				<h2 className="font-bold text-xl sm:text-2xl" id="costumes">
+					Costumes
+				</h2>
 			</CardHeader>
 			<CardContent className="p-4 sm:p-6">
 				<Tabs defaultValue={costumes[0]._id}>

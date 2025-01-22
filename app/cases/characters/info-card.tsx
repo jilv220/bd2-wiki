@@ -24,7 +24,9 @@ export function InfoCard() {
 	return (
 		<Card className="w-full">
 			<CardHeader className="border-b">
-				<h2 className="font-bold text-xl sm:text-2xl">Basic Info</h2>
+				<h2 className="font-bold text-xl sm:text-2xl" id="info">
+					Basic Info
+				</h2>
 			</CardHeader>
 			<CardContent className="p-4 sm:p-6">
 				<div className="flex flex-col gap-4 sm:flex-row sm:gap-6">
