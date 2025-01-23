@@ -13,6 +13,8 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
+export const hasDecimals = (num: number): boolean => num % 1 !== 0;
+
 export const snakeCaseToText = (str: string) =>
 	pipe(
 		str.split("_"),
@@ -23,10 +25,14 @@ export const snakeCaseToText = (str: string) =>
 /**
  * Converts float numbers to percentage text
  * Only transforms numbers between 0 and 1
+ * Returns 0 as "0%"
  * Returns the original number as string for other cases
  */
-export const decimalToPercentage = (n: number): string => {
-	const hasDecimals = (num: number): boolean => num % 1 !== 0;
+export const decimalToPercentage = (n: number | undefined): string => {
+	if (n === undefined) return "";
+
+	// Should this be here?
+	if (n === 0) return "0%";
 	if (!hasDecimals(n) || n < 0 || n > 1) {
 		return n.toString();
 	}
@@ -62,7 +68,7 @@ export const statOptionToAcronym = (
 		case "wind_dmg":
 		case "light_dmg":
 		case "dark_dmg":
-			return snakeCaseToText(stat);
+			return stat.split("_").join(" ");
 		default:
 			return stat;
 	}

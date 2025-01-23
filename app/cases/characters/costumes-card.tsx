@@ -67,7 +67,12 @@ const SkillPotentials = ({ skills }: { skills: string[] }) => (
 			// Is Range Upgrade
 			const children = URL.canParse(skill) ? (
 				<div className="h-[30px] w-[30px] border bg-secondary">
-					<img className="h-full w-full" src={skill} alt="range upgrade" />
+					<img
+						className="h-full w-full"
+						src={skill}
+						loading="lazy"
+						alt="range upgrade"
+					/>
 				</div>
 			) : (
 				<span className="text-sm sm:text-base">{skill}</span>

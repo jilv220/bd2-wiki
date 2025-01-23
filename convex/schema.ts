@@ -111,7 +111,7 @@ export default defineSchema(
 		// Characters table
 		characters: defineTable({
 			attack_property: v.object({
-				icon_misc_id: v.optional(v.string()),
+				icon_misc_id: v.string(),
 				name: AttackPropertySchema,
 			}),
 			element_property: v.object({
@@ -136,7 +136,19 @@ export default defineSchema(
 				hp: v.float64(),
 				magic_atk: v.float64(),
 				magic_resist: v.float64(),
+				fire_dmg: v.optional(v.float64()),
+				fire_resist: v.optional(v.float64()),
+				water_dmg: v.optional(v.float64()),
+				water_resist: v.optional(v.float64()),
+				wind_dmg: v.optional(v.float64()),
+				wind_resist: v.optional(v.float64()),
+				light_dmg: v.optional(v.float64()),
+				light_resist: v.optional(v.float64()),
+				dark_dmg: v.optional(v.float64()),
+				dark_resist: v.optional(v.float64()),
 			}),
+			engraving_stats: StatOptionSchema,
+			awaken_stats: PotentialBondingSchema,
 			target: TargetSchema,
 		}).index("by_name", ["name"]),
 	},

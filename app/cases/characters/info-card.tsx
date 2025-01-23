@@ -52,11 +52,6 @@ export function InfoCard() {
 							</span>
 						</div>
 						<div className="grid flex-grow grid-cols-1 gap-2 sm:grid-cols-2">
-							<InfoCardItem label="Rarity">
-								<span className="text-sm capitalize sm:text-base">
-									{character.rarity}
-								</span>
-							</InfoCardItem>
 							<InfoCardItem label="Element Property">
 								<img
 									src={character.element_property.icon_misc_url ?? ""}
@@ -65,13 +60,20 @@ export function InfoCard() {
 								/>
 							</InfoCardItem>
 							<InfoCardItem label="Attack Property">
-								<span className="text-sm capitalize sm:text-base">
-									{character.attack_property.name}
-								</span>
+								<img
+									src={character.attack_property.icon_misc_url ?? ""}
+									alt={character.attack_property.name}
+									className="mr-[-5px] h-5 w-5 object-cover sm:h-6 sm:w-6"
+								/>
 							</InfoCardItem>
 							<InfoCardItem label="Target">
 								<span className="text-sm capitalize sm:text-base">
 									{snakeCaseToText(character.target)}
+								</span>
+							</InfoCardItem>
+							<InfoCardItem label="Knock Back">
+								<span className="text-sm capitalize sm:text-base">
+									{snakeCaseToText(character.knock_back)}
 								</span>
 							</InfoCardItem>
 						</div>

@@ -105,6 +105,7 @@ export function RefinementConverter() {
 					>
 						<Form {...form}>
 							<form
+								id="refinement-converter"
 								className="flex w-full items-start space-x-1 px-[2px]"
 								autoComplete="off"
 								onSubmit={form.handleSubmit(onSumbit)}

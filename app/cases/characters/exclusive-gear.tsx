@@ -49,16 +49,15 @@ export const ExclusiveGear = () => {
 			</CardHeader>
 			<CardContent className="p-4 sm:p-6">
 				<div className="flex flex-col gap-6 sm:flex-row">
-					{/* Character Image */}
 					<div className="relative mx-auto h-32 w-32 flex-shrink-0 overflow-hidden rounded-lg sm:mx-0">
 						<img
 							src={exclusive_gear.icon_equipment_url ?? ""}
 							alt={exclusive_gear.name}
+							loading="lazy"
 							className="h-full w-full object-cover"
 						/>
 					</div>
 
-					{/* Character Info */}
 					<div className="flex-grow space-y-4">
 						<h3 className={cn(textVariants({ variant: "h3" }))}>
 							{exclusive_gear.name}

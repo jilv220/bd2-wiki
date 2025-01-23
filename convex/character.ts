@@ -18,6 +18,10 @@ export const get = query({
 				...character.element_property,
 				icon_misc_url: getPublicUrl(character.element_property.icon_misc_id),
 			},
+			attack_property: {
+				...character.attack_property,
+				icon_misc_url: getPublicUrl(character.attack_property.icon_misc_id),
+			},
 		};
 	},
 });
