@@ -25,6 +25,7 @@ export const rootSeo = seo({
 		"Comprehensive wiki for Brown Dust 2 featuring detailed character information, equipment stats, and map information for players.",
 	keywords:
 		"Brown Dust 2, BrownDust 2, browndust2, browndust 2, wiki, database, game wiki, character info, equiments, game guides, mobile games",
+	image: "https://bd2-wiki.lyuji.dev/Brown-Dust-2-Key-Art.jpg",
 });
 
 // Type RouterContext here, and pass initial data in router.tsx
