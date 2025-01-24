@@ -86,7 +86,7 @@ export const TalentCard = () => {
 						<div className="flex flex-1 flex-col">
 							<div className="flex items-center justify-between">
 								<h3 className="font-semibold text-base sm:text-xl">
-									{talent.ranks[0].name}
+									{talent.name}
 								</h3>
 								<UpgradeDialog />
 							</div>
