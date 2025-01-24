@@ -177,9 +177,16 @@ const CostumeContent = ({
 
 	return (
 		<TabsContent className="mt-0 pl-1" value={costume._id}>
-			<h3 className="py-4 font-semibold text-base sm:text-xl">
-				{costume.name}
-			</h3>
+			<div className="flex flex-row items-center">
+				<h3 className="py-4 font-semibold text-base sm:text-xl">
+					{costume.name}
+				</h3>
+				{costume.is_limited && (
+					<div className="ml-2 inline-flex items-center rounded-full border bg-[#f3da81] px-2.5 py-0.5 font-semibold text-primary-foreground text-xs">
+						limited
+					</div>
+				)}
+			</div>
 			<div className="flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-8">
 				<SkillPotentials skills={costume.potential.skill} />
 				<BondingAndPermanentPotentials costume={costume} />

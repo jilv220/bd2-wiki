@@ -76,6 +76,7 @@ export default defineSchema(
 			character_id: v.id("characters"), // Reference to parent character
 			icon_costume_id: v.string(),
 			name: v.string(),
+			is_limited: v.boolean(),
 			potential: v.object({
 				bonding: PotentialBondingSchema,
 				permanent: StatOptionSchema,
@@ -92,7 +93,6 @@ export default defineSchema(
 				v.object({
 					cost: v.float64(),
 					description: v.string(),
-					level: v.optional(v.float64()),
 					name: TalentRankNameSchema,
 				}),
 			),

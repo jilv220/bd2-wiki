@@ -1,4 +1,5 @@
 import { ChevronRight } from "lucide-react";
+import { nanoid } from "nanoid";
 import { HighlightNumbers } from "~/components/highlighter";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
@@ -52,8 +53,8 @@ const UpgradeDialog = () => {
 					Upgrade Effects
 				</DialogHeader>
 				<div className="space-y-2 pt-4">
-					{rest.map((r) => (
-						<RankInfo key={r.level} rank={r} />
+					{rest.map((r, idx) => (
+						<RankInfo key={nanoid(idx)} rank={r} />
 					))}
 				</div>
 			</DialogContent>
