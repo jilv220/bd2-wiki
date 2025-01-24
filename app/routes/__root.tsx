@@ -22,7 +22,7 @@ export const SITE_TITLE = "Brown Dust 2 Wiki";
 export const rootSeo = seo({
 	title: SITE_TITLE,
 	description:
-		"A wiki/database website for game Brown Dust 2, providing detailed information about characters, equipment, maps and other in-game content to help players easily access game information.",
+		"Comprehensive wiki for Brown Dust 2 featuring detailed character information, equipment stats, and map information for players.",
 	keywords:
 		"Brown Dust 2, BrownDust 2, browndust2, browndust 2, wiki, database, game wiki, character info, equiments, game guides, mobile games",
 });
