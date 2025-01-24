@@ -94,3 +94,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .clip-fake-hidden {
+    clip-path: inset(1px calc(100% - 1px) calc(100% - 1px) 1px)
+  }
+}

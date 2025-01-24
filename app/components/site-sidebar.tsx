@@ -35,12 +35,7 @@ const data = {
 		},
 		{
 			title: "Tools",
-			items: [
-				{
-					title: "Daily Tracker",
-					url: "/daily-tracker",
-				},
-			],
+			items: [],
 		},
 		{
 			title: EXTERNAL_LINKS,

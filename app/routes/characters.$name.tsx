@@ -13,6 +13,7 @@ import { ExclusiveGear } from "~/cases/characters/exclusive-gear";
 import { InfoCard } from "~/cases/characters/info-card";
 import { StatsPanel } from "~/cases/characters/stats-panel";
 import { TalentCard } from "~/cases/characters/talent-card";
+import { FakeH1 } from "~/components/fake-h1";
 import { seo } from "~/lib/seo";
 import { SITE_TITLE, rootSeo } from "./__root";
 
@@ -82,24 +83,29 @@ export const Route = createFileRoute("/characters/$name")({
 });
 
 function CharacterPage() {
+	const { name } = Route.useParams();
+
 	return (
-		<div className="space-y-4">
-			<section>
-				<InfoCard />
-			</section>
-			<section>
-				<StatsPanel />
-			</section>
-			<section>
-				<TalentCard />
-			</section>
-			<section>
-				<CostumesCard />
-			</section>
-			<section>
-				<ExclusiveGear />
-			</section>
-		</div>
+		<>
+			<FakeH1>Character Info - {capitalize(name)}</FakeH1>
+			<div className="space-y-4">
+				<section>
+					<InfoCard />
+				</section>
+				<section>
+					<StatsPanel />
+				</section>
+				<section>
+					<TalentCard />
+				</section>
+				<section>
+					<CostumesCard />
+				</section>
+				<section>
+					<ExclusiveGear />
+				</section>
+			</div>
+		</>
 	);
 }
 
