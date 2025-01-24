@@ -16,6 +16,8 @@ export default defineConfig({
 		unenv: cloudflare,
 		prerender: {
 			routes: ["/"],
+			// Fix trailing slash issue?
+			autoSubfolderIndex: false,
 			crawlLinks: true,
 		},
 	},
