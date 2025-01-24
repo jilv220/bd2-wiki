@@ -99,6 +99,17 @@ export function StatsPanel() {
 						value: decimalToPercentage(derivedStats.wind_resist),
 					},
 				];
+			case "water":
+				return [
+					{
+						label: "water dmg",
+						value: decimalToPercentage(derivedStats.water_dmg),
+					},
+					{
+						label: "fire res",
+						value: decimalToPercentage(derivedStats.fire_resist),
+					},
+				];
 			case "light":
 				return [
 					{

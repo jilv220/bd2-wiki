@@ -2,7 +2,7 @@ import { convexQuery } from "@convex-dev/react-query";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { getRouteApi, invariant, notFound } from "@tanstack/react-router";
 import { api } from "convex/_generated/api";
-import { CharacterNotFound } from "~/cases/characters/errors";
+import { CharacterDataNotFound } from "~/cases/characters/errors";
 
 export function useCharacters() {
 	const { data: characters } = useSuspenseQuery(
@@ -20,21 +20,37 @@ export function useCharacter() {
 		convexQuery(api.character.get, { name }),
 	);
 	if (!character)
-		throw new CharacterNotFound(`Fail to fetch character ${name}`, name);
+		throw new CharacterDataNotFound(`Fail to fetch character ${name}`, name);
 
 	const { data: costumes } = useSuspenseQuery(
 		convexQuery(api.costumes.get, { character_id: character._id }),
 	);
+	if (costumes.length === 0) {
+		throw new CharacterDataNotFound(
+			`Fail to fetch costumes for character ${name}`,
+			name,
+		);
+	}
 
 	const { data: exclusiveGear } = useSuspenseQuery(
 		convexQuery(api.exclusive_gear.get, { character_id: character._id }),
 	);
-	invariant(exclusiveGear);
+	if (!exclusiveGear) {
+		throw new CharacterDataNotFound(
+			`Fail to fetch exlusive gear for character ${name}`,
+			name,
+		);
+	}
 
 	const { data: talent } = useSuspenseQuery(
 		convexQuery(api.talent.get, { character_id: character._id }),
 	);
-	invariant(talent);
+	if (!talent) {
+		throw new CharacterDataNotFound(
+			`Fail to fetch exlusive gear for character ${name}`,
+			name,
+		);
+	}
 
 	return {
 		...character,

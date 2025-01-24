@@ -68,11 +68,11 @@ export const ExclusiveGear = () => {
 						<div className="space-y-2">
 							<StatItem
 								label="Exclusive Ability"
-								value={`${exclusiveAbilityStat[0]} ${decimalToPercentage(exclusiveAbilityStat[1])}`}
+								value={`${statOptionToAcronym(exclusiveAbilityStat[0])} ${decimalToPercentage(exclusiveAbilityStat[1])}`}
 							/>
 							<StatItem
 								label="Basic Stat"
-								value={`${basicStat[0]} ${decimalToPercentage(basicStat[1])}`}
+								value={`${statOptionToAcronym(basicStat[0])} ${decimalToPercentage(basicStat[1])}`}
 							/>
 							<div className="flex items-start justify-between py-2 ">
 								<span className="text-muted-foreground text-sm sm:text-base">

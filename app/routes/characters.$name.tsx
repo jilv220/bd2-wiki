@@ -1,7 +1,7 @@
 import { createFileRoute, getRouteApi } from "@tanstack/react-router";
 import { capitalize, merge, mergeAll } from "remeda";
 import { CostumesCard } from "~/cases/characters/costumes-card";
-import { CharacterNotFound } from "~/cases/characters/errors";
+import { CharacterDataNotFound } from "~/cases/characters/errors";
 import { ExclusiveGear } from "~/cases/characters/exclusive-gear";
 import { InfoCard } from "~/cases/characters/info-card";
 import { StatsPanel } from "~/cases/characters/stats-panel";
@@ -22,8 +22,8 @@ export const Route = createFileRoute("/characters/$name")({
 	},
 	component: CharacterPage,
 	errorComponent: ({ error }) => {
-		if (error instanceof CharacterNotFound) {
-			return <>Character {error.characterName} is not Found</>;
+		if (error instanceof CharacterDataNotFound) {
+			return <>{error.message}</>;
 		}
 
 		return <>Unknown error</>;

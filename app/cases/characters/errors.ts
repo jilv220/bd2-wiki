@@ -1,4 +1,4 @@
-export class CharacterNotFound extends Error {
+export class CharacterDataNotFound extends Error {
 	characterName: string;
 
 	constructor(message: string, characterName: string) {
