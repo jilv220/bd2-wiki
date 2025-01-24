@@ -13,7 +13,7 @@ import { ExclusiveGear } from "~/cases/characters/exclusive-gear";
 import { InfoCard } from "~/cases/characters/info-card";
 import { StatsPanel } from "~/cases/characters/stats-panel";
 import { TalentCard } from "~/cases/characters/talent-card";
-import { FakeH1 } from "~/components/fake-h1";
+import { HiddenH1 } from "~/components/hidden-h1";
 import { seo } from "~/lib/seo";
 import { SITE_TITLE, rootSeo } from "./__root";
 
@@ -87,7 +87,7 @@ function CharacterPage() {
 
 	return (
 		<>
-			<FakeH1>Character Info - {capitalize(name)}</FakeH1>
+			<HiddenH1>Character Info - {capitalize(name)}</HiddenH1>
 			<div className="space-y-4">
 				<section>
 					<InfoCard />

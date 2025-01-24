@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { FakeH1 } from "~/components/fake-h1";
+import { HiddenH1 } from "~/components/hidden-h1";
 import { useCharacters } from "~/hooks/use-characters";
 import { useIsMobile } from "~/hooks/use-mobile";
 
@@ -13,7 +13,7 @@ function CharactersPage() {
 
 	return (
 		<>
-			<FakeH1>Characters</FakeH1>
+			<HiddenH1>Characters</HiddenH1>
 			{characters.map((chr) => (
 				<ul key={chr._id}>
 					<Link

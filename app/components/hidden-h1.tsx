@@ -1,6 +1,6 @@
 import type { DetailedHTMLProps } from "react";
 
-export const FakeH1 = (
+export const HiddenH1 = (
 	props: DetailedHTMLProps<
 		React.HTMLAttributes<HTMLHeadingElement>,
 		HTMLHeadingElement
