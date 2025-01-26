@@ -42,9 +42,24 @@ export const Route = createFileRoute("/characters/$name")({
 			exclusiveGearP,
 			talentP,
 		]);
-		if (!costumes || !exclusiveGear || !talent) {
+
+		if (!talent) {
 			throw new CharacterDataNotFound(
-				`Fail to get data associated with ${name}`,
+				`Fail to get talent associated with ${name}`,
+				name,
+			);
+		}
+
+		if (!exclusiveGear) {
+			throw new CharacterDataNotFound(
+				`Fail to get exclusive gear associated with ${name}`,
+				name,
+			);
+		}
+
+		if (costumes.length === 0) {
+			throw new CharacterDataNotFound(
+				`Fail to get costumes associated with ${name}`,
 				name,
 			);
 		}

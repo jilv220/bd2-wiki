@@ -46,6 +46,8 @@ export const elementToClassname = (element: ElementProperty) => {
 			return "text-[#fb3e39]";
 		case "water":
 			return "text-[#41bfff]";
+		case "wind":
+			return "text-[#28d58e]";
 		case "light":
 			return "text-[#ffff00]";
 		default:

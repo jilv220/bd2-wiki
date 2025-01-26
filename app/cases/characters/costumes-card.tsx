@@ -23,6 +23,7 @@ import {
 	cn,
 	decimalToPercentage,
 	elementToClassname,
+	snakeCaseToText,
 	statOptionToAcronym,
 } from "~/lib/utils";
 
@@ -224,7 +225,7 @@ const CostumeContent = ({
 								elementToClassname(element),
 							)}
 						>
-							Very Front
+							{snakeCaseToText(skill.target)}
 						</span>
 					</div>
 				</div>
