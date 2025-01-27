@@ -2,7 +2,6 @@ import { convexQuery } from "@convex-dev/react-query";
 import {
 	type NotFoundRouteProps,
 	createFileRoute,
-	getRouteApi,
 	notFound,
 } from "@tanstack/react-router";
 import { api } from "convex/_generated/api";
@@ -28,7 +27,7 @@ export const Route = createFileRoute("/characters/$name")({
 		if (!character) throw notFound();
 
 		const costumesP = queryClient.ensureQueryData(
-			convexQuery(api.costumes.get, { character_id: character?._id }),
+			convexQuery(api.costumes.get, { character_id: character._id }),
 		);
 		const exclusiveGearP = queryClient.ensureQueryData(
 			convexQuery(api.exclusive_gear.get, { character_id: character._id }),

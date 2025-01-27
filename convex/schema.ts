@@ -121,13 +121,7 @@ export default defineSchema(
 			illust_inven_char_id: v.string(),
 			knock_back: KnockBackSchema,
 			name: v.string(),
-			rarity: v.union(
-				v.literal(1),
-				v.literal(2),
-				v.literal(3),
-				v.literal(4),
-				v.literal(5),
-			),
+			rarity: v.union(v.literal(3), v.literal(4), v.literal(5)),
 			stats: v.object({
 				atk: v.float64(),
 				crit_dmg: v.float64(),
