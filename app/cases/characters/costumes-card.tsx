@@ -125,13 +125,13 @@ const SkillUpgradeDialog = ({ upgrades }: { upgrades: SkillUpgrades }) => {
 				</Button>
 			</DialogTrigger>
 			<DialogContent
-				className="max-h-[70svh] w-[85%] rounded-lg sm:max-h-none sm:max-w-[768px]"
+				className="max-h-[70svh] w-[85%] rounded-lg sm:max-w-[55svw]"
 				onOpenAutoFocus={(ev) => ev.preventDefault()}
 			>
 				<DialogHeader className="font-semibold text-lg">
 					Upgrade Effects
 				</DialogHeader>
-				<div className="max-h-[56svh] space-y-2 overflow-y-scroll pt-4 sm:max-h-[312px] md:max-h-none">
+				<div className="max-h-[56svh] space-y-2 overflow-y-scroll pt-4">
 					{upgrades.map((u, idx) => (
 						<div
 							key={nanoid(idx)}

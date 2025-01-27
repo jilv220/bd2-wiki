@@ -20,7 +20,7 @@ const OFFICIAL_LINKS = "Official Links";
 
 const data = {
 	home: {
-		title: "About",
+		title: "Home",
 		url: "/",
 	},
 	navMain: [

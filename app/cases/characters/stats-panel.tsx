@@ -132,6 +132,17 @@ export function StatsPanel() {
 						value: decimalToPercentage(0),
 					},
 				];
+			case "dark":
+				return [
+					{
+						label: "dark dmg",
+						value: decimalToPercentage(derivedStats.dark_dmg),
+					},
+					{
+						label: "prop. res",
+						value: decimalToPercentage(0),
+					},
+				];
 			default:
 				return [];
 		}

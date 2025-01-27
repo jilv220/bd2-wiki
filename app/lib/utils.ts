@@ -33,7 +33,7 @@ export const decimalToPercentage = (n: number | undefined): string => {
 
 	// Should this be here?
 	if (n === 0) return "0%";
-	if (!hasDecimals(n) || n < 0 || n > 1) {
+	if (!hasDecimals(n) || n < 0) {
 		return n.toString();
 	}
 
@@ -50,6 +50,8 @@ export const elementToClassname = (element: ElementProperty) => {
 			return "text-[#28d58e]";
 		case "light":
 			return "text-[#ffff00]";
+		case "dark":
+			return "text-[#be7eff]";
 		default:
 			return "";
 	}
