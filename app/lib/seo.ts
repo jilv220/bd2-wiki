@@ -20,7 +20,7 @@ export const seo = ({
 		{ property: "og:type", content: "website" },
 		{ property: "og:title", content: title },
 		{ property: "og:description", content: description },
-		{ property: "og:url", content: "https://bd2-wiki.lyuji.dev" },
+		{ property: "og:url", content: process.env.SITE_URL! },
 		...(image
 			? [
 					{ name: "twitter:image", content: image },
