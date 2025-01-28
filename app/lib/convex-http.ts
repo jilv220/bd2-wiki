@@ -1,6 +1,6 @@
 import { ConvexHttpClient } from "convex/browser";
 
-import * as dotenv from "dotenv";
-dotenv.config({ path: ".env" });
-
-export const convexHttp = new ConvexHttpClient(process.env.CONVEX_URL!);
+// Don't access env in global for cloudflare...
+export const getConvexHttp = () => {
+	return new ConvexHttpClient(process.env.VITE_CONVEX_URL!);
+};

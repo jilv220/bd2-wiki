@@ -2,14 +2,14 @@ import { notFound } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/start";
 import { api } from "convex/_generated/api";
 import type { Id } from "convex/_generated/dataModel";
-import { convexHttp } from "~/lib/convex-http";
+import { getConvexHttp } from "~/lib/convex-http";
 import { CharacterDataNotFound } from "./errors";
 
 // It is kinda awkward, shouldn't use convex in the first place?
 export const getCharacters = createServerFn({
 	method: "GET",
 }).handler(async () => {
-	const characters = await convexHttp.query(api.characters.get);
+	const characters = await getConvexHttp().query(api.characters.get);
 
 	return characters.map((char) => ({
 		...char,
@@ -24,7 +24,7 @@ export const getCharacter = createServerFn({
 })
 	.validator((data: string) => data)
 	.handler(async (ctx) => {
-		const character = await convexHttp.query(api.character.get, {
+		const character = await getConvexHttp().query(api.character.get, {
 			name: ctx.data,
 		});
 		if (!character) throw notFound();
@@ -40,7 +40,7 @@ export const getCostumes = createServerFn({
 })
 	.validator((data: string) => data)
 	.handler(async (ctx) => {
-		const costumes = await convexHttp.query(api.costumes.get, {
+		const costumes = await getConvexHttp().query(api.costumes.get, {
 			character_id: ctx.data as Id<"characters">,
 		});
 
@@ -56,7 +56,7 @@ export const getExclusiveGear = createServerFn({
 })
 	.validator((data: string) => data)
 	.handler(async (ctx) => {
-		const exclusiveGear = await convexHttp.query(api.exclusive_gear.get, {
+		const exclusiveGear = await getConvexHttp().query(api.exclusive_gear.get, {
 			character_id: ctx.data as Id<"characters">,
 		});
 
@@ -79,7 +79,7 @@ export const getTalent = createServerFn({
 })
 	.validator((data: string) => data)
 	.handler(async (ctx) => {
-		const talent = await convexHttp.query(api.talent.get, {
+		const talent = await getConvexHttp().query(api.talent.get, {
 			character_id: ctx.data as Id<"characters">,
 		});
 
