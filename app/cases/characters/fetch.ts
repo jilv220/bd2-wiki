@@ -9,9 +9,7 @@ import { CharacterDataNotFound } from "./errors";
 export const getCharacters = createServerFn({
 	method: "GET",
 }).handler(async () => {
-	const characters = await getConvexHttp(process.env.VITE_CONVEX_URL!).query(
-		api.characters.get,
-	);
+	const characters = await getConvexHttp().query(api.characters.get);
 
 	return characters.map((char) => ({
 		...char,
@@ -26,12 +24,9 @@ export const getCharacter = createServerFn({
 })
 	.validator((data: string) => data)
 	.handler(async (ctx) => {
-		const character = await getConvexHttp(process.env.VITE_CONVEX_URL!).query(
-			api.character.get,
-			{
-				name: ctx.data,
-			},
-		);
+		const character = await getConvexHttp().query(api.character.get, {
+			name: ctx.data,
+		});
 		if (!character) throw notFound();
 
 		return {
@@ -45,12 +40,9 @@ export const getCostumes = createServerFn({
 })
 	.validator((data: string) => data)
 	.handler(async (ctx) => {
-		const costumes = await getConvexHttp(process.env.VITE_CONVEX_URL!).query(
-			api.costumes.get,
-			{
-				character_id: ctx.data as Id<"characters">,
-			},
-		);
+		const costumes = await getConvexHttp().query(api.costumes.get, {
+			character_id: ctx.data as Id<"characters">,
+		});
 
 		return costumes.map((co) => ({
 			...co,
@@ -64,9 +56,7 @@ export const getExclusiveGear = createServerFn({
 })
 	.validator((data: string) => data)
 	.handler(async (ctx) => {
-		const exclusiveGear = await getConvexHttp(
-			process.env.VITE_CONVEX_URL!,
-		).query(api.exclusive_gear.get, {
+		const exclusiveGear = await getConvexHttp().query(api.exclusive_gear.get, {
 			character_id: ctx.data as Id<"characters">,
 		});
 
@@ -89,12 +79,9 @@ export const getTalent = createServerFn({
 })
 	.validator((data: string) => data)
 	.handler(async (ctx) => {
-		const talent = await getConvexHttp(process.env.VITE_CONVEX_URL!).query(
-			api.talent.get,
-			{
-				character_id: ctx.data as Id<"characters">,
-			},
-		);
+		const talent = await getConvexHttp().query(api.talent.get, {
+			character_id: ctx.data as Id<"characters">,
+		});
 
 		if (!talent) {
 			throw new CharacterDataNotFound(
