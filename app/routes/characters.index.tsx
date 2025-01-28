@@ -171,7 +171,7 @@ const CharacterCard = ({
 						alt={character.name}
 						className="h-full w-full object-cover"
 					/>
-					<div className="absolute inset-x-0 bottom-0 flex justify-between bg-gradient-to-t from-background/90 to-background/0 p-2">
+					<div className="absolute inset-x-0 bottom-0 flex justify-between bg-gradient-to-t from-background/90 to-background/0 p-1">
 						<div className="flex h-7 w-7 items-center justify-center">
 							<img
 								src={character.element_property.icon_misc_url}
@@ -245,7 +245,7 @@ function CharactersPage() {
 				setRarity={setRarity}
 			/>
 
-			<div className="grid grid-cols-2 xs:grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 lg:grid-cols-5">
+			<div className="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 lg:grid-cols-6">
 				{derivedCharacters.map((character) => (
 					<CharacterCard
 						key={character._id}
