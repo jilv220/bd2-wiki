@@ -1,5 +1,4 @@
 import { RiArrowUpDoubleFill } from "@remixicon/react";
-import type { Id } from "convex/_generated/dataModel";
 import { nanoid } from "nanoid";
 import { Suspense } from "react";
 import { entries } from "remeda";
@@ -175,7 +174,7 @@ const CostumeContent = ({
 	costume: Costume;
 	element: Character["element_property"]["name"];
 }) => {
-	const skill = useSkill(costume._id as Id<"costumes">);
+	const skill = useSkill(costume._id);
 	const [base, ...rest] = skill.upgrade;
 
 	return (
@@ -267,6 +266,7 @@ export const CostumesCard = () => {
 							<CostumeTabTrigger key={costume._id} costume={costume} />
 						))}
 					</TabsList>
+					{/* No need for fallback, always outside viewport */}
 					<Suspense>
 						{costumes.map((costume) => (
 							<CostumeContent

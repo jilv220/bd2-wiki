@@ -1,12 +1,14 @@
+import { convexQuery } from "@convex-dev/react-query";
 import { Link, createFileRoute } from "@tanstack/react-router";
+import { api } from "convex/_generated/api";
 import { useState } from "react";
 import { pipe } from "remeda";
-import { type BaseCharacter, getCharacters } from "~/cases/characters/fetch";
 import { HiddenH1 } from "~/components/hidden-h1";
 import { Card } from "~/components/ui/card";
 import { ToggleGroup, ToggleGroupItem } from "~/components/ui/toggle-group";
 import {
 	type AttackProperty,
+	type BaseCharacter,
 	type ElementProperty,
 	type Rarity,
 	useCharacters,
@@ -220,7 +222,10 @@ const CharacterCard = ({
 };
 
 export const Route = createFileRoute("/characters/")({
-	loader: () => getCharacters(),
+	loader: async ({ context }) => {
+		const { queryClient } = context;
+		await queryClient.prefetchQuery(convexQuery(api.characters.get, {}));
+	},
 	component: CharactersPage,
 });
 

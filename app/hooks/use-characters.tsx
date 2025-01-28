@@ -1,8 +1,12 @@
+import { convexQuery } from "@convex-dev/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { getRouteApi } from "@tanstack/react-router";
+import { api } from "convex/_generated/api";
 
 export function useCharacters() {
-	const routeApi = getRouteApi("/characters/");
-	const characters = routeApi.useLoaderData();
+	const { data: characters } = useSuspenseQuery(
+		convexQuery(api.characters.get, {}),
+	);
 	return characters;
 }
 
@@ -12,6 +16,10 @@ export function useCharacter() {
 	return character;
 }
 
+export type BaseCharacter = Omit<
+	Character,
+	"costumes" | "talent" | "_creationTime" | "exclusive_gear"
+>;
 export type Character = ReturnType<typeof useCharacter>;
 
 export type AttackProperty = Character["attack_property"]["name"];
