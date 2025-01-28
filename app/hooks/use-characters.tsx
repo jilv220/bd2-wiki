@@ -12,10 +12,6 @@ export function useCharacter() {
 	return character;
 }
 
-export type BaseCharacter = Omit<
-	Character,
-	"costumes" | "talent" | "_creationTime" | "exclusive_gear"
->;
 export type Character = ReturnType<typeof useCharacter>;
 
 export type AttackProperty = Character["attack_property"]["name"];

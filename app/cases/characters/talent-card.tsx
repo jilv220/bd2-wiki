@@ -11,7 +11,7 @@ import {
 } from "~/components/ui/dialog";
 import { type TalentRank, useCharacter } from "~/hooks/use-characters";
 import { textVariants } from "~/lib/typography";
-import { cn, getImageFromStorageId } from "~/lib/utils";
+import { cn } from "~/lib/utils";
 
 const RankInfo = ({ rank }: { rank: TalentRank }) => {
 	return (

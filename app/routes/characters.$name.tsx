@@ -5,56 +5,46 @@ import {
 	notFound,
 } from "@tanstack/react-router";
 import { api } from "convex/_generated/api";
-import { capitalize, merge, mergeAll } from "remeda";
+import { Suspense } from "react";
+import { capitalize } from "remeda";
 import { CostumesCard } from "~/cases/characters/costumes-card";
 import { CharacterDataNotFound } from "~/cases/characters/errors";
 import { ExclusiveGear } from "~/cases/characters/exclusive-gear";
+import {
+	getCharacter,
+	getCostumes,
+	getExclusiveGear,
+	getTalent,
+} from "~/cases/characters/fetch";
 import { InfoCard } from "~/cases/characters/info-card";
 import { StatsPanel } from "~/cases/characters/stats-panel";
 import { TalentCard } from "~/cases/characters/talent-card";
 import { HiddenH1 } from "~/components/hidden-h1";
 import { seo } from "~/lib/seo";
-import { SITE_TITLE, rootSeo } from "./__root";
+import { SITE_TITLE } from "./__root";
 
 export const Route = createFileRoute("/characters/$name")({
 	loader: async ({ context, params }) => {
 		const { name } = params;
-		const { queryClient } = context;
+		const character = await getCharacter({
+			data: name,
+		});
 
-		const character = await queryClient.ensureQueryData(
-			convexQuery(api.character.get, { name }),
-		);
-		if (!character) throw notFound();
-
-		const costumesP = queryClient.ensureQueryData(
-			convexQuery(api.costumes.get, { character_id: character._id }),
-		);
-		const exclusiveGearP = queryClient.ensureQueryData(
-			convexQuery(api.exclusive_gear.get, { character_id: character._id }),
-		);
-		const talentP = queryClient.ensureQueryData(
-			convexQuery(api.talent.get, { character_id: character._id }),
-		);
+		const costumesP = getCostumes({
+			data: character._id,
+		});
+		const exclusiveGearP = getExclusiveGear({
+			data: character._id,
+		});
+		const talentP = getTalent({
+			data: character._id,
+		});
 
 		const [costumes, exclusiveGear, talent] = await Promise.all([
 			costumesP,
 			exclusiveGearP,
 			talentP,
 		]);
-
-		if (!talent) {
-			throw new CharacterDataNotFound(
-				`Fail to get talent associated with ${name}`,
-				name,
-			);
-		}
-
-		if (!exclusiveGear) {
-			throw new CharacterDataNotFound(
-				`Fail to get exclusive gear associated with ${name}`,
-				name,
-			);
-		}
 
 		if (costumes.length === 0) {
 			throw new CharacterDataNotFound(
@@ -101,7 +91,7 @@ function CharacterPage() {
 
 	return (
 		<>
-			<HiddenH1>Character Info - {capitalize(name)}</HiddenH1>
+			<HiddenH1>Character Data - {capitalize(name)}</HiddenH1>
 			<div className="space-y-4">
 				<section>
 					<InfoCard />

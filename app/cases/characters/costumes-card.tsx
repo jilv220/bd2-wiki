@@ -1,5 +1,7 @@
 import { RiArrowUpDoubleFill } from "@remixicon/react";
+import type { Id } from "convex/_generated/dataModel";
 import { nanoid } from "nanoid";
+import { Suspense } from "react";
 import { entries } from "remeda";
 import { HighlightNumbers } from "~/components/highlighter";
 import { Button } from "~/components/ui/button";
@@ -173,7 +175,7 @@ const CostumeContent = ({
 	costume: Costume;
 	element: Character["element_property"]["name"];
 }) => {
-	const skill = useSkill(costume._id);
+	const skill = useSkill(costume._id as Id<"costumes">);
 	const [base, ...rest] = skill.upgrade;
 
 	return (
@@ -265,13 +267,15 @@ export const CostumesCard = () => {
 							<CostumeTabTrigger key={costume._id} costume={costume} />
 						))}
 					</TabsList>
-					{costumes.map((costume) => (
-						<CostumeContent
-							key={costume._id}
-							costume={costume}
-							element={element_property.name}
-						/>
-					))}
+					<Suspense>
+						{costumes.map((costume) => (
+							<CostumeContent
+								key={costume._id}
+								costume={costume}
+								element={element_property.name}
+							/>
+						))}
+					</Suspense>
 				</Tabs>
 			</CardContent>
 		</Card>

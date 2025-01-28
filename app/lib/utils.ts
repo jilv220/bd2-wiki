@@ -7,8 +7,6 @@ import type {
 	StatOption,
 } from "~/hooks/use-characters";
 
-const CONVEX_SITE_URL = import.meta.env.VITE_CONVEX_SITE_URL;
-
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
@@ -78,10 +76,4 @@ export const statOptionToAcronym = (
 		default:
 			return stat;
 	}
-};
-
-export const getImageFromStorageId = (storageId: string) => {
-	const imageUrl = new URL(`${CONVEX_SITE_URL}/getImage`);
-	imageUrl.searchParams.set("storageId", storageId);
-	return imageUrl.href;
 };

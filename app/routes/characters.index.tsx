@@ -1,14 +1,12 @@
-import { convexQuery } from "@convex-dev/react-query";
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { api } from "convex/_generated/api";
 import { useState } from "react";
 import { pipe } from "remeda";
+import { type BaseCharacter, getCharacters } from "~/cases/characters/fetch";
 import { HiddenH1 } from "~/components/hidden-h1";
 import { Card } from "~/components/ui/card";
 import { ToggleGroup, ToggleGroupItem } from "~/components/ui/toggle-group";
 import {
 	type AttackProperty,
-	type BaseCharacter,
 	type ElementProperty,
 	type Rarity,
 	useCharacters,
@@ -222,13 +220,7 @@ const CharacterCard = ({
 };
 
 export const Route = createFileRoute("/characters/")({
-	loader: async ({ context }) => {
-		const { queryClient } = context;
-		const characters = await queryClient.ensureQueryData(
-			convexQuery(api.characters.get, {}),
-		);
-		return characters;
-	},
+	loader: () => getCharacters(),
 	component: CharactersPage,
 });
 
@@ -270,7 +262,7 @@ function CharactersPage() {
 				setRarity={setRarity}
 			/>
 
-			<div className="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 lg:grid-cols-6">
+			<div className="grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-4 lg:grid-cols-6">
 				{derivedCharacters.map((character) => (
 					<CharacterCard
 						key={character._id}

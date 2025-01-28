@@ -4,12 +4,7 @@ import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { Separator } from "~/components/ui/separator";
 import { useCharacter } from "~/hooks/use-characters";
 import { textVariants } from "~/lib/typography";
-import {
-	cn,
-	decimalToPercentage,
-	getImageFromStorageId,
-	statOptionToAcronym,
-} from "~/lib/utils";
+import { cn, decimalToPercentage, statOptionToAcronym } from "~/lib/utils";
 
 const StatItem = ({
 	label,
