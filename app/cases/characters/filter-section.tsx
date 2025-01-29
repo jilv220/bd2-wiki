@@ -69,7 +69,7 @@ export const FilterContainer = ({
 	return (
 		<div
 			className={cn(
-				"mb-6 flex flex-col items-start space-y-4 rounded-lg bg-secondary/10 p-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:space-y-0 sm:p-4",
+				"mb-4 flex flex-col items-start space-y-3 rounded-lg bg-secondary/10 p-2 sm:mb-4 sm:grid sm:grid-cols-2 sm:gap-4 sm:space-y-0 sm:p-6",
 				className,
 			)}
 		>
