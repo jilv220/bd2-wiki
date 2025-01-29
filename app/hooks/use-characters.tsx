@@ -26,6 +26,7 @@ export type AttackProperty = Character["attack_property"]["name"];
 export type ElementProperty = Character["element_property"]["name"];
 export type Rarity = Character["rarity"];
 export type StatOption = keyof Character["stats"];
+export type Target = Character["target"];
 
 export type Talent = Character["talent"];
 export type TalentRanks = Talent["ranks"];

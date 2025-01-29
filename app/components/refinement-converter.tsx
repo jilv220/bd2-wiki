@@ -120,7 +120,7 @@ export function RefinementConverter() {
 													<Input
 														className="my-1 focus-visible:ring-0 focus-visible:ring-offset-0"
 														type="text"
-														placeholder="ccc"
+														placeholder="e.g. ccc"
 														{...field}
 													/>
 												</FormControl>
