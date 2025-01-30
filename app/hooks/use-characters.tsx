@@ -1,6 +1,6 @@
 import { convexQuery } from "@convex-dev/react-query";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { getRouteApi } from "@tanstack/react-router";
+import { getRouteApi, invariant } from "@tanstack/react-router";
 import { api } from "convex/_generated/api";
 
 export function useCharacters() {
@@ -12,8 +12,29 @@ export function useCharacters() {
 
 export function useCharacter() {
 	const routeApi = getRouteApi("/characters/$name");
-	const character = routeApi.useLoaderData();
-	return character;
+	const { name } = routeApi.useParams();
+	const { data: character } = useSuspenseQuery(
+		convexQuery(api.character.get, { name }),
+	);
+	invariant(character);
+
+	const { data: costumes } = useSuspenseQuery(
+		convexQuery(api.costumes.get, { character_id: character._id }),
+	);
+	const { data: exclusiveGear } = useSuspenseQuery(
+		convexQuery(api.exclusive_gear.get, { character_id: character._id }),
+	);
+	const { data: talent } = useSuspenseQuery(
+		convexQuery(api.talent.get, { character_id: character._id }),
+	);
+	invariant(talent);
+
+	return {
+		...character,
+		costumes,
+		exclusive_gear: exclusiveGear,
+		talent,
+	};
 }
 
 export type BaseCharacter = Omit<

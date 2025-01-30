@@ -115,7 +115,6 @@ const CharacterCard = ({
 			from="/characters/"
 			to="./$name"
 			params={{ name: character.name }}
-			// preload={isMobile ? "viewport" : "intent"}
 			className="group flex flex-col gap-1.5 sm:gap-2"
 		>
 			<Card className="overflow-hidden transition-all hover:ring-2 hover:ring-primary">
@@ -183,7 +182,7 @@ function CharactersPage() {
 		<>
 			<HiddenH1>Character List</HiddenH1>
 			<CharacterFilters />
-			<div className="grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-4 lg:grid-cols-6">
+			<div className="grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-4 lg:grid-cols-8">
 				{derivedCharacters.map((character) => (
 					<CharacterCard
 						key={character._id}
