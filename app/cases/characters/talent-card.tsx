@@ -46,13 +46,13 @@ const UpgradeDialog = () => {
 				</Button>
 			</DialogTrigger>
 			<DialogContent
-				className="w-[85%] rounded-lg sm:max-w-[430px]"
+				className="max-h-[70svh] w-[85%] rounded-lg sm:max-w-[55svw]"
 				onOpenAutoFocus={(ev) => ev.preventDefault()}
 			>
 				<DialogHeader className="font-semibold text-lg">
 					Upgrade Effects
 				</DialogHeader>
-				<div className="space-y-2 pt-4">
+				<div className="max-h-[56svh] space-y-2 overflow-y-scroll pt-4">
 					{rest.map((r, idx) => (
 						<RankInfo key={nanoid(idx)} rank={r} />
 					))}
