@@ -19,9 +19,9 @@ import { buttonVariants } from "~/components/ui/button";
 import { useIsMobile } from "~/hooks/use-mobile";
 import { seo } from "~/lib/seo";
 import { cn } from "~/lib/utils";
-import { SITE_TITLE } from "./__root";
+import { SITE_TITLE } from "../__root";
 
-export const Route = createFileRoute("/characters/$name")({
+export const Route = createFileRoute("/_default/characters/$name")({
 	loader: async ({ context, params }) => {
 		const { name } = params;
 		const { queryClient } = context;

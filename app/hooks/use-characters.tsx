@@ -11,7 +11,7 @@ export function useCharacters() {
 }
 
 export function useCharacter() {
-	const routeApi = getRouteApi("/characters/$name");
+	const routeApi = getRouteApi("/_default/characters/$name");
 	const { name } = routeApi.useParams();
 	const { data: character } = useSuspenseQuery(
 		convexQuery(api.character.get, { name }),

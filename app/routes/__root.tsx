@@ -1,19 +1,8 @@
 import type { QueryClient } from "@tanstack/react-query";
-import {
-	Outlet,
-	ScrollRestoration,
-	createRootRouteWithContext,
-} from "@tanstack/react-router";
+import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import { Meta, Scripts } from "@tanstack/start";
 import type { ReactNode } from "react";
-import { SiteFooter } from "~/components/site-footer";
 import { SiteHeader } from "~/components/site-header";
-import { SiteSidebar } from "~/components/site-sidebar";
-import {
-	SidebarInset,
-	SidebarProvider,
-	SidebarTrigger,
-} from "~/components/ui/sidebar";
 import { seo } from "~/lib/seo";
 
 import appCss from "~/styles/app.css?url";
@@ -49,27 +38,23 @@ export const Route = createRootRouteWithContext<AppRouterContext>()({
 	}),
 	component: RootComponent,
 	errorComponent: ({ error }) => <>Unknwon error: {error.message}</>,
-	notFoundComponent: () => <>Not Found</>,
+	notFoundComponent: () => (
+		<>
+			<SiteHeader>
+				<div className="pr-3" />
+			</SiteHeader>
+			<main className="mx-3 p-4">
+				The page you are looking for is not found.
+			</main>
+		</>
+	),
 });
 
 // Just define the default outlet here
 function RootComponent() {
 	return (
 		<RootDocument>
-			<SidebarProvider>
-				<SiteSidebar />
-				<SidebarInset>
-					<div className="relative flex min-h-screen flex-col">
-						<SiteHeader>
-							<SidebarTrigger className="ml-1 h-10 w-10 text-primary" />
-						</SiteHeader>
-						<div className="container mx-auto px-4 py-4">
-							<Outlet />
-						</div>
-						<SiteFooter />
-					</div>
-				</SidebarInset>
-			</SidebarProvider>
+			<Outlet />
 		</RootDocument>
 	);
 }

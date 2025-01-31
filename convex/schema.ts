@@ -53,6 +53,12 @@ const TalentSchema = v.string();
 
 export default defineSchema(
 	{
+		collections: defineTable({
+			name: v.string(),
+			icon_id: v.string(),
+			acquire: v.string(),
+			location: v.string(),
+		}),
 		// Skills table
 		skills: defineTable({
 			costume_id: v.id("costumes"),

@@ -31,6 +31,10 @@ const data = {
 					title: "Characters",
 					url: "/characters",
 				},
+				{
+					title: "Collections",
+					url: "/collections",
+				},
 			],
 		},
 		{
@@ -87,7 +91,7 @@ export function SiteSidebar({
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		setOpenMobile(false);
-	}, [location]);
+	}, [location.pathname]);
 
 	return (
 		<Sidebar {...props}>
