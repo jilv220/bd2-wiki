@@ -1,11 +1,13 @@
 import { convexQuery } from "@convex-dev/react-query";
 import {
+	Link,
 	type NotFoundRouteProps,
 	createFileRoute,
 	notFound,
 } from "@tanstack/react-router";
 import { api } from "convex/_generated/api";
-import { capitalize, merge, mergeAll } from "remeda";
+import { ChevronLeft } from "lucide-react";
+import { capitalize } from "remeda";
 import { CostumesCard } from "~/cases/characters/costumes-card";
 import { CharacterDataNotFound } from "~/cases/characters/errors";
 import { ExclusiveGear } from "~/cases/characters/exclusive-gear";
@@ -13,8 +15,11 @@ import { InfoCard } from "~/cases/characters/info-card";
 import { StatsPanel } from "~/cases/characters/stats-panel";
 import { TalentCard } from "~/cases/characters/talent-card";
 import { HiddenH1 } from "~/components/hidden-h1";
+import { buttonVariants } from "~/components/ui/button";
+import { useIsMobile } from "~/hooks/use-mobile";
 import { seo } from "~/lib/seo";
-import { SITE_TITLE, rootSeo } from "./__root";
+import { cn } from "~/lib/utils";
+import { SITE_TITLE } from "./__root";
 
 export const Route = createFileRoute("/characters/$name")({
 	loader: async ({ context, params }) => {
@@ -98,10 +103,23 @@ export const Route = createFileRoute("/characters/$name")({
 
 function CharacterPage() {
 	const { name } = Route.useParams();
+	const isMobile = useIsMobile();
 
 	return (
 		<>
 			<HiddenH1>Character Info - {capitalize(name)}</HiddenH1>
+			{!isMobile ? (
+				<Link
+					from={Route.fullPath}
+					to=".."
+					className={cn(
+						buttonVariants({ variant: "outline" }),
+						"mb-4 h-auto rounded-lg p-3",
+					)}
+				>
+					<ChevronLeft width={24} height={24} />
+				</Link>
+			) : null}
 			<div className="space-y-4">
 				<section>
 					<InfoCard />

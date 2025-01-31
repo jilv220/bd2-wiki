@@ -83,7 +83,7 @@ export function SiteSidebar({
 	const isExternal = (str: string) =>
 		str === EXTERNAL_LINKS || str === OFFICIAL_LINKS;
 
-	const { setOpenMobile } = useSidebar();
+	const { setOpenMobile, isMobile } = useSidebar();
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		setOpenMobile(false);
@@ -124,6 +124,7 @@ export function SiteSidebar({
 										>
 											<Link
 												to={item.url}
+												preload={isMobile ? "viewport" : "intent"}
 												target={isExternal(nav.title) ? "_blank" : undefined}
 											>
 												{item.title}

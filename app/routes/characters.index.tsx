@@ -68,19 +68,25 @@ const CharacterFilters = () => {
 			<FilterSection
 				title="Attack Type"
 				value={attackProperty}
-				onValueChange={(val) => setAttackProperty(val)}
+				onValueChange={(val) => {
+					if (val) setAttackProperty(val);
+				}}
 				options={attackOptions}
 			/>
 			<FilterSection
 				title="Element"
 				value={element}
-				onValueChange={(val) => setElement(val)}
+				onValueChange={(val) => {
+					if (val) setElement(val);
+				}}
 				options={elementOptions}
 			/>
 			<FilterSection
 				title="Rarity"
 				value={rarity.toString()}
 				onValueChange={(val) => {
+					if (!val) return;
+
 					switch (val) {
 						case "5":
 						case "4":
@@ -96,7 +102,9 @@ const CharacterFilters = () => {
 			<FilterSection
 				title="Target"
 				value={target}
-				onValueChange={(val) => setTarget(val)}
+				onValueChange={(val) => {
+					if (val) setTarget(val);
+				}}
 				options={targetOptions}
 			/>
 		</FilterContainer>
@@ -105,10 +113,8 @@ const CharacterFilters = () => {
 
 const CharacterCard = ({
 	character,
-	isMobile,
 }: {
 	character: BaseCharacter;
-	isMobile: boolean;
 }) => {
 	return (
 		<Link
@@ -184,11 +190,7 @@ function CharactersPage() {
 			<CharacterFilters />
 			<div className="grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-4 lg:grid-cols-8">
 				{derivedCharacters.map((character) => (
-					<CharacterCard
-						key={character._id}
-						character={character}
-						isMobile={isMobile}
-					/>
+					<CharacterCard key={character._id} character={character} />
 				))}
 			</div>
 		</>
