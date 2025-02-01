@@ -15,6 +15,7 @@ import { Route as DefaultImport } from './routes/_default'
 import { Route as DefaultIndexImport } from './routes/_default/index'
 import { Route as DefaultCollectionsImport } from './routes/_default/collections'
 import { Route as DefaultCharactersImport } from './routes/_default/characters'
+import { Route as DefaultCollectionsIndexImport } from './routes/_default/collections.index'
 import { Route as DefaultCharactersIndexImport } from './routes/_default/characters.index'
 import { Route as DefaultCharactersNameImport } from './routes/_default/characters.$name'
 
@@ -41,6 +42,12 @@ const DefaultCharactersRoute = DefaultCharactersImport.update({
   id: '/characters',
   path: '/characters',
   getParentRoute: () => DefaultRoute,
+} as any)
+
+const DefaultCollectionsIndexRoute = DefaultCollectionsIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DefaultCollectionsRoute,
 } as any)
 
 const DefaultCharactersIndexRoute = DefaultCharactersIndexImport.update({
@@ -101,6 +108,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DefaultCharactersIndexImport
       parentRoute: typeof DefaultCharactersImport
     }
+    '/_default/collections/': {
+      id: '/_default/collections/'
+      path: '/'
+      fullPath: '/collections/'
+      preLoaderRoute: typeof DefaultCollectionsIndexImport
+      parentRoute: typeof DefaultCollectionsImport
+    }
   }
 }
 
@@ -119,15 +133,26 @@ const DefaultCharactersRouteChildren: DefaultCharactersRouteChildren = {
 const DefaultCharactersRouteWithChildren =
   DefaultCharactersRoute._addFileChildren(DefaultCharactersRouteChildren)
 
+interface DefaultCollectionsRouteChildren {
+  DefaultCollectionsIndexRoute: typeof DefaultCollectionsIndexRoute
+}
+
+const DefaultCollectionsRouteChildren: DefaultCollectionsRouteChildren = {
+  DefaultCollectionsIndexRoute: DefaultCollectionsIndexRoute,
+}
+
+const DefaultCollectionsRouteWithChildren =
+  DefaultCollectionsRoute._addFileChildren(DefaultCollectionsRouteChildren)
+
 interface DefaultRouteChildren {
   DefaultCharactersRoute: typeof DefaultCharactersRouteWithChildren
-  DefaultCollectionsRoute: typeof DefaultCollectionsRoute
+  DefaultCollectionsRoute: typeof DefaultCollectionsRouteWithChildren
   DefaultIndexRoute: typeof DefaultIndexRoute
 }
 
 const DefaultRouteChildren: DefaultRouteChildren = {
   DefaultCharactersRoute: DefaultCharactersRouteWithChildren,
-  DefaultCollectionsRoute: DefaultCollectionsRoute,
+  DefaultCollectionsRoute: DefaultCollectionsRouteWithChildren,
   DefaultIndexRoute: DefaultIndexRoute,
 }
 
@@ -137,27 +162,29 @@ const DefaultRouteWithChildren =
 export interface FileRoutesByFullPath {
   '': typeof DefaultRouteWithChildren
   '/characters': typeof DefaultCharactersRouteWithChildren
-  '/collections': typeof DefaultCollectionsRoute
+  '/collections': typeof DefaultCollectionsRouteWithChildren
   '/': typeof DefaultIndexRoute
   '/characters/$name': typeof DefaultCharactersNameRoute
   '/characters/': typeof DefaultCharactersIndexRoute
+  '/collections/': typeof DefaultCollectionsIndexRoute
 }
 
 export interface FileRoutesByTo {
-  '/collections': typeof DefaultCollectionsRoute
   '/': typeof DefaultIndexRoute
   '/characters/$name': typeof DefaultCharactersNameRoute
   '/characters': typeof DefaultCharactersIndexRoute
+  '/collections': typeof DefaultCollectionsIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/_default': typeof DefaultRouteWithChildren
   '/_default/characters': typeof DefaultCharactersRouteWithChildren
-  '/_default/collections': typeof DefaultCollectionsRoute
+  '/_default/collections': typeof DefaultCollectionsRouteWithChildren
   '/_default/': typeof DefaultIndexRoute
   '/_default/characters/$name': typeof DefaultCharactersNameRoute
   '/_default/characters/': typeof DefaultCharactersIndexRoute
+  '/_default/collections/': typeof DefaultCollectionsIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -169,8 +196,9 @@ export interface FileRouteTypes {
     | '/'
     | '/characters/$name'
     | '/characters/'
+    | '/collections/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/collections' | '/' | '/characters/$name' | '/characters'
+  to: '/' | '/characters/$name' | '/characters' | '/collections'
   id:
     | '__root__'
     | '/_default'
@@ -179,6 +207,7 @@ export interface FileRouteTypes {
     | '/_default/'
     | '/_default/characters/$name'
     | '/_default/characters/'
+    | '/_default/collections/'
   fileRoutesById: FileRoutesById
 }
 
@@ -221,7 +250,10 @@ export const routeTree = rootRoute
     },
     "/_default/collections": {
       "filePath": "_default/collections.tsx",
-      "parent": "/_default"
+      "parent": "/_default",
+      "children": [
+        "/_default/collections/"
+      ]
     },
     "/_default/": {
       "filePath": "_default/index.tsx",
@@ -234,6 +266,10 @@ export const routeTree = rootRoute
     "/_default/characters/": {
       "filePath": "_default/characters.index.tsx",
       "parent": "/_default/characters"
+    },
+    "/_default/collections/": {
+      "filePath": "_default/collections.index.tsx",
+      "parent": "/_default/collections"
     }
   }
 }

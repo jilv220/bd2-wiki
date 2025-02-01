@@ -19,7 +19,7 @@ export const HighlightNumbers = ({
 				return (
 					<span
 						key={nanoid(idx)}
-						className="font-medium text-[#fb3e39] dark:text-yellow-300"
+						className="font-medium text-[#fb3e39] dark:text-accent"
 					>
 						{part}
 					</span>

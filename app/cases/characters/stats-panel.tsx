@@ -193,7 +193,7 @@ export function StatsPanel() {
 									"text-sm sm:text-base",
 									isAwaken &&
 										fieldsToChange.includes(stat.label) &&
-										"text-yellow-300",
+										"text-accent",
 								)}
 							>
 								{stat.value}

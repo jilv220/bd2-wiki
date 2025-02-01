@@ -46,7 +46,10 @@ export const FilterSection = <T extends string>({
 						{option.iconUrl ? (
 							<img
 								alt={option.value}
-								className="h-5 w-5 sm:h-6 sm:w-6"
+								className={cn(
+									"h-5 w-5 sm:h-6 sm:w-6",
+									value === option.value && "brightness-[0.15]",
+								)}
 								src={option.iconUrl}
 							/>
 						) : (
@@ -69,7 +72,7 @@ export const FilterContainer = ({
 	return (
 		<div
 			className={cn(
-				"mb-4 flex flex-col items-start space-y-3 rounded-lg bg-secondary/10 p-2 sm:mb-4 sm:grid sm:grid-cols-2 sm:gap-4 sm:space-y-0 sm:p-6",
+				"mb-4 flex flex-col items-start space-y-3 rounded-lg bg-secondary/25 p-2 sm:mb-4 sm:grid sm:grid-cols-2 sm:gap-4 sm:space-y-0 sm:p-6",
 				className,
 			)}
 		>

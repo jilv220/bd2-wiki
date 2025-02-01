@@ -13,6 +13,7 @@ import {
 	SidebarRail,
 	useSidebar,
 } from "~/components/ui/sidebar";
+import { useCollections } from "~/hooks/use-collections";
 import { RefinementConverter } from "./refinement-converter";
 
 const EXTERNAL_LINKS = "External Links";

@@ -1,5 +1,4 @@
 import { Outlet, createFileRoute } from "@tanstack/react-router";
-import { useMediaQuery } from "@uidotdev/usehooks";
 import { SiteFooter } from "~/components/site-footer";
 import { SiteHeader } from "~/components/site-header";
 import { SiteSidebar } from "~/components/site-sidebar";

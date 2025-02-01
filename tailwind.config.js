@@ -54,6 +54,9 @@ module.exports = {
 				md: "calc(var(--radius) - 2px)",
 				sm: "calc(var(--radius) - 4px)",
 			},
+			transitionTimingFunction: {
+				'quint': 'cubic-bezier(0.87, 0, 0.13, 1)',
+			},
 			screens: {
 				xs: "380px"
 			}
